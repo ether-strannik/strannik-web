@@ -1,0 +1,240 @@
+---
+interface Props {
+	title: string;
+	sidebar?: { title: string; collapsible?: boolean; expanded?: boolean; links: { href: string; label: string; active?: boolean }[] }[];
+}
+
+const { title, sidebar = [] } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+		<title>{title}</title>
+		<style is:global>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				font-size: 16px;
+				line-height: 1.6;
+				color: #1a1a1a;
+				background: #fff;
+			}
+
+			body {
+				min-height: 100vh;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+
+			a:hover {
+				color: #666;
+			}
+
+			code {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.9em;
+				background: #f5f5f5;
+				padding: 0.2em 0.4em;
+				border-radius: 3px;
+			}
+
+			/* Header */
+			.docs-header {
+				border-bottom: 1px solid #e5e5e5;
+				padding: 1rem 2rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: sticky;
+				top: 0;
+				background: #fff;
+				z-index: 100;
+			}
+
+			.logo {
+				font-family: 'IBM Plex Mono', monospace;
+				font-weight: 400;
+				font-size: 1.75rem;
+				text-decoration: none;
+			}
+
+			.header-nav {
+				display: flex;
+				gap: 2rem;
+				align-items: center;
+			}
+
+			.header-nav a {
+				text-decoration: none;
+				color: #666;
+				font-size: 0.95rem;
+			}
+
+			.header-nav a:hover {
+				color: #000;
+			}
+
+			/* Layout */
+			.docs-layout {
+				display: grid;
+				grid-template-columns: 240px 1fr;
+				min-height: calc(100vh - 60px);
+			}
+
+			/* Sidebar */
+			.sidebar {
+				border-right: 1px solid #e5e5e5;
+				padding: 2rem 1.5rem;
+				position: sticky;
+				top: 60px;
+				height: calc(100vh - 60px);
+				overflow-y: auto;
+			}
+
+			.sidebar-section {
+				margin-bottom: 2rem;
+			}
+
+			.sidebar-title {
+				font-size: 0.8rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: #999;
+				margin-bottom: 0.75rem;
+			}
+
+			.sidebar-nav {
+				list-style: none;
+			}
+
+			.sidebar-nav li {
+				padding: 0.3rem 0;
+			}
+
+			.sidebar-nav a {
+				color: #666;
+				text-decoration: none;
+				font-size: 0.95rem;
+			}
+
+			.sidebar-nav a:hover {
+				color: #000;
+			}
+
+			.sidebar-nav a.active {
+				color: #000;
+				font-weight: 500;
+			}
+
+			/* Collapsible sections */
+			.sidebar-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				cursor: pointer;
+				user-select: none;
+			}
+
+			.sidebar-header:hover .sidebar-title {
+				color: #666;
+			}
+
+			.sidebar-toggle {
+				color: #999;
+				font-size: 0.8rem;
+				transition: transform 0.2s;
+			}
+
+			.sidebar-section.collapsed .sidebar-toggle {
+				transform: rotate(-90deg);
+			}
+
+			.sidebar-section.collapsed .sidebar-nav {
+				display: none;
+			}
+
+			/* Content */
+			.docs-content {
+				padding: 2rem 3rem;
+				max-width: 800px;
+			}
+
+			@media (max-width: 768px) {
+				.docs-layout {
+					grid-template-columns: 1fr;
+				}
+
+				.sidebar {
+					position: relative;
+					top: 0;
+					height: auto;
+					border-right: none;
+					border-bottom: 1px solid #e5e5e5;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="docs-header">
+			<a href="/" class="logo">Strannik</a>
+			<nav class="header-nav">
+				<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
+				<a href="/docs">Docs</a>
+			</nav>
+		</header>
+
+		<div class="docs-layout">
+			<aside class="sidebar">
+				{sidebar.map(section => (
+					<div class={`sidebar-section ${section.collapsible && !section.expanded ? 'collapsed' : ''}`} data-collapsible={section.collapsible ? 'true' : undefined}>
+						{section.collapsible ? (
+							<div class="sidebar-header">
+								<div class="sidebar-title">{section.title}</div>
+								<span class="sidebar-toggle">▼</span>
+							</div>
+						) : (
+							<div class="sidebar-title">{section.title}</div>
+						)}
+						<ul class="sidebar-nav">
+							{section.links.map(link => (
+								<li><a href={link.href} class={link.active ? 'active' : ''}>{link.label}</a></li>
+							))}
+						</ul>
+					</div>
+				))}
+			</aside>
+
+			<main class="docs-content">
+				<slot />
+			</main>
+		</div>
+
+		<script>
+			document.querySelectorAll('.sidebar-section[data-collapsible]').forEach(section => {
+				const header = section.querySelector('.sidebar-header');
+				if (header) {
+					header.addEventListener('click', () => {
+						section.classList.toggle('collapsed');
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

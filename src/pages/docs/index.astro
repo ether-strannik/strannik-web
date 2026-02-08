@@ -1,160 +1,40 @@
 ---
-import Base from '../../layouts/Base.astro';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro', active: true }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' }
+		]
+	}
+];
 ---
 
-<Base title="Docs - Strannik">
+<DocsLayout title="Docs - Strannik" sidebar={sidebar}>
 	<style>
-		.docs-layout {
-			display: grid;
-			grid-template-columns: 200px 1fr;
-			gap: 3rem;
-			min-height: 60vh;
-		}
-
-		/* Sidebar */
-		.sidebar {
-			border-right: 1px solid #e5e5e5;
-			padding-right: 2rem;
-		}
-
-		.sidebar-section {
-			margin-bottom: 2rem;
-		}
-
-		.sidebar-title {
-			font-size: 0.8rem;
-			font-weight: 600;
-			text-transform: uppercase;
-			letter-spacing: 0.05em;
-			color: #999;
-			margin-bottom: 0.75rem;
-		}
-
-		.sidebar-nav {
-			list-style: none;
-		}
-
-		.sidebar-nav li {
-			padding: 0.3rem 0;
-		}
-
-		.sidebar-nav a {
-			color: #666;
-			text-decoration: none;
-			font-size: 0.95rem;
-		}
-
-		.sidebar-nav a:hover {
-			color: #000;
-		}
-
-		.sidebar-nav a.active {
-			color: #000;
-			font-weight: 500;
-		}
-
-		/* Content */
-		.docs-content h1 {
+		h1 {
 			font-size: 1.8rem;
-			font-weight: 600;
-			margin-bottom: 1rem;
-		}
-
-		.docs-content p {
-			color: #666;
-			margin-bottom: 2rem;
-		}
-
-		.docs-content h2 {
-			font-size: 1.2rem;
-			font-weight: 600;
-			margin: 2rem 0 1rem;
-			padding-bottom: 0.5rem;
-			border-bottom: 1px solid #e5e5e5;
-		}
-
-		.app-card {
-			padding: 1.5rem;
-			border: 1px solid #e5e5e5;
-			border-radius: 6px;
-			margin-bottom: 1rem;
-		}
-
-		.app-card h3 {
-			font-size: 1.1rem;
 			font-weight: 600;
 			margin-bottom: 0.5rem;
 		}
 
-		.app-card h3 a {
-			color: #000;
-			text-decoration: none;
-		}
-
-		.app-card h3 a:hover {
-			text-decoration: underline;
-		}
-
-		.app-card p {
+		p {
 			color: #666;
-			font-size: 0.95rem;
 			margin-bottom: 1rem;
-		}
-
-		.app-links {
-			display: flex;
-			gap: 1rem;
-		}
-
-		.app-links a {
-			font-size: 0.9rem;
-			color: #666;
-		}
-
-		.app-links a:hover {
-			color: #000;
-		}
-
-		@media (max-width: 768px) {
-			.docs-layout {
-				grid-template-columns: 1fr;
-			}
-
-			.sidebar {
-				border-right: none;
-				border-bottom: 1px solid #e5e5e5;
-				padding-right: 0;
-				padding-bottom: 1.5rem;
-				margin-bottom: 1.5rem;
-			}
 		}
 	</style>
 
-	<div class="docs-layout">
-		<aside class="sidebar">
-			<div class="sidebar-section">
-				<div class="sidebar-title">Apps</div>
-				<ul class="sidebar-nav">
-					<li><a href="/docs/prismchart">PrismChart</a></li>
-				</ul>
-			</div>
-		</aside>
-
-		<main class="docs-content">
-			<h1>Documentation</h1>
-			<p>Guides and reference for Strannik apps.</p>
-
-			<h2>Apps</h2>
-
-			<div class="app-card">
-				<h3><a href="/docs/prismchart">PrismChart</a></h3>
-				<p>Drawing and analysis platform for MetaTrader 5</p>
-				<div class="app-links">
-					<a href="/docs/prismchart">Overview</a>
-					<a href="/docs/prismchart/installation">Installation</a>
-					<a href="https://github.com/ether-strannik/PrismChart" target="_blank">GitHub</a>
-				</div>
-			</div>
-		</main>
-	</div>
-</Base>
+	<h1>Intro</h1>
+	<p>Guides and reference for Strannik apps.</p>
+	<p>Select a topic from the sidebar to get started.</p>
+</DocsLayout>
