@@ -66,20 +66,15 @@ const toc = [
 		}
 
 		.video-container {
-			position: relative;
-			width: 100%;
-			padding-bottom: 56.25%;
 			margin-bottom: 2rem;
 			border-radius: 8px;
 			overflow: hidden;
 		}
 
 		.video-container iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
+			display: block;
 			width: 100%;
-			height: 100%;
+			aspect-ratio: 16/9;
 			border: none;
 		}
 	</style>
@@ -87,13 +82,30 @@ const toc = [
 	<h1>Installation</h1>
 
 	<div class="video-container" id="video">
-		<iframe
-			src="https://www.youtube.com/embed/8nVXbMy6JUM"
-			title="PrismChart Installation"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen>
-		</iframe>
+		<div id="yt-player"></div>
 	</div>
+
+	<script>
+		// YouTube IFrame API
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: '8nVXbMy6JUM',
+				playerVars: {
+					rel: 0,
+					modestbranding: 1
+				},
+				events: {
+					onReady: function(e) {
+						e.target.setPlaybackQuality('hd720');
+					}
+				}
+			});
+		};
+	</script>
 
 	<h2 id="fresh-install">Fresh Install</h2>
 	<ol>
