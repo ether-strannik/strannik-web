@@ -1,0 +1,155 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation', active: true },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#video', label: 'Video' },
+	{ href: '#price-scale', label: 'Price Scale' },
+	{ href: '#time-scale', label: 'Time Scale' },
+	{ href: '#zoom', label: 'Zoom' }
+];
+---
+
+<DocsLayout title="Foundation - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h3 {
+			font-size: 1rem;
+			font-weight: 600;
+			margin: 1.5rem 0 0.75rem;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
+		}
+	</style>
+
+	<h1>Foundation</h1>
+	<p class="tagline">Custom coordinate system replacing MT5 defaults</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: '0BSx1YNXRtE',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<p>MetaTrader 5's default chart display has limitations - it only shows broker time, which can be confusing when broker time 00:00 equals NY time 17:00. PrismChart replaces the coordinate system with fully customizable price and time scales.</p>
+
+	<h2 id="price-scale">Price Scale</h2>
+	<p>Canvas-based rendering replaces the default MT5 price axis with full customization:</p>
+	<ul>
+		<li>Font family and size selection</li>
+		<li>Text color and background color</li>
+		<li>Rounded price levels at user-defined intervals</li>
+		<li>Current price indicator displayed on scale</li>
+	</ul>
+
+	<h2 id="time-scale">Time Scale</h2>
+	<p>TradingView-style timeline with timezone support:</p>
+	<ul>
+		<li>Font family and size selection</li>
+		<li>Text color and background color</li>
+		<li>Separate colors for day, month, and year labels</li>
+		<li>Adaptive format per timeframe (M1 through MN1)</li>
+	</ul>
+
+	<h3>Timezone Modes</h3>
+	<ul>
+		<li><strong>New York (Auto DST)</strong> - automatically adjusts for daylight saving time</li>
+		<li><strong>Manual UTC offset</strong> - set a fixed offset from UTC</li>
+	</ul>
+
+	<h2 id="zoom">Zoom</h2>
+	<p>Fine-tuned zoom control with reasonable time segment display:</p>
+	<ul>
+		<li>Custom zoom increments per timeframe</li>
+		<li>Adaptive time segments at each zoom level</li>
+		<li>Consistent experience across all timeframes</li>
+	</ul>
+</DocsLayout>

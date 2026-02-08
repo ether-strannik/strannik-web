@@ -1,0 +1,83 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits', active: true }
+		]
+	}
+];
+
+const toc = [];
+---
+
+<DocsLayout title="Credits - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		.credits-list {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		.credits-list li {
+			padding: 0.5rem 0;
+			color: #666;
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.credits-list li:last-child {
+			border-bottom: none;
+		}
+
+		.credits-list a {
+			color: #000;
+			font-weight: 500;
+		}
+	</style>
+
+	<h1>Credits</h1>
+	<p class="tagline">Inspirations and references</p>
+
+	<ul class="credits-list">
+		<li><a href="https://www.tradingview.com/script/jWY4Uiez-Fair-Value-Gap-LuxAlgo/" target="_blank">Fair Value Gap</a> by LuxAlgo - inspiration for FVG detection</li>
+		<li><a href="https://www.mql5.com/en/code/48745" target="_blank">HorizontalTrendLines</a> by Ihor Herasko - inspiration for angle lock feature</li>
+		<li><a href="https://www.mql5.com/en/code/20185" target="_blank">Candle Closing Time Remaining (CCTR) MT5</a> by Foad Tahmasebi - inspiration for candle close countdown</li>
+		<li><a href="https://www.mql5.com/en/code/36052" target="_blank">Price Line</a> by Dark Ryd3r - inspiration for price line feature</li>
+		<li><a href="https://www.mql5.com/en/code/56228" target="_blank">Price Time Scale</a> by Aleksandr Slavskii - inspiration for custom price scale</li>
+		<li><a href="https://www.mql5.com/en/code/44943" target="_blank">PriceScale.mq5</a> by Aleksandr Slavskii - inspiration for price scale rendering</li>
+		<li><a href="https://www.mql5.com/en/code/27931" target="_blank">Forex_Spread_Meter</a> by amrali - inspiration for spread meter feature</li>
+		<li><a href="https://www.mql5.com/en/code/52263" target="_blank">ChartObjectsCopyPaste</a> by Stanislav Korotky - inspiration for cross-chart copy/paste</li>
+		<li><a href="https://www.mql5.com/en/code/1517" target="_blank">TrendLine Touch Alert</a> by Ahmed Soliman - inspiration for OHLC-based crossing detection</li>
+		<li><a href="https://www.mql5.com/en/code/68324" target="_blank">iCrosshair</a> by awran5 - inspiration for crosshair with candle metrics</li>
+		<li><a href="https://www.mql5.com/en/code/17671" target="_blank">FigureBuilder</a> by Marat Sultanov - inspiration for path tool undo feature</li>
+		<li><a href="https://www.mql5.com/en/code/11466" target="_blank">SMTP Mail Library</a> by Andriy Voitenko - inspiration for email alert system</li>
+		<li><a href="https://www.mql5.com/en/users/avoitenko" target="_blank">TradeStatisticsPanel</a> by avoitenko - inspiration for expanded trade statistics</li>
+		<li><a href="https://www.mql5.com/en/code/936" target="_blank">WideScreenShooter</a> by Olegs Kucerenko - inspiration for panorama screenshot</li>
+		<li><a href="https://www.mql5.com/en/code/17200" target="_blank">Automatic Fixed Scale with Top/Bottom Margins</a> by rkdius - inspiration for ATR-based chart scaling with margin system</li>
+	</ul>
+</DocsLayout>

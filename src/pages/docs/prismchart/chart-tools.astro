@@ -1,0 +1,167 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools', active: true },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#crosshair', label: 'Crosshair' },
+	{ href: '#ohlc-info', label: 'OHLC Info Display' },
+	{ href: '#price-line', label: 'Price Line' },
+	{ href: '#spread-meter', label: 'Spread Meter' },
+	{ href: '#candle-countdown', label: 'Candle Countdown' },
+	{ href: '#symbol-switcher', label: 'Symbol Switcher' }
+];
+---
+
+<DocsLayout title="Chart Tools - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+	</style>
+
+	<h1>Chart Tools</h1>
+	<p class="tagline">Live data displays and chart utilities</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'veHM1T3sNeg',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="crosshair">Crosshair</h2>
+	<p>Custom crosshair when custom scales are enabled:</p>
+	<ul>
+		<li>Line style, color, width (1-5)</li>
+		<li>Price label on price scale (canvas-rendered)</li>
+		<li>Time label on timeline (canvas-rendered, uses selected timezone)</li>
+		<li>Label color setting (affects both scales)</li>
+		<li>Labels can be toggled independently from crosshair lines</li>
+		<li>Show Lines toggle (info/labels work without crosshair lines for better object selection)</li>
+		<li><strong>T key</strong> toggles tracking on/off</li>
+	</ul>
+
+	<h2 id="ohlc-info">OHLC Info Display</h2>
+	<p>Replaces MT5 built-in display with customizable info panel:</p>
+	<ul>
+		<li>Symbol name</li>
+		<li>Bar number, pips from close</li>
+		<li>O/H/L/C values</li>
+		<li>Range (pips), Body%, Upper Wick%, Lower Wick%</li>
+		<li>Volume</li>
+		<li>Time (in user's selected timezone)</li>
+		<li>Each section toggleable</li>
+		<li>Custom font and font size</li>
+	</ul>
+
+	<h2 id="price-line">Price Line</h2>
+	<p>Visual indicator following current price:</p>
+	<ul>
+		<li>Follows current price in real-time</li>
+		<li>Up/down color (green/red vs previous close)</li>
+		<li>Optional label above line</li>
+		<li>Optional label on price scale</li>
+	</ul>
+
+	<h2 id="spread-meter">Spread Meter</h2>
+	<p>Current spread monitoring:</p>
+	<ul>
+		<li>Current spread display</li>
+		<li>Max value threshold with color alert</li>
+		<li>Configurable colors</li>
+	</ul>
+
+	<h2 id="candle-countdown">Candle Close Countdown</h2>
+	<p>Time remaining until current candle closes:</p>
+	<ul>
+		<li>Integrated into price scale (bottom)</li>
+		<li>Updates in real-time</li>
+	</ul>
+
+	<h2 id="symbol-switcher">Symbol Switcher</h2>
+	<p>Quick symbol and timeframe switching:</p>
+	<ul>
+		<li>Toggle button displays current symbol + timeframe</li>
+		<li>Favorites list with [O] button to open new chart</li>
+		<li>Timeframe selector buttons ([1] [5] [15] [30] [1H] [4H] [D1])</li>
+		<li>Add/remove symbols from favorites</li>
+		<li>Position validation prevents dialogs from getting stuck behind OHLC strip</li>
+	</ul>
+</DocsLayout>

@@ -1,0 +1,121 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/development', label: 'Development', active: true },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#prerequisites', label: 'Prerequisites' },
+	{ href: '#builder-tool', label: 'Builder Tool' }
+];
+---
+
+<DocsLayout title="Development - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h3 {
+			font-size: 1rem;
+			font-weight: 600;
+			margin: 1.5rem 0 0.75rem;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		pre {
+			background: #1a1a1a;
+			color: #e5e5e5;
+			padding: 1rem;
+			border-radius: 6px;
+			overflow-x: auto;
+			margin-bottom: 1rem;
+		}
+
+		pre code {
+			background: none;
+			padding: 0;
+		}
+	</style>
+
+	<h1>Development</h1>
+	<p class="tagline">For contributors building from source</p>
+
+	<h2 id="prerequisites">Prerequisites</h2>
+	<ul>
+		<li>MetaEditor (comes with MT5)</li>
+		<li>Python 3.10+ with PyQt5</li>
+		<li>7-Zip (in PATH)</li>
+		<li>PyInstaller (<code>pip install pyinstaller</code>)</li>
+	</ul>
+
+	<h2 id="builder-tool">Builder Tool</h2>
+	<p>The builder (<code>Addons/builder/builder.py</code>) provides a GUI for compiling all components:</p>
+	<pre><code>cd Addons/builder
+python builder.py</code></pre>
+
+	<h3>Build Targets</h3>
+	<ul>
+		<li><strong>PrismChart</strong> - Compile MQL5 indicator via MetaEditor</li>
+		<li><strong>Installer</strong> - PyInstaller onedir build</li>
+		<li><strong>Update Checker</strong> - PyInstaller onedir build</li>
+		<li><strong>ThinkPad</strong> - PyInstaller onedir build</li>
+		<li><strong>SMTP Sender</strong> - PyInstaller onefile build</li>
+	</ul>
+
+	<h3>Features</h3>
+	<ul>
+		<li>Batch build: Check targets and click "Build Selected"</li>
+		<li>Auto-package: Check "Package" to create release archive after builds</li>
+		<li>Sequential execution: Builds run one after another</li>
+		<li>Post-build: Copies <code>settings.ini.template</code> to ThinkPad output</li>
+	</ul>
+</DocsLayout>

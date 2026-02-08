@@ -14,12 +14,17 @@ const sidebar = [
 		expanded: true,
 		links: [
 			{ href: '/docs/prismchart', label: 'Overview', active: true },
-			{ href: '/docs/prismchart/installation', label: 'Installation' }
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
 		]
 	}
 ];
 
 const toc = [
+	{ href: '#overview', label: 'Overview' },
 	{ href: '#features', label: 'Features' }
 ];
 ---
@@ -109,6 +114,67 @@ const toc = [
 		.btn-secondary:hover {
 			color: #000;
 		}
+
+		.intro {
+			margin-bottom: 2rem;
+		}
+
+		.intro p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		.intro p.lead {
+			font-size: 1.1rem;
+			font-weight: 500;
+			color: #000;
+		}
+
+		.intro hr {
+			border: none;
+			border-top: 1px solid #e5e5e5;
+			margin: 2rem 0;
+		}
+
+		.comparison-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1rem 0 1.5rem;
+			font-size: 0.95rem;
+		}
+
+		.comparison-table th,
+		.comparison-table td {
+			text-align: left;
+			padding: 0.75rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.comparison-table th {
+			font-weight: 600;
+			background: #f9f9f9;
+		}
+
+		.comparison-table td:first-child {
+			font-weight: 500;
+			color: #000;
+		}
+
+		.workflow {
+			background: #1a1a1a;
+			color: #e5e5e5;
+			padding: 1rem;
+			border-radius: 6px;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.9rem;
+			margin: 1rem 0 1.5rem;
+			overflow-x: auto;
+		}
+
+		.closing {
+			font-style: italic;
+			color: #666;
+		}
 	</style>
 
 	<div class="page-header">
@@ -117,6 +183,69 @@ const toc = [
 			<h1>PrismChart</h1>
 			<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
 		</div>
+	</div>
+
+	<div class="intro" id="overview">
+		<p class="lead">The complete trading workstation for MT5.</p>
+
+		<p>Most traders juggle multiple apps: one for charting, one for journaling, one for screenshots, one for trade tracking, spreadsheets for statistics. Context scattered everywhere. Insights lost between tools.</p>
+
+		<p>PrismChart brings it all together.</p>
+
+		<hr />
+
+		<p class="lead">One platform. Everything connected.</p>
+
+		<table class="comparison-table">
+			<tr>
+				<th>What you need</th>
+				<th>How PrismChart handles it</th>
+			</tr>
+			<tr>
+				<td>Technical Analysis</td>
+				<td>Layer-based drawing tools with visibility templates</td>
+			</tr>
+			<tr>
+				<td>Time Context</td>
+				<td>Sessions, news events, period separators - all as drawing objects</td>
+			</tr>
+			<tr>
+				<td>Alerts</td>
+				<td>Set on any drawing. Trigger captures screenshot automatically</td>
+			</tr>
+			<tr>
+				<td>Trade Data</td>
+				<td>MT5 positions flow directly into the journal</td>
+			</tr>
+			<tr>
+				<td>Documentation</td>
+				<td>Markdown notes attached to trades with screenshots</td>
+			</tr>
+			<tr>
+				<td>Review</td>
+				<td>Calendar view, filtered statistics, trade-by-trade analysis</td>
+			</tr>
+			<tr>
+				<td>Portability</td>
+				<td>Copy drawings across charts. Export and share setups</td>
+			</tr>
+		</table>
+
+		<hr />
+
+		<p class="lead">The workflow:</p>
+
+		<pre class="workflow">Draw → Alert → Trade → Document → Review
+                 ↓
+          [all in one place]</pre>
+
+		<p>Your analysis, your trades, your notes, your screenshots - connected. Not scattered across five apps hoping you remember to update each one.</p>
+
+		<hr />
+
+		<p class="lead">Not an indicator. A workstation.</p>
+
+		<p class="closing">PrismChart treats chart analysis as a design discipline. Every element - separators, sessions, markups - is a drawing object in a layer. Organize them. Toggle visibility. Save templates for different views. Your chart, your system.</p>
 	</div>
 
 	<h2 id="features">Features</h2>
