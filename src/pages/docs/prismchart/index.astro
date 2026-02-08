@@ -18,9 +18,13 @@ const sidebar = [
 		]
 	}
 ];
+
+const toc = [
+	{ href: '#features', label: 'Features' }
+];
 ---
 
-<DocsLayout title="PrismChart - Docs" sidebar={sidebar}>
+<DocsLayout title="PrismChart - Docs" sidebar={sidebar} toc={toc}>
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -98,7 +102,7 @@ const sidebar = [
 	<h1>PrismChart</h1>
 	<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
 
-	<h2>Features</h2>
+	<h2 id="features">Features</h2>
 	<ul class="feature-list">
 		<li><strong>Custom Price Scale</strong> Canvas-based rendering with rounded price levels</li>
 		<li><strong>Custom Timeline</strong> TradingView-style with timezone support</li>

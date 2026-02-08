@@ -18,9 +18,14 @@ const sidebar = [
 		]
 	}
 ];
+
+const toc = [
+	{ href: '#fresh-install', label: 'Fresh Install' },
+	{ href: '#requirements', label: 'Requirements' }
+];
 ---
 
-<DocsLayout title="Installation - PrismChart - Docs" sidebar={sidebar}>
+<DocsLayout title="Installation - PrismChart - Docs" sidebar={sidebar} toc={toc}>
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -62,7 +67,7 @@ const sidebar = [
 
 	<h1>Installation</h1>
 
-	<h2>Fresh Install</h2>
+	<h2 id="fresh-install">Fresh Install</h2>
 	<ol>
 		<li>Download <a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip">installer.zip</a> from the repository</li>
 		<li>Extract and run <code>installer/installer.exe</code></li>
@@ -77,7 +82,7 @@ const sidebar = [
 		Access it via the <strong>Installer</strong> button in Quick Tools (QT) dialog.
 	</p>
 
-	<h2>Requirements</h2>
+	<h2 id="requirements">Requirements</h2>
 	<ul>
 		<li>Windows 10/11</li>
 		<li>MetaTrader 5 terminal</li>

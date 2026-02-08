@@ -2,9 +2,10 @@
 interface Props {
 	title: string;
 	sidebar?: { title: string; collapsible?: boolean; expanded?: boolean; links: { href: string; label: string; active?: boolean }[] }[];
+	toc?: { href: string; label: string; indent?: boolean }[];
 }
 
-const { title, sidebar = [] } = Astro.props;
+const { title, sidebar = [], toc = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -93,7 +94,7 @@ const { title, sidebar = [] } = Astro.props;
 			/* Layout */
 			.docs-layout {
 				display: grid;
-				grid-template-columns: 240px 1fr;
+				grid-template-columns: 240px 1fr 200px;
 				min-height: calc(100vh - 60px);
 			}
 
@@ -176,6 +177,54 @@ const { title, sidebar = [] } = Astro.props;
 				max-width: 800px;
 			}
 
+			/* Table of Contents (right) */
+			.toc {
+				padding: 2rem 1.5rem;
+				position: sticky;
+				top: 60px;
+				height: calc(100vh - 60px);
+				overflow-y: auto;
+			}
+
+			.toc-title {
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #999;
+				margin-bottom: 0.75rem;
+			}
+
+			.toc-nav {
+				list-style: none;
+			}
+
+			.toc-nav li {
+				padding: 0.25rem 0;
+			}
+
+			.toc-nav li.indent {
+				padding-left: 1rem;
+			}
+
+			.toc-nav a {
+				color: #666;
+				text-decoration: none;
+				font-size: 0.9rem;
+			}
+
+			.toc-nav a:hover {
+				color: #000;
+			}
+
+			@media (max-width: 1024px) {
+				.docs-layout {
+					grid-template-columns: 240px 1fr;
+				}
+
+				.toc {
+					display: none;
+				}
+			}
+
 			@media (max-width: 768px) {
 				.docs-layout {
 					grid-template-columns: 1fr;
@@ -224,6 +273,17 @@ const { title, sidebar = [] } = Astro.props;
 			<main class="docs-content">
 				<slot />
 			</main>
+
+			{toc.length > 0 && (
+				<aside class="toc">
+					<div class="toc-title">ON THIS PAGE</div>
+					<ul class="toc-nav">
+						{toc.map(item => (
+							<li class={item.indent ? 'indent' : ''}><a href={item.href}>{item.label}</a></li>
+						))}
+					</ul>
+				</aside>
+			)}
 		</div>
 
 		<script>
