@@ -26,6 +26,7 @@ import Base from '../layouts/Base.astro';
 			display: flex;
 			gap: 1rem;
 			align-items: center;
+			margin-bottom: 3rem;
 		}
 
 		.btn {
@@ -50,31 +51,108 @@ import Base from '../layouts/Base.astro';
 			color: #666;
 		}
 
-		.section {
-			padding: 3rem 0;
-			border-top: 1px solid #e5e5e5;
+		/* Tabs */
+		.tabs {
+			border-bottom: 1px solid #e5e5e5;
+			margin-bottom: 2rem;
 		}
 
-		.section h2 {
-			font-size: 1.3rem;
-			font-weight: 600;
-			margin-bottom: 1.5rem;
-		}
-
-		.apps-list {
+		.tab-list {
+			display: flex;
+			gap: 2rem;
 			list-style: none;
 		}
 
-		.apps-list li {
+		.tab-btn {
+			background: none;
+			border: none;
 			padding: 0.5rem 0;
-		}
-
-		.apps-list a {
-			font-weight: 500;
-		}
-
-		.apps-list span {
+			font-size: 0.95rem;
+			font-family: inherit;
 			color: #666;
+			cursor: pointer;
+			position: relative;
+		}
+
+		.tab-btn:hover {
+			color: #000;
+		}
+
+		.tab-btn.active {
+			color: #000;
+		}
+
+		.tab-btn.active::after {
+			content: '';
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+			right: 0;
+			height: 2px;
+			background: #000;
+		}
+
+		/* Tab content */
+		.tab-content {
+			display: none;
+		}
+
+		.tab-content.active {
+			display: block;
+		}
+
+		.app-title {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.app-desc {
+			color: #666;
+			margin-bottom: 1.5rem;
+		}
+
+		.feature-list {
+			list-style: none;
+			margin-bottom: 2rem;
+		}
+
+		.feature-list li {
+			padding: 0.4rem 0;
+			color: #333;
+		}
+
+		.feature-list li::before {
+			content: '[*]';
+			color: #999;
+			margin-right: 0.75rem;
+			font-size: 0.85rem;
+		}
+
+		.feature-list strong {
+			color: #000;
+		}
+
+		.btn-docs {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			background: #000;
+			color: #fff;
+			padding: 0.6rem 1.2rem;
+			font-size: 0.9rem;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		.btn-docs:hover {
+			background: #333;
+			color: #fff;
+		}
+
+		.coming-soon {
+			color: #999;
+			font-style: italic;
 		}
 	</style>
 
@@ -87,16 +165,42 @@ import Base from '../layouts/Base.astro';
 		</div>
 	</div>
 
-	<div class="section">
-		<h2>Apps</h2>
-		<ul class="apps-list">
-			<li>
-				<a href="/prismchart">PrismChart</a>
-				<span> — Drawing and analysis platform for MetaTrader 5</span>
-			</li>
-			<li>
-				<span style="color: #999;">More coming soon — Time management, backup utilities, watch apps</span>
-			</li>
+	<div class="tabs">
+		<ul class="tab-list">
+			<li><button class="tab-btn active" data-tab="prismchart">PrismChart</button></li>
+			<li><button class="tab-btn" data-tab="more">More</button></li>
 		</ul>
 	</div>
+
+	<div class="tab-content active" id="prismchart">
+		<h3 class="app-title">What is PrismChart?</h3>
+		<p class="app-desc">PrismChart is a drawing and analysis platform for MetaTrader 5.</p>
+
+		<ul class="feature-list">
+			<li><strong>Custom Price Scale</strong> Canvas-based rendering with rounded price levels</li>
+			<li><strong>Custom Timeline</strong> TradingView-style with timezone support</li>
+			<li><strong>Drawing Tools</strong> Lines, shapes, text, paths, position tool, Fibonacci</li>
+			<li><strong>Layer System</strong> Organize objects by groups with visibility/lock controls</li>
+			<li><strong>Alerts</strong> Price cross, zone entry, candle close alerts with notifications</li>
+			<li><strong>Templates</strong> Save and apply drawing styles</li>
+		</ul>
+
+		<a href="/prismchart" class="btn-docs">Read docs →</a>
+	</div>
+
+	<div class="tab-content" id="more">
+		<p class="coming-soon">More apps coming soon — time management, backup utilities, watch apps</p>
+	</div>
+
+	<script>
+		document.querySelectorAll('.tab-btn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+				document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+				btn.classList.add('active');
+				document.getElementById(btn.dataset.tab)?.classList.add('active');
+			});
+		});
+	</script>
 </Base>
