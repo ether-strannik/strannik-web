@@ -26,6 +26,18 @@ const toc = [
 
 <DocsLayout title="PrismChart - Docs" sidebar={sidebar} toc={toc}>
 	<style>
+		.page-header {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+			margin-bottom: 2rem;
+		}
+
+		.page-icon {
+			width: 64px;
+			height: 64px;
+		}
+
 		h1 {
 			font-size: 1.8rem;
 			font-weight: 600;
@@ -34,7 +46,7 @@ const toc = [
 
 		.tagline {
 			color: #666;
-			margin-bottom: 2rem;
+			margin-bottom: 0;
 		}
 
 		h2 {
@@ -99,8 +111,13 @@ const toc = [
 		}
 	</style>
 
-	<h1>PrismChart</h1>
-	<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
+	<div class="page-header">
+		<img src="/icons/prismchart.png" alt="PrismChart" class="page-icon" />
+		<div>
+			<h1>PrismChart</h1>
+			<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
+		</div>
+	</div>
 
 	<h2 id="features">Features</h2>
 	<ul class="feature-list">
