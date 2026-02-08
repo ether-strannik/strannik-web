@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Installation - PrismChart">
+	<style>
+		h1 {
+			font-size: 2rem;
+			font-weight: 600;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+		}
+
+		ol {
+			padding-left: 1.5rem;
+		}
+
+		li {
+			padding: 0.4rem 0;
+			color: #333;
+		}
+
+		a {
+			color: #000;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			margin-top: 1.5rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+		}
+
+		.back {
+			display: inline-block;
+			margin-bottom: 2rem;
+			color: #666;
+			font-size: 0.9rem;
+		}
+	</style>
+
+	<a href="/prismchart" class="back">← Back to PrismChart</a>
+
+	<h1>Installation</h1>
+
+	<h2>Fresh Install</h2>
+	<ol>
+		<li>Download <a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip">installer.zip</a> from the repository</li>
+		<li>Extract and run <code>installer/installer.exe</code></li>
+		<li>Select your Windows user and MT5 terminal</li>
+		<li>Choose the version to install (latest recommended)</li>
+		<li>(Optional) Configure SMTP email settings for alerts</li>
+		<li>Click <strong>Install</strong></li>
+	</ol>
+
+	<p class="note">
+		You can re-run the installer anytime to update SMTP settings or install a different version.
+		Access it via the <strong>Installer</strong> button in Quick Tools (QT) dialog.
+	</p>
+
+	<h2>Requirements</h2>
+	<ul>
+		<li>Windows 10/11</li>
+		<li>MetaTrader 5 terminal</li>
+		<li>.NET Framework (for installer)</li>
+	</ul>
+</Base>

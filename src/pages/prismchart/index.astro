@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="PrismChart - Strannik">
+	<style>
+		h1 {
+			font-size: 2rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+		}
+
+		.tagline {
+			color: #666;
+			font-size: 1.1rem;
+			margin-bottom: 2rem;
+		}
+
+		.actions {
+			display: flex;
+			gap: 1rem;
+			margin-bottom: 3rem;
+		}
+
+		.btn {
+			display: inline-block;
+			padding: 0.6rem 1.2rem;
+			font-size: 0.9rem;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		.btn-primary {
+			background: #000;
+			color: #fff;
+		}
+
+		.btn-secondary {
+			border: 1px solid #e5e5e5;
+			color: #666;
+		}
+
+		section {
+			margin-bottom: 3rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		li {
+			padding: 0.4rem 0;
+			color: #333;
+		}
+
+		li strong {
+			color: #000;
+		}
+	</style>
+
+	<h1>PrismChart</h1>
+	<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
+
+	<div class="actions">
+		<a href="/prismchart/installation" class="btn btn-primary">Installation</a>
+		<a href="https://github.com/ether-strannik/PrismChart" class="btn btn-secondary" target="_blank">GitHub ↗</a>
+	</div>
+
+	<section>
+		<h2>Features</h2>
+		<ul>
+			<li><strong>Custom Price Scale</strong> — Canvas-based rendering with rounded price levels</li>
+			<li><strong>Custom Timeline</strong> — TradingView-style with timezone support</li>
+			<li><strong>Drawing Tools</strong> — Lines, shapes, text, paths, position tool, Fibonacci</li>
+			<li><strong>Layer System</strong> — Organize objects by groups with visibility/lock controls</li>
+			<li><strong>Alerts</strong> — Price cross, zone entry, candle close alerts with notifications</li>
+			<li><strong>Templates</strong> — Save and apply drawing styles</li>
+			<li><strong>Import/Export</strong> — Share drawings across charts and terminals</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Links</h2>
+		<ul>
+			<li><a href="/prismchart/installation">Installation Guide</a></li>
+			<li><a href="https://github.com/ether-strannik/PrismChart" target="_blank">GitHub Repository</a></li>
+		</ul>
+	</section>
+</Base>

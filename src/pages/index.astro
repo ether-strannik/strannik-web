@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Strannik">
+	<style>
+		.hero {
+			padding: 4rem 0 3rem;
+		}
+
+		.hero h1 {
+			font-size: 2.2rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+			letter-spacing: -0.02em;
+		}
+
+		.hero p {
+			color: #666;
+			font-size: 1.1rem;
+			max-width: 50ch;
+			margin-bottom: 2rem;
+		}
+
+		.actions {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+		}
+
+		.btn {
+			display: inline-block;
+			padding: 0.7rem 1.4rem;
+			font-size: 0.95rem;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		.btn-primary {
+			background: #000;
+			color: #fff;
+		}
+
+		.btn-primary:hover {
+			background: #333;
+			color: #fff;
+		}
+
+		.btn-secondary {
+			color: #666;
+		}
+
+		.section {
+			padding: 3rem 0;
+			border-top: 1px solid #e5e5e5;
+		}
+
+		.section h2 {
+			font-size: 1.3rem;
+			font-weight: 600;
+			margin-bottom: 1.5rem;
+		}
+
+		.apps-list {
+			list-style: none;
+		}
+
+		.apps-list li {
+			padding: 0.5rem 0;
+		}
+
+		.apps-list a {
+			font-weight: 500;
+		}
+
+		.apps-list span {
+			color: #666;
+		}
+	</style>
+
+	<div class="hero">
+		<h1>Strannik</h1>
+		<p>Open source apps and tools for trading, productivity, and more.</p>
+		<div class="actions">
+			<a href="/prismchart" class="btn btn-primary">Get Started</a>
+			<a href="https://github.com/ether-strannik" class="btn btn-secondary" target="_blank">GitHub ↗</a>
+		</div>
+	</div>
+
+	<div class="section">
+		<h2>Apps</h2>
+		<ul class="apps-list">
+			<li>
+				<a href="/prismchart">PrismChart</a>
+				<span> — Drawing and analysis platform for MetaTrader 5</span>
+			</li>
+			<li>
+				<span style="color: #999;">More coming soon — Time management, backup utilities, watch apps</span>
+			</li>
+		</ul>
+	</div>
+</Base>
