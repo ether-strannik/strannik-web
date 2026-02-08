@@ -1,0 +1,182 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+
+<Base title="PrismChart - Docs">
+	<style>
+		.docs-layout {
+			display: grid;
+			grid-template-columns: 200px 1fr;
+			gap: 3rem;
+			min-height: 60vh;
+		}
+
+		/* Sidebar */
+		.sidebar {
+			border-right: 1px solid #e5e5e5;
+			padding-right: 2rem;
+		}
+
+		.sidebar-section {
+			margin-bottom: 2rem;
+		}
+
+		.sidebar-title {
+			font-size: 0.8rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #999;
+			margin-bottom: 0.75rem;
+		}
+
+		.sidebar-nav {
+			list-style: none;
+		}
+
+		.sidebar-nav li {
+			padding: 0.3rem 0;
+		}
+
+		.sidebar-nav a {
+			color: #666;
+			text-decoration: none;
+			font-size: 0.95rem;
+		}
+
+		.sidebar-nav a:hover {
+			color: #000;
+		}
+
+		.sidebar-nav a.active {
+			color: #000;
+			font-weight: 500;
+		}
+
+		/* Content */
+		.docs-content h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		.docs-content h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.feature-list {
+			list-style: none;
+		}
+
+		.feature-list li {
+			padding: 0.4rem 0;
+			color: #333;
+		}
+
+		.feature-list li::before {
+			content: '[*]';
+			color: #999;
+			margin-right: 0.75rem;
+			font-size: 0.85rem;
+		}
+
+		.feature-list strong {
+			color: #000;
+		}
+
+		.btn-row {
+			display: flex;
+			gap: 1rem;
+			margin-top: 2rem;
+		}
+
+		.btn {
+			display: inline-block;
+			padding: 0.6rem 1.2rem;
+			font-size: 0.9rem;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		.btn-primary {
+			background: #000;
+			color: #fff;
+		}
+
+		.btn-primary:hover {
+			background: #333;
+			color: #fff;
+		}
+
+		.btn-secondary {
+			border: 1px solid #e5e5e5;
+			color: #666;
+		}
+
+		.btn-secondary:hover {
+			color: #000;
+		}
+
+		@media (max-width: 768px) {
+			.docs-layout {
+				grid-template-columns: 1fr;
+			}
+
+			.sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e5e5;
+				padding-right: 0;
+				padding-bottom: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+		}
+	</style>
+
+	<div class="docs-layout">
+		<aside class="sidebar">
+			<div class="sidebar-section">
+				<div class="sidebar-title">PrismChart</div>
+				<ul class="sidebar-nav">
+					<li><a href="/docs/prismchart" class="active">Overview</a></li>
+					<li><a href="/docs/prismchart/installation">Installation</a></li>
+				</ul>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-title">Links</div>
+				<ul class="sidebar-nav">
+					<li><a href="https://github.com/ether-strannik/PrismChart" target="_blank">GitHub</a></li>
+				</ul>
+			</div>
+		</aside>
+
+		<main class="docs-content">
+			<h1>PrismChart</h1>
+			<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
+
+			<h2>Features</h2>
+			<ul class="feature-list">
+				<li><strong>Custom Price Scale</strong> Canvas-based rendering with rounded price levels</li>
+				<li><strong>Custom Timeline</strong> TradingView-style with timezone support</li>
+				<li><strong>Drawing Tools</strong> Lines, shapes, text, paths, position tool, Fibonacci</li>
+				<li><strong>Layer System</strong> Organize objects by groups with visibility/lock controls</li>
+				<li><strong>Alerts</strong> Price cross, zone entry, candle close alerts with notifications</li>
+				<li><strong>Templates</strong> Save and apply drawing styles</li>
+				<li><strong>Import/Export</strong> Share drawings across charts and terminals</li>
+			</ul>
+
+			<div class="btn-row">
+				<a href="/docs/prismchart/installation" class="btn btn-primary">Installation</a>
+				<a href="https://github.com/ether-strannik/PrismChart" class="btn btn-secondary" target="_blank">GitHub</a>
+			</div>
+		</main>
+	</div>
+</Base>

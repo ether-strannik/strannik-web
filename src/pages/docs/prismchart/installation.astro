@@ -1,0 +1,152 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+
+<Base title="Installation - PrismChart - Docs">
+	<style>
+		.docs-layout {
+			display: grid;
+			grid-template-columns: 200px 1fr;
+			gap: 3rem;
+			min-height: 60vh;
+		}
+
+		/* Sidebar */
+		.sidebar {
+			border-right: 1px solid #e5e5e5;
+			padding-right: 2rem;
+		}
+
+		.sidebar-section {
+			margin-bottom: 2rem;
+		}
+
+		.sidebar-title {
+			font-size: 0.8rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #999;
+			margin-bottom: 0.75rem;
+		}
+
+		.sidebar-nav {
+			list-style: none;
+		}
+
+		.sidebar-nav li {
+			padding: 0.3rem 0;
+		}
+
+		.sidebar-nav a {
+			color: #666;
+			text-decoration: none;
+			font-size: 0.95rem;
+		}
+
+		.sidebar-nav a:hover {
+			color: #000;
+		}
+
+		.sidebar-nav a.active {
+			color: #000;
+			font-weight: 500;
+		}
+
+		/* Content */
+		.docs-content h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 2rem;
+		}
+
+		.docs-content h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.docs-content h2:first-of-type {
+			margin-top: 0;
+		}
+
+		ol, ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.4rem 0;
+			color: #333;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
+		}
+
+		@media (max-width: 768px) {
+			.docs-layout {
+				grid-template-columns: 1fr;
+			}
+
+			.sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e5e5;
+				padding-right: 0;
+				padding-bottom: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+		}
+	</style>
+
+	<div class="docs-layout">
+		<aside class="sidebar">
+			<div class="sidebar-section">
+				<div class="sidebar-title">PrismChart</div>
+				<ul class="sidebar-nav">
+					<li><a href="/docs/prismchart">Overview</a></li>
+					<li><a href="/docs/prismchart/installation" class="active">Installation</a></li>
+				</ul>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-title">Links</div>
+				<ul class="sidebar-nav">
+					<li><a href="https://github.com/ether-strannik/PrismChart" target="_blank">GitHub</a></li>
+				</ul>
+			</div>
+		</aside>
+
+		<main class="docs-content">
+			<h1>Installation</h1>
+
+			<h2>Fresh Install</h2>
+			<ol>
+				<li>Download <a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip">installer.zip</a> from the repository</li>
+				<li>Extract and run <code>installer/installer.exe</code></li>
+				<li>Select your Windows user and MT5 terminal</li>
+				<li>Choose the version to install (latest recommended)</li>
+				<li>(Optional) Configure SMTP email settings for alerts</li>
+				<li>Click <strong>Install</strong></li>
+			</ol>
+
+			<p class="note">
+				You can re-run the installer anytime to update SMTP settings or install a different version.
+				Access it via the <strong>Installer</strong> button in Quick Tools (QT) dialog.
+			</p>
+
+			<h2>Requirements</h2>
+			<ul>
+				<li>Windows 10/11</li>
+				<li>MetaTrader 5 terminal</li>
+				<li>.NET Framework (for installer)</li>
+			</ul>
+		</main>
+	</div>
+</Base>
