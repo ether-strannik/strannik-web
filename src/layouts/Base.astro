@@ -33,6 +33,7 @@ const { title } = Astro.props;
 
 			body {
 				min-height: 100vh;
+				background: #f9f9f9;
 			}
 
 			a {
@@ -45,9 +46,18 @@ const { title } = Astro.props;
 				color: #666;
 			}
 
-			.container {
+			.frame {
 				max-width: 1078px;
 				margin: 0 auto;
+				border-left: 1px solid #e5e5e5;
+				border-right: 1px solid #e5e5e5;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				background: #fff;
+			}
+
+			.container {
 				padding: 0 2rem;
 			}
 
@@ -88,13 +98,13 @@ const { title } = Astro.props;
 			/* Main */
 			main {
 				padding: 4rem 0;
+				flex: 1;
 			}
 
 			/* Footer */
 			footer {
 				border-top: 1px solid #e5e5e5;
 				padding: 2rem 0;
-				margin-top: 4rem;
 			}
 
 			footer .container {
@@ -133,29 +143,31 @@ const { title } = Astro.props;
 		</style>
 	</head>
 	<body>
-		<header>
-			<div class="container">
-				<a href="/" class="logo">Strannik</a>
-				<nav>
-					<a href="/prismchart">PrismChart</a>
-					<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
-				</nav>
-			</div>
-		</header>
+		<div class="frame">
+			<header>
+				<div class="container">
+					<a href="/" class="logo">Strannik</a>
+					<nav>
+						<a href="/prismchart">PrismChart</a>
+						<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
+					</nav>
+				</div>
+			</header>
 
-		<main>
-			<div class="container">
-				<slot />
-			</div>
-		</main>
+			<main>
+				<div class="container">
+					<slot />
+				</div>
+			</main>
 
-		<footer>
-			<div class="container">
-				<span>&copy; 2026</span>
-				<nav>
-					<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
-				</nav>
-			</div>
-		</footer>
+			<footer>
+				<div class="container">
+					<span>&copy; 2026</span>
+					<nav>
+						<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
+					</nav>
+				</div>
+			</footer>
+		</div>
 	</body>
 </html>
