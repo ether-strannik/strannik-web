@@ -20,12 +20,13 @@ const sidebar = [
 ];
 
 const toc = [
+	{ href: '#video', label: 'Video' },
 	{ href: '#fresh-install', label: 'Fresh Install' },
 	{ href: '#requirements', label: 'Requirements' }
 ];
 ---
 
-<DocsLayout title="Installation - PrismChart - Docs" sidebar={sidebar} toc={toc}>
+<DocsLayout title="Installation - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -63,9 +64,36 @@ const toc = [
 			border-radius: 4px;
 			margin: 1.5rem 0;
 		}
+
+		.video-container {
+			position: relative;
+			width: 100%;
+			padding-bottom: 56.25%;
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
 	</style>
 
 	<h1>Installation</h1>
+
+	<div class="video-container" id="video">
+		<iframe
+			src="https://www.youtube.com/embed/8nVXbMy6JUM"
+			title="PrismChart Installation"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen>
+		</iframe>
+	</div>
 
 	<h2 id="fresh-install">Fresh Install</h2>
 	<ol>

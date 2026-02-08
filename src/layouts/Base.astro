@@ -4,6 +4,12 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const buildDate = new Date().toLocaleDateString('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric'
+});
 ---
 
 <!doctype html>
@@ -120,6 +126,10 @@ const { title } = Astro.props;
 				gap: 1.5rem;
 			}
 
+			footer .updated {
+				color: #999;
+			}
+
 			code {
 				font-family: 'JetBrains Mono', monospace;
 				font-size: 0.9em;
@@ -163,7 +173,8 @@ const { title } = Astro.props;
 
 			<footer>
 				<div class="container">
-					<span>&copy; 2026</span>
+					<span>Strannik</span>
+					<span class="updated">Updated {buildDate}</span>
 				</div>
 			</footer>
 		</div>
