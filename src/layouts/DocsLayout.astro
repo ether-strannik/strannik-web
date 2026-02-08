@@ -426,17 +426,17 @@ const { title, sidebar = [], toc = [] } = Astro.props;
 			let pagefind = null;
 
 			async function loadPagefind() {
-				if (!pagefind) {
-					try {
-						// @ts-ignore - Pagefind is generated at build time
-						pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
-						await pagefind.init();
-					} catch (e) {
-						// Pagefind not available in dev mode
-						return null;
-					}
+				if (pagefind) return pagefind;
+
+				try {
+					// Load pagefind at runtime to avoid build-time resolution
+					pagefind = await new Function('return import("/pagefind/pagefind.js")')();
+					await pagefind.init();
+					return pagefind;
+				} catch (e) {
+					// Pagefind not available in dev mode
+					return null;
 				}
-				return pagefind;
 			}
 
 			function openSearch() {
