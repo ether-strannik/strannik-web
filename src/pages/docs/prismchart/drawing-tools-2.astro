@@ -1,0 +1,158 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2', active: true },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#video', label: 'Video' },
+	{ href: '#fibonacci', label: 'Fibonacci' },
+	{ href: '#text-markers', label: 'Text & Markers' },
+	{ href: '#measurement', label: 'Measurement' },
+	{ href: '#path-tool', label: 'Path Tool' }
+];
+---
+
+<DocsLayout title="Drawing Tools 2 - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+
+	</style>
+
+	<h1>Drawing Tools 2</h1>
+	<p class="tagline">Fibonacci, text, markers, and measurement</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'qeIklZq1csA',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="fibonacci">Fibonacci</h2>
+	<p>Diagonal line with horizontal level markers:</p>
+	<ul>
+		<li>Configurable ratios for level markers</li>
+		<li>Preset system with save/load/delete functionality</li>
+		<li>Configuration dialog for adding/removing/editing levels</li>
+		<li>Levels use trend objects with 0-degree horizontal angle constraint</li>
+		<li>Separate line style and width controls for diagonal and levels</li>
+		<li>Level labels with position control (Left/Center/Right)</li>
+		<li>Hex color support (#RRGGBB format)</li>
+		<li>Last used preset auto-loads on tool activation</li>
+	</ul>
+
+	<h2 id="text-markers">Text & Markers</h2>
+	<p>Text labels and symbol markers:</p>
+	<ul>
+		<li><strong>Text labels</strong> - font size 8-24</li>
+		<li><strong>Multi-line text annotations</strong> - up to 10 lines per annotation
+			<ul>
+				<li>20x20 LightGray rectangle as draggable anchor</li>
+				<li>Text lines positioned at 20px intervals below rectangle</li>
+				<li>Edit button in Properties Dialog for editing</li>
+				<li>All components (rectangle + lines) renamed together</li>
+				<li>Integrated into sublayer system for copy/paste</li>
+			</ul>
+		</li>
+		<li><strong>Symbol/Wingdings characters</strong> - picker dialog</li>
+		<li><strong>Label tool</strong> - add text to existing lines/rectangles</li>
+		<li><strong>Multi-use symbol placement mode</strong></li>
+	</ul>
+
+	<h2 id="measurement">Measurement</h2>
+	<p>Measuring tools:</p>
+	<ul>
+		<li><strong>Price Range</strong> - pips and percentage between two points</li>
+		<li><strong>Date Range</strong> - days/hours/minutes between two points</li>
+	</ul>
+
+	<h2 id="path-tool">Path Tool</h2>
+	<p>Multi-segment line drawing:</p>
+	<ul>
+		<li>Click to add points</li>
+		<li>Creates connected line segments</li>
+		<li>Undo support for removing last point</li>
+	</ul>
+</DocsLayout>

@@ -1,0 +1,164 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1', active: true },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#tool-properties', label: 'Tool Properties' },
+	{ href: '#lines', label: 'Lines' },
+	{ href: '#shapes', label: 'Shapes' },
+	{ href: '#snap-to-bar', label: 'Snap to Bar' },
+	{ href: '#complex-objects', label: 'Complex Objects' }
+];
+---
+
+<DocsLayout title="Drawing Tools 1 - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+
+	</style>
+
+	<h1>Drawing Tools 1</h1>
+	<p class="tagline">Lines, shapes, and tool properties</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'nJ-ZfVmzLww',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="tool-properties">Tool Properties</h2>
+	<p>Configure appearance before or after drawing:</p>
+	<ul>
+		<li>Line width (1-5)</li>
+		<li>Line style (solid, dash, dot, dash-dot)</li>
+		<li>Color palette (customizable, hex input)</li>
+		<li>Separate text color property</li>
+		<li>Font size (8-24)</li>
+		<li>Rectangle label position (8 positions)</li>
+		<li>Line label position (8 positions)</li>
+		<li>Filled checkbox: control rectangle fill state when applying</li>
+		<li>Apply button: apply all properties to selected object</li>
+		<li>Layer change via Apply (move objects between groups)</li>
+	</ul>
+
+	<h2 id="lines">Lines</h2>
+	<p>Line drawing tools:</p>
+	<ul>
+		<li><strong>Trend line</strong> - two-point line</li>
+		<li><strong>Angled line</strong> - preset angles: 0, 30, 45, 60, 90 and negatives</li>
+		<li><strong>Ray</strong> - extends to infinity in one direction</li>
+		<li><strong>Horizontal line</strong></li>
+		<li><strong>Vertical line</strong></li>
+		<li><strong>Straighten tool</strong> - click trend line to make horizontal with angle lock on drag</li>
+		<li><strong>Angle lock</strong> - lines maintain angle when dragged</li>
+	</ul>
+
+	<h2 id="shapes">Shapes</h2>
+	<p>Shape drawing tools:</p>
+	<ul>
+		<li><strong>Rectangle</strong> - unfilled, border only</li>
+		<li><strong>Rectangle filled</strong></li>
+		<li><strong>Rectangle with text</strong> - configurable fill state via Properties dialog</li>
+		<li><strong>Path</strong> - multi-segment lines, click to add points</li>
+	</ul>
+
+	<h2 id="snap-to-bar">Snap to Bar</h2>
+	<p>Magnet feature for precise placement:</p>
+	<ul>
+		<li>Configurable sensitivity</li>
+		<li>Set to 0 to disable</li>
+	</ul>
+
+	<h2 id="complex-objects">Complex Objects</h2>
+	<p>Adding text to lines and rectangles creates grouped sublayers:</p>
+	<ul>
+		<li>Text attached to line or rectangle becomes a sublayer</li>
+		<li>Parent object and text grouped in layer system</li>
+		<li>Lock/hide/delete propagates to all parts</li>
+		<li>Naming convention: <code>LAYER_NAME_txt</code></li>
+	</ul>
+</DocsLayout>

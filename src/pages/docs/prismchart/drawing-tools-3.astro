@@ -1,0 +1,139 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3', active: true },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#video', label: 'Video' },
+	{ href: '#position-tool', label: 'Position Tool' },
+	{ href: '#lock-unlock', label: 'Lock/Unlock' },
+	{ href: '#show-hide', label: 'Show/Hide' }
+];
+---
+
+<DocsLayout title="Drawing Tools 3 - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+	</style>
+
+	<h1>Drawing Tools 3</h1>
+	<p class="tagline">Position tool and layer controls</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'njdhsMTjHj8',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="position-tool">Position Tool</h2>
+	<p>Trade planning with entry, stop loss, and take profit levels:</p>
+	<ul>
+		<li>Click to set entry, drag to set SL</li>
+		<li>Auto-detect long/short from drag direction</li>
+		<li>1-3 configurable TPs at 1R, 2R, 3R</li>
+		<li>Dynamic R:R ratio calculations</li>
+		<li>Info labels at each level (pips, R:R)</li>
+		<li>All lines draggable with auto-updating zones</li>
+		<li>Vertical pillar axis (drag to move entire position)</li>
+		<li>Sync button exports SL/TP to INI for EA integration</li>
+	</ul>
+
+	<h2 id="lock-unlock">Lock/Unlock</h2>
+	<p>Prevent accidental modifications:</p>
+	<ul>
+		<li>Lock button [L/U] per layer and object</li>
+		<li>Prevents accidental selection/movement</li>
+		<li>Lock all toggle button in toolbar</li>
+	</ul>
+
+	<h2 id="show-hide">Show/Hide</h2>
+	<p>Control object visibility:</p>
+	<ul>
+		<li>Visibility checkbox per layer and object</li>
+		<li>Hide all toggle button in toolbar</li>
+		<li>Layer checkbox = select all/deselect all children</li>
+	</ul>
+</DocsLayout>

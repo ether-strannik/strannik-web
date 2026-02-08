@@ -1,0 +1,155 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Overview' },
+			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers', active: true },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#layers', label: 'Layers' },
+	{ href: '#drawing-manager', label: 'Drawing Manager' },
+	{ href: '#sublayer-system', label: 'Sublayer System' },
+	{ href: '#naming', label: 'Naming' }
+];
+---
+
+<DocsLayout title="Layers - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+
+	</style>
+
+	<h1>Layers</h1>
+	<p class="tagline">Object management and organization</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'thaZxw8F15o',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="layers">Layers</h2>
+	<p>Group objects by naming prefix:</p>
+	<ul>
+		<li>Naming convention: <code>FVG_001</code>, <code>OB_entry</code></li>
+		<li>Configurable delimiter (underscore, dash, or both)</li>
+		<li>Manage Groups dialog (add/remove layers)</li>
+		<li>Layer dropdown for target selection when drawing</li>
+		<li>Optional "Ungrouped" layer for objects without prefix</li>
+	</ul>
+
+	<h2 id="drawing-manager">Drawing Manager</h2>
+	<p>Central panel for managing all chart objects:</p>
+	<ul>
+		<li>List all objects organized by layer</li>
+		<li>Expand/collapse layers</li>
+		<li>Toggle visibility per layer or object</li>
+		<li>Toggle lock per layer or object</li>
+		<li>Delete layers or individual objects</li>
+		<li>Confirmation dialogs before deletion</li>
+		<li>Scrollable panel with Up/Down buttons</li>
+		<li>Drag-reorder layers</li>
+		<li>Auto-refresh on chart changes</li>
+	</ul>
+
+	<h2 id="sublayer-system">Sublayer System</h2>
+	<p>Auto-detect complex objects by naming convention:</p>
+	<ul>
+		<li>Pattern: <code>LAYER_OBJECTNAME_subpart</code></li>
+		<li>Example: <code>POS_001_entry</code>, <code>POS_001_sl</code></li>
+		<li>Collapsible sublayers with expand/collapse toggle</li>
+		<li>Lock/hide/delete propagates to all sub-objects</li>
+		<li>Mixed state indicator when sub-objects differ</li>
+	</ul>
+
+	<h2 id="naming">Naming</h2>
+	<p>Flexible object naming system:</p>
+	<ul>
+		<li>Auto-naming: <code>[LAYER]_001</code>, <code>[LAYER]_002</code>, etc.</li>
+		<li>Naming dialog after drawing for custom names</li>
+		<li>Rename button [R] in layer panel</li>
+		<li>Group dropdown in rename dialog (move between groups)</li>
+		<li>Whitespace handling (treated as blank)</li>
+	</ul>
+</DocsLayout>
