@@ -252,11 +252,9 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			.sidebar-title {
-				font-size: 0.8rem;
+				font-size: 0.95rem;
 				font-weight: 600;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				color: #999;
+				color: #000;
 				margin-bottom: 0.5rem;
 			}
 
@@ -269,9 +267,12 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			.sidebar-nav a {
-				color: #666;
 				text-decoration: none;
 				font-size: 0.95rem;
+			}
+
+			.sidebar-nav a {
+				color: #666;
 			}
 
 			.sidebar-nav a:hover {
