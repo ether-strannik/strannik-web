@@ -10,6 +10,7 @@ const sidebar = [
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
 			{ href: '/docs/prismchart/customization', label: 'Customization', active: true },
 			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
 			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
 		]
 	},
@@ -117,11 +118,10 @@ const toc = [
 	</div>
 
 	<script>
-		const tag = document.createElement('script');
-		tag.src = 'https://www.youtube.com/iframe_api';
-		document.head.appendChild(tag);
+		function initYouTubePlayer() {
+			const container = document.getElementById('yt-player');
+			if (!container || container.hasChildNodes()) return;
 
-		window.onYouTubeIframeAPIReady = function() {
 			new YT.Player('yt-player', {
 				videoId: 'VIDEO_ID_HERE',
 				playerVars: { rel: 0, modestbranding: 1 },
@@ -129,7 +129,18 @@ const toc = [
 					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
 				}
 			});
-		};
+		}
+
+		document.addEventListener('astro:page-load', () => {
+			if (typeof YT !== 'undefined' && YT.Player) {
+				initYouTubePlayer();
+			} else {
+				const tag = document.createElement('script');
+				tag.src = 'https://www.youtube.com/iframe_api';
+				document.head.appendChild(tag);
+				window.onYouTubeIframeAPIReady = initYouTubePlayer;
+			}
+		});
 	</script>
 
 	<h2 id="color-manager">Color Manager</h2>

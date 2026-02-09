@@ -1,0 +1,140 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts', active: true },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#line-alerts', label: 'Line Alerts' },
+	{ href: '#candle-close-alerts', label: 'Candle Close Alerts' },
+	{ href: '#alert-properties', label: 'Alert Properties' },
+	{ href: '#crossing-direction', label: 'Crossing Direction' },
+	{ href: '#notifications', label: 'Notifications' },
+	{ href: '#smtp-email-alerts', label: 'SMTP Email Alerts' },
+	{ href: '#alert-manager', label: 'Alert Manager' },
+	{ href: '#alert-persistence', label: 'Alert Persistence' }
+];
+---
+
+<DocsLayout title="Alerts - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		p strong {
+			color: #000;
+		}
+	</style>
+
+	<h1>Alerts</h1>
+	<p class="tagline">Notification system for price levels, zones, and time events.</p>
+
+	<h2 id="line-alerts">Line Alerts</h2>
+	<p><strong>Set alerts on any drawn object.</strong></p>
+	<p>Horizontal lines trigger when price crosses your level. Vertical lines trigger at a specific time. Trend lines track dynamic price levels. Rectangles alert when price enters a zone.</p>
+	<p>Each alert type uses the object's position - draw it where you want to be notified.</p>
+
+	<h2 id="candle-close-alerts">Candle Close Alerts</h2>
+	<p><strong>React to confirmed price action.</strong></p>
+	<p>Candle close alerts trigger after a bar closes on your selected timeframe, from M1 to MN1. The Alert Manager shows a countdown to the next potential trigger.</p>
+	<p>Use these when you need confirmation rather than immediate notification - waiting for the close filters out wicks and false breaks.</p>
+
+	<h2 id="alert-properties">Alert Properties</h2>
+	<p><strong>Configure how and when alerts fire.</strong></p>
+	<p>Give each alert a custom name and message. Choose when it triggers: Once fires a single time, Every minute repeats continuously, Per bar resets with each new bar, Per bar close validates using the last closed bar.</p>
+	<p>Per bar mode shows a countdown until reset. Per bar close uses bar[1] to confirm the cross actually held through the close.</p>
+
+	<h2 id="crossing-direction">Crossing Direction</h2>
+	<p><strong>Filter by how price approaches your level.</strong></p>
+	<p>Both directions catches any crossing. Up only triggers when price moves from below to above. Down only triggers when price moves from above to below.</p>
+	<p>Detection uses OHLC data - close, high, and low are checked to validate true crossings rather than just price touching the level.</p>
+
+	<h2 id="notifications">Notifications</h2>
+	<p><strong>Choose how you want to be notified.</strong></p>
+	<p>Popup shows a dialog in MT5. Sound plays an audio alert. Push sends to your mobile device. Email delivers to your inbox.</p>
+	<p>Enable any combination - get a popup and push notification together, or email only for important levels.</p>
+
+	<h2 id="smtp-email-alerts">SMTP Email Alerts</h2>
+	<p><strong>Professional email notifications with attachments.</strong></p>
+	<p>The email system uses Python's smtplib for reliable delivery. Configure your SMTP server, port, and credentials once - they're stored securely in arg.json.</p>
+	<p>The Custom Email dialog lets you enhance alerts with context: include current trade information, attach a screenshot captured at trigger time, select a specific trade by ticket number, or attach ThinkPad notes tagged with 'email' in their YAML frontmatter.</p>
+	<p>Emails use HTML templates with professional formatting and support TLS/SSL encryption.</p>
+
+	<h2 id="alert-manager">Alert Manager</h2>
+	<p><strong>Control all alerts from one panel.</strong></p>
+	<p>The Alert Manager lists every active alert with its status - Active, Triggered, or showing a countdown to the next check. Edit properties, delete alerts, or review what's set up across your chart.</p>
+	<p>Real-time countdown updates show exactly when per-bar alerts will reset.</p>
+
+	<h2 id="alert-persistence">Alert Persistence</h2>
+	<p><strong>Alerts survive restarts and sync across machines.</strong></p>
+	<p>Alert state saves to INI files per symbol, automatically reloading when MT5 restarts. Delete the associated object and its alert removes automatically.</p>
+	<p>INI files enable cross-machine sync - copy them between installations to keep alerts consistent. Symbol names are normalized (stripping suffixes like .sim, .pro, m, _SB) so alerts work across different broker feeds.</p>
+	<p>Changes to INI files are detected and reloaded automatically.</p>
+</DocsLayout>
