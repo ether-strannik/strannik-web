@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 interface SidebarLink {
 	href?: string;
 	label: string;
@@ -26,6 +28,7 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 		<title>{title}</title>
+		<ViewTransitions />
 		<style is:global>
 			* {
 				margin: 0;
@@ -445,9 +448,9 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 		</div>
 
 		<div class="docs-layout">
-			<aside class="sidebar">
+			<aside class="sidebar" transition:persist>
 				{sidebar.map(section => (
-					<div class={`sidebar-section ${section.collapsible && !section.expanded ? 'collapsed' : ''}`} data-collapsible={section.collapsible ? 'true' : undefined}>
+					<div class={`sidebar-section ${section.collapsible ? 'collapsed' : ''}`} data-collapsible={section.collapsible ? 'true' : undefined}>
 						{section.collapsible ? (
 							<div class="sidebar-header">
 								<div class="sidebar-title">{section.title}</div>
@@ -459,7 +462,7 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 						<ul class="sidebar-nav">
 							{section.links.map(link => (
 								link.children ? (
-									<li class="subsection" data-subsection>
+									<li class="subsection collapsed" data-subsection>
 										<div class="subsection-header">
 											<span class="subsection-label">{link.label}</span>
 											<span class="subsection-toggle">▼</span>
