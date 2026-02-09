@@ -17,7 +17,7 @@ const sidebar = [
 			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
 			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
-			{ href: '/docs/prismchart/customization', label: 'Customization', active: true },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
 			{
 				label: 'Drawing Tools',
 				children: [
@@ -30,7 +30,7 @@ const sidebar = [
 				label: 'Analysis Tools',
 				children: [
 					{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
-					{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+					{ href: '/docs/prismchart/time-context', label: 'Time Context', active: true }
 				]
 			},
 			{
@@ -49,13 +49,12 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#color-manager', label: 'Color Manager' },
-	{ href: '#templates', label: 'Templates' },
-	{ href: '#profiles', label: 'Profiles' }
+	{ href: '#news-events', label: 'News Events' },
+	{ href: '#sessions', label: 'Sessions' }
 ];
 ---
 
-<DocsLayout title="Customization - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Time Context - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -108,8 +107,8 @@ const toc = [
 		}
 	</style>
 
-	<h1>Customization</h1>
-	<p class="tagline">Colors, templates, and profiles</p>
+	<h1>Time Context</h1>
+	<p class="tagline">Temporal reference framework for news events and trading sessions</p>
 
 	<div class="video-container" id="video">
 		<div id="yt-player"></div>
@@ -131,17 +130,15 @@ const toc = [
 		};
 	</script>
 
-	<h2 id="color-manager">Color Manager</h2>
-	<p class="section-intro">Build your own color palette.</p>
-	<p>The Color Manager lets you create a custom palette for your drawings. Add colors using hex input (#RRGGBB format) and remove ones you don't need. Your palette persists across sessions - it saves to settings automatically.</p>
+	<h2 id="news-events">News Events</h2>
+	<p class="section-intro">Build your own economic calendar database.</p>
+	<p>Add events like NFP, CPI, FOMC releases, or create custom news markers. The Event Manager dialog lets you add, edit, and delete events with custom names.</p>
+	<p>Events appear as visual markers on the chart - horizontal bars spanning the event day and vertical lines at the exact event time. Each event type can have its own color for easy identification. Eastern Time inputs are automatically converted to broker time.</p>
+	<p>Toggle visibility per event type to focus on what matters. All events persist to INI files so your calendar stays intact across sessions.</p>
 
-	<h2 id="templates">Templates</h2>
-	<p class="section-intro">Save and reuse object styles.</p>
-	<p>Templates capture the appearance of a drawing - color, width, style, fill state, and text properties. Create a template from any selected object, then apply it to others of the same type. Rectangle templates work with rectangles, line templates with lines.</p>
-	<p>The Template Manager organizes templates by groups or categories. Complex templates support multi-object setups, saving the style of related objects together. All templates persist to INI files.</p>
-
-	<h2 id="profiles">Profiles</h2>
-	<p class="section-intro">Save your entire workspace configuration.</p>
-	<p>Profiles store your toolbar settings - colors, layers, width, style, font, and layer selection. Save different setups for different trading styles or symbols, then switch between them.</p>
-	<p>The default profile (default.ini) auto-loads when PrismChart starts. Use the Save/Load buttons in the Settings dialog to manage profiles. Profile files are stored in <code>MQL5/Files/DrawingLayers/</code>.</p>
+	<h2 id="sessions">Sessions</h2>
+	<p class="section-intro">Configure up to four trading sessions.</p>
+	<p>Set custom names, start/end times, colors, and styles for each session. Times are defined in your target timezone. Sessions appear as horizontal bars at the chart bottom with labels.</p>
+	<p>A master toggle enables or disables all sessions at once. Control how many days of session markers to display (1-30 days).</p>
+	<p>The Create Markers feature generates vertical lines at session starts with rotated text labels. Vertical markers have their own style, width, and font settings. Labels reposition automatically when you zoom or scroll the chart.</p>
 </DocsLayout>
