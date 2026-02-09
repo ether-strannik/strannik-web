@@ -22,10 +22,10 @@ const sidebar = [
 				children: [
 					{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
 					{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
-					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3', active: true }
+					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
 				]
 			},
-			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/customization', label: 'Customization', active: true },
 			{
 				label: 'Portability',
 				children: [
@@ -42,14 +42,13 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#video', label: 'Video' },
-	{ href: '#position-tool', label: 'Position Tool' },
-	{ href: '#lock-unlock', label: 'Lock/Unlock' },
-	{ href: '#show-hide', label: 'Show/Hide' }
+	{ href: '#color-manager', label: 'Color Manager' },
+	{ href: '#templates', label: 'Templates' },
+	{ href: '#profiles', label: 'Profiles' }
 ];
 ---
 
-<DocsLayout title="Drawing Tools 3 - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Customization - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -75,20 +74,17 @@ const toc = [
 			margin-bottom: 1rem;
 		}
 
-		ul {
-			padding-left: 1.5rem;
-			margin-bottom: 1.5rem;
-		}
-
-		li {
-			padding: 0.3rem 0;
-			color: #333;
-		}
-
 		.section-intro {
 			font-weight: 500;
 			color: #000;
 			margin-bottom: 0.75rem;
+		}
+
+		code {
+			background: #f5f5f5;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 0.9em;
 		}
 
 		.video-container {
@@ -105,8 +101,8 @@ const toc = [
 		}
 	</style>
 
-	<h1>Drawing Tools 3</h1>
-	<p class="tagline">Position tool and layer controls</p>
+	<h1>Customization</h1>
+	<p class="tagline">Colors, templates, and profiles</p>
 
 	<div class="video-container" id="video">
 		<div id="yt-player"></div>
@@ -119,7 +115,7 @@ const toc = [
 
 		window.onYouTubeIframeAPIReady = function() {
 			new YT.Player('yt-player', {
-				videoId: 'njdhsMTjHj8',
+				videoId: 'VIDEO_ID_HERE',
 				playerVars: { rel: 0, modestbranding: 1 },
 				events: {
 					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
@@ -128,19 +124,17 @@ const toc = [
 		};
 	</script>
 
-	<h2 id="position-tool">Position Tool</h2>
-	<p class="section-intro">Plan trades with visual risk management.</p>
-	<p>The Position Tool maps out entry, stop loss, and up to three take profit levels. Click to place entry, then drag to set your stop loss - the tool automatically detects long or short based on drag direction.</p>
-	<p>Take profit levels default to 1R, 2R, and 3R multiples of your risk. Each level displays info labels showing pips and R:R ratio. All lines are draggable - move any level and the zones update automatically.</p>
-	<p>A vertical pillar connects the levels. Drag it to reposition the entire setup without changing the relative distances. The Sync button exports your SL/TP values to an INI file for EA integration.</p>
+	<h2 id="color-manager">Color Manager</h2>
+	<p class="section-intro">Build your own color palette.</p>
+	<p>The Color Manager lets you create a custom palette for your drawings. Add colors using hex input (#RRGGBB format) and remove ones you don't need. Your palette persists across sessions - it saves to settings automatically.</p>
 
-	<h2 id="lock-unlock">Lock/Unlock</h2>
-	<p class="section-intro">Prevent accidental modifications.</p>
-	<p>Lock objects to protect them from selection and movement. Each layer and individual object has its own lock toggle in the Drawing Manager. The toolbar includes a Lock All button to secure everything at once.</p>
-	<p>Locked objects remain visible but can't be clicked or dragged until unlocked.</p>
+	<h2 id="templates">Templates</h2>
+	<p class="section-intro">Save and reuse object styles.</p>
+	<p>Templates capture the appearance of a drawing - color, width, style, fill state, and text properties. Create a template from any selected object, then apply it to others of the same type. Rectangle templates work with rectangles, line templates with lines.</p>
+	<p>The Template Manager organizes templates by groups or categories. Complex templates support multi-object setups, saving the style of related objects together. All templates persist to INI files.</p>
 
-	<h2 id="show-hide">Show/Hide</h2>
-	<p class="section-intro">Control what's visible on your chart.</p>
-	<p>Toggle visibility per object or per layer. Hidden objects disappear from the chart but remain in the layer system - unhide them anytime. The toolbar's Hide All button quickly clears visual clutter.</p>
-	<p>Layer checkboxes work as select all - check or uncheck a layer to toggle all its children at once.</p>
+	<h2 id="profiles">Profiles</h2>
+	<p class="section-intro">Save your entire workspace configuration.</p>
+	<p>Profiles store your toolbar settings - colors, layers, width, style, font, and layer selection. Save different setups for different trading styles or symbols, then switch between them.</p>
+	<p>The default profile (default.ini) auto-loads when PrismChart starts. Use the Save/Load buttons in the Settings dialog to manage profiles. Profile files are stored in <code>MQL5/Files/DrawingLayers/</code>.</p>
 </DocsLayout>

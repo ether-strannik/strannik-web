@@ -25,6 +25,14 @@ const sidebar = [
 					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
 				]
 			},
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{
+				label: 'Portability',
+				children: [
+					{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+					{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+				]
+			},
 			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
 			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
 			{ href: '/docs/prismchart/development', label: 'Development' },
@@ -78,6 +86,19 @@ const toc = [
 			color: #333;
 		}
 
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
+		}
+
+		code {
+			background: #f5f5f5;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 0.9em;
+		}
+
 		.video-container {
 			margin-bottom: 2rem;
 			border-radius: 8px;
@@ -117,54 +138,29 @@ const toc = [
 	</script>
 
 	<h2 id="tool-properties">Tool Properties</h2>
-	<p>Configure appearance before or after drawing:</p>
-	<ul>
-		<li>Line width (1-5)</li>
-		<li>Line style (solid, dash, dot, dash-dot)</li>
-		<li>Color palette (customizable, hex input)</li>
-		<li>Separate text color property</li>
-		<li>Font size (8-24)</li>
-		<li>Rectangle label position (8 positions)</li>
-		<li>Line label position (8 positions)</li>
-		<li>Filled checkbox: control rectangle fill state when applying</li>
-		<li>Apply button: apply all properties to selected object</li>
-		<li>Layer change via Apply (move objects between groups)</li>
-	</ul>
+	<p class="section-intro">Configure how your drawings look.</p>
+	<p>The Properties panel controls appearance for new drawings and lets you modify existing ones. Set line width from 1 to 5, choose a line style (solid, dash, dot, dash-dot), and pick colors from a customizable palette with hex input support.</p>
+	<p>Text has its own color property separate from line color. Font size ranges from 8 to 24. For rectangles and lines with labels, you can position text in eight different locations.</p>
+	<p>The Filled checkbox controls whether rectangles draw with a fill or just a border. Click Apply to push all current settings to a selected object - including moving it to a different layer.</p>
 
 	<h2 id="lines">Lines</h2>
-	<p>Line drawing tools:</p>
-	<ul>
-		<li><strong>Trend line</strong> - two-point line</li>
-		<li><strong>Angled line</strong> - preset angles: 0, 30, 45, 60, 90 and negatives</li>
-		<li><strong>Ray</strong> - extends to infinity in one direction</li>
-		<li><strong>Horizontal line</strong></li>
-		<li><strong>Vertical line</strong></li>
-		<li><strong>Straighten tool</strong> - click trend line to make horizontal with angle lock on drag</li>
-		<li><strong>Angle lock</strong> - lines maintain angle when dragged</li>
-	</ul>
+	<p class="section-intro">The foundation of technical analysis.</p>
+	<p>Trend lines connect two points. Click to set the start, drag to the end, release. Angled lines snap to preset angles: 0, 30, 45, 60, 90 degrees and their negatives. Rays extend infinitely from their anchor point in one direction.</p>
+	<p>Horizontal and vertical lines are single-click tools - click where you want them placed.</p>
+	<p>The Straighten tool converts any trend line to horizontal while enabling angle lock. Angle lock keeps lines at their current angle when you drag them - move position without changing slope.</p>
 
 	<h2 id="shapes">Shapes</h2>
-	<p>Shape drawing tools:</p>
-	<ul>
-		<li><strong>Rectangle</strong> - unfilled, border only</li>
-		<li><strong>Rectangle filled</strong></li>
-		<li><strong>Rectangle with text</strong> - configurable fill state via Properties dialog</li>
-		<li><strong>Path</strong> - multi-segment lines, click to add points</li>
-	</ul>
+	<p class="section-intro">Mark zones and structure.</p>
+	<p>Rectangles come in three variants: border-only, filled, and with text. The fill state can be toggled in the Properties dialog at any time. Rectangle with text opens a naming dialog where you enter the label content.</p>
+	<p>The Path tool draws multi-segment lines. Click to place each point, building connected segments as you go. Press Ctrl+Backspace to undo the last segment while drawing.</p>
 
 	<h2 id="snap-to-bar">Snap to Bar</h2>
-	<p>Magnet feature for precise placement:</p>
-	<ul>
-		<li>Configurable sensitivity</li>
-		<li>Set to 0 to disable</li>
-	</ul>
+	<p class="section-intro">Precision placement on candle boundaries.</p>
+	<p>The magnet feature snaps drawing anchors to bar boundaries. Sensitivity is configurable - higher values create a stronger pull toward OHLC points. Set to 0 to disable snapping entirely for freeform placement.</p>
 
 	<h2 id="complex-objects">Complex Objects</h2>
-	<p>Adding text to lines and rectangles creates grouped sublayers:</p>
-	<ul>
-		<li>Text attached to line or rectangle becomes a sublayer</li>
-		<li>Parent object and text grouped in layer system</li>
-		<li>Lock/hide/delete propagates to all parts</li>
-		<li>Naming convention: <code>LAYER_NAME_txt</code></li>
-	</ul>
+	<p class="section-intro">Text creates grouped sublayers.</p>
+	<p>When you add text to a line or rectangle, PrismChart creates a sublayer relationship. The text object becomes a child of the parent shape, linked in the layer system.</p>
+	<p>This grouping means lock, hide, and delete operations propagate to all parts. Delete the parent and its text goes with it. The naming convention follows the pattern: if your rectangle is named <code>FVG_001</code>, its text becomes <code>FVG_001_txt</code>.</p>
+	<p>Use Ctrl+Shift+Q to delete a complex object and all its sublayers at once.</p>
 </DocsLayout>

@@ -22,14 +22,14 @@ const sidebar = [
 				children: [
 					{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
 					{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
-					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3', active: true }
+					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
 				]
 			},
 			{ href: '/docs/prismchart/customization', label: 'Customization' },
 			{
 				label: 'Portability',
 				children: [
-					{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+					{ href: '/docs/prismchart/save-export', label: 'Save & Export', active: true },
 					{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
 				]
 			},
@@ -42,14 +42,13 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#video', label: 'Video' },
-	{ href: '#position-tool', label: 'Position Tool' },
-	{ href: '#lock-unlock', label: 'Lock/Unlock' },
-	{ href: '#show-hide', label: 'Show/Hide' }
+	{ href: '#save-load', label: 'Save/Load' },
+	{ href: '#import-export', label: 'Import/Export' },
+	{ href: '#autosave', label: 'Autosave' }
 ];
 ---
 
-<DocsLayout title="Drawing Tools 3 - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Save & Export - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -75,20 +74,17 @@ const toc = [
 			margin-bottom: 1rem;
 		}
 
-		ul {
-			padding-left: 1.5rem;
-			margin-bottom: 1.5rem;
-		}
-
-		li {
-			padding: 0.3rem 0;
-			color: #333;
-		}
-
 		.section-intro {
 			font-weight: 500;
 			color: #000;
 			margin-bottom: 0.75rem;
+		}
+
+		code {
+			background: #f5f5f5;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 0.9em;
 		}
 
 		.video-container {
@@ -105,8 +101,8 @@ const toc = [
 		}
 	</style>
 
-	<h1>Drawing Tools 3</h1>
-	<p class="tagline">Position tool and layer controls</p>
+	<h1>Save & Export</h1>
+	<p class="tagline">Save, load, import, and export your drawings</p>
 
 	<div class="video-container" id="video">
 		<div id="yt-player"></div>
@@ -119,7 +115,7 @@ const toc = [
 
 		window.onYouTubeIframeAPIReady = function() {
 			new YT.Player('yt-player', {
-				videoId: 'njdhsMTjHj8',
+				videoId: 'VIDEO_ID_HERE',
 				playerVars: { rel: 0, modestbranding: 1 },
 				events: {
 					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
@@ -128,19 +124,18 @@ const toc = [
 		};
 	</script>
 
-	<h2 id="position-tool">Position Tool</h2>
-	<p class="section-intro">Plan trades with visual risk management.</p>
-	<p>The Position Tool maps out entry, stop loss, and up to three take profit levels. Click to place entry, then drag to set your stop loss - the tool automatically detects long or short based on drag direction.</p>
-	<p>Take profit levels default to 1R, 2R, and 3R multiples of your risk. Each level displays info labels showing pips and R:R ratio. All lines are draggable - move any level and the zones update automatically.</p>
-	<p>A vertical pillar connects the levels. Drag it to reposition the entire setup without changing the relative distances. The Sync button exports your SL/TP values to an INI file for EA integration.</p>
+	<h2 id="save-load">Save/Load</h2>
+	<p class="section-intro">Preserve all drawings on your chart.</p>
+	<p>The Save function captures every drawing on the current chart to a file. Load restores them later - useful for backing up your analysis or moving between machines. This saves everything at once.</p>
 
-	<h2 id="lock-unlock">Lock/Unlock</h2>
-	<p class="section-intro">Prevent accidental modifications.</p>
-	<p>Lock objects to protect them from selection and movement. Each layer and individual object has its own lock toggle in the Drawing Manager. The toolbar includes a Lock All button to secure everything at once.</p>
-	<p>Locked objects remain visible but can't be clicked or dragged until unlocked.</p>
+	<h2 id="import-export">Import/Export</h2>
+	<p class="section-intro">Work with selected drawings only.</p>
+	<p>Export saves only the drawings you've selected to a named file. The export dialog prompts for a filename, and files are stored in <code>MQL5/Files/DrawingLayers/</code>.</p>
+	<p>The Import Manager lists all available export files. Load any file to bring those drawings onto your chart, or delete files you no longer need. A confirmation dialog prevents accidental overwrites when saving to an existing filename.</p>
 
-	<h2 id="show-hide">Show/Hide</h2>
-	<p class="section-intro">Control what's visible on your chart.</p>
-	<p>Toggle visibility per object or per layer. Hidden objects disappear from the chart but remain in the layer system - unhide them anytime. The toolbar's Hide All button quickly clears visual clutter.</p>
-	<p>Layer checkboxes work as select all - check or uncheck a layer to toggle all its children at once.</p>
+	<h2 id="autosave">Autosave</h2>
+	<p class="section-intro">Automatic background protection.</p>
+	<p>Autosave runs in the background, saving your drawings at a configurable interval (default: every minute). It keeps multiple backup versions (1-10, default 3) with timestamps, so you can restore from any recent point.</p>
+	<p>Files are saved to <code>MQL5/Files/DrawingLayers/</code>. Restore previous versions through the Import Manager. A grace period prevents immediate overwrite when loading a chart, protecting against accidental data loss.</p>
+	<p>Enable or disable autosave through MT5 input parameters.</p>
 </DocsLayout>
