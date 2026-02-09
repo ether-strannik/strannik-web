@@ -13,8 +13,7 @@ const sidebar = [
 		collapsible: true,
 		expanded: true,
 		links: [
-			{ href: '/docs/prismchart', label: 'Overview', active: true },
-			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart', label: 'Intro', active: true },
 			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
 			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
@@ -28,25 +27,18 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#overview', label: 'Overview' },
-	{ href: '#features', label: 'Features' }
+	{ href: '#video', label: 'Video' },
+	{ href: '#requirements', label: 'Requirements' },
+	{ href: '#install', label: 'Install' },
+	{ href: '#manual-installation', label: 'Manual Installation' },
+	{ href: '#updates', label: 'Updates' },
+	{ href: '#package-contents', label: 'Package Contents' },
+	{ href: '#imagemagick', label: 'ImageMagick' }
 ];
 ---
 
-<DocsLayout title="PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Intro - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
-		.page-header {
-			display: flex;
-			gap: 1.5rem;
-			align-items: center;
-			margin-bottom: 2rem;
-		}
-
-		.page-icon {
-			width: 64px;
-			height: 64px;
-		}
-
 		h1 {
 			font-size: 1.8rem;
 			font-weight: 600;
@@ -55,7 +47,7 @@ const toc = [
 
 		.tagline {
 			color: #666;
-			margin-bottom: 0;
+			margin-bottom: 2rem;
 		}
 
 		h2 {
@@ -66,205 +58,173 @@ const toc = [
 			border-bottom: 1px solid #e5e5e5;
 		}
 
-		.feature-list {
-			list-style: none;
+		h2:first-of-type {
+			margin-top: 0;
 		}
 
-		.feature-list li {
+		ol, ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		li {
 			padding: 0.4rem 0;
 			color: #333;
 		}
 
-		.feature-list li::before {
-			content: '[*]';
-			color: #999;
-			margin-right: 0.75rem;
-			font-size: 0.85rem;
-		}
-
-		.feature-list strong {
-			color: #000;
-		}
-
-		.btn-row {
-			display: flex;
-			gap: 1rem;
-			margin-top: 2rem;
-		}
-
-		.btn {
-			display: inline-block;
-			padding: 0.6rem 1.2rem;
-			font-size: 0.9rem;
-			text-decoration: none;
-			border-radius: 4px;
-		}
-
-		.btn-primary {
-			background: #000;
-			color: #fff;
-		}
-
-		.btn-primary:hover {
-			background: #333;
-			color: #fff;
-		}
-
-		.btn-secondary {
-			border: 1px solid #e5e5e5;
+		.note {
 			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
 		}
 
-		.btn-secondary:hover {
-			color: #000;
+		h3 {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin: 1.5rem 0 1rem;
 		}
 
-		.intro {
-			margin-bottom: 2rem;
+		h4 {
+			font-size: 1rem;
+			font-weight: 600;
+			margin: 1.5rem 0 0.75rem;
 		}
 
-		.intro p {
+		p {
 			color: #333;
 			margin-bottom: 1rem;
 		}
 
-		.intro p.lead {
-			font-size: 1.1rem;
-			font-weight: 500;
-			color: #000;
-		}
-
-		.intro hr {
-			border: none;
-			border-top: 1px solid #e5e5e5;
-			margin: 2rem 0;
-		}
-
-		.comparison-table {
-			width: 100%;
-			border-collapse: collapse;
-			margin: 1rem 0 1.5rem;
-			font-size: 0.95rem;
-		}
-
-		.comparison-table th,
-		.comparison-table td {
-			text-align: left;
-			padding: 0.75rem;
-			border-bottom: 1px solid #e5e5e5;
-		}
-
-		.comparison-table th {
-			font-weight: 600;
-			background: #f9f9f9;
-		}
-
-		.comparison-table td:first-child {
-			font-weight: 500;
-			color: #000;
-		}
-
-		.workflow {
+		pre {
 			background: #1a1a1a;
 			color: #e5e5e5;
 			padding: 1rem;
 			border-radius: 6px;
-			font-family: 'JetBrains Mono', monospace;
-			font-size: 0.9rem;
-			margin: 1rem 0 1.5rem;
 			overflow-x: auto;
+			margin: 1rem 0 1.5rem;
+			font-size: 0.9rem;
 		}
 
-		.closing {
-			font-style: italic;
-			color: #666;
+		code {
+			background: #f0f0f0;
+			padding: 0.2rem 0.4rem;
+			border-radius: 3px;
+			font-size: 0.9rem;
+		}
+
+		pre code {
+			background: none;
+			padding: 0;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
 		}
 	</style>
 
-	<div class="page-header">
-		<img src="/icons/prismchart.png" alt="PrismChart" class="page-icon" />
-		<div>
-			<h1>PrismChart</h1>
-			<p class="tagline">Drawing and analysis platform for MetaTrader 5</p>
-		</div>
+	<h1>Intro</h1>
+	<p class="tagline">Get started with PrismChart.</p>
+
+	<p>PrismChart is an open source charting toolkit that extends MetaTrader 5 with drawing and analysis tools. Draw, organize, document, review.</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
 	</div>
 
-	<div class="intro" id="overview">
-		<p class="lead">The complete trading workstation for MT5.</p>
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
 
-		<p>Most traders juggle multiple apps: one for charting, one for journaling, one for screenshots, one for trade tracking, spreadsheets for statistics. Context scattered everywhere. Insights lost between tools.</p>
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: '8nVXbMy6JUM',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
 
-		<p>PrismChart brings it all together.</p>
-
-		<hr />
-
-		<p class="lead">One platform. Everything connected.</p>
-
-		<table class="comparison-table">
-			<tr>
-				<th>What you need</th>
-				<th>How PrismChart handles it</th>
-			</tr>
-			<tr>
-				<td>Technical Analysis</td>
-				<td>Layer-based drawing tools with visibility templates</td>
-			</tr>
-			<tr>
-				<td>Time Context</td>
-				<td>Sessions, news events, period separators - all as drawing objects</td>
-			</tr>
-			<tr>
-				<td>Alerts</td>
-				<td>Set on any drawing. Trigger captures screenshot automatically</td>
-			</tr>
-			<tr>
-				<td>Trade Data</td>
-				<td>MT5 positions flow directly into the journal</td>
-			</tr>
-			<tr>
-				<td>Documentation</td>
-				<td>Markdown notes attached to trades with screenshots</td>
-			</tr>
-			<tr>
-				<td>Review</td>
-				<td>Calendar view, filtered statistics, trade-by-trade analysis</td>
-			</tr>
-			<tr>
-				<td>Portability</td>
-				<td>Copy drawings across charts. Export and share setups</td>
-			</tr>
-		</table>
-
-		<hr />
-
-		<p class="lead">The workflow:</p>
-
-		<pre class="workflow">Draw → Alert → Trade → Document → Review
-                 ↓
-          [all in one place]</pre>
-
-		<p>Your analysis, your trades, your notes, your screenshots - connected. Not scattered across five apps hoping you remember to update each one.</p>
-
-		<hr />
-
-		<p class="lead">Not an indicator. A workstation.</p>
-
-		<p class="closing">PrismChart treats chart analysis as a design discipline. Every element - separators, sessions, markups - is a drawing object in a layer. Organize them. Toggle visibility. Save templates for different views. Your chart, your system.</p>
-	</div>
-
-	<h2 id="features">Features</h2>
-	<ul class="feature-list">
-		<li><strong>Custom Price Scale</strong> Canvas-based rendering with rounded price levels</li>
-		<li><strong>Custom Timeline</strong> TradingView-style with timezone support</li>
-		<li><strong>Drawing Tools</strong> Lines, shapes, text, paths, position tool, Fibonacci</li>
-		<li><strong>Layer System</strong> Organize objects by groups with visibility/lock controls</li>
-		<li><strong>Alerts</strong> Price cross, zone entry, candle close alerts with notifications</li>
-		<li><strong>Templates</strong> Save and apply drawing styles</li>
-		<li><strong>Import/Export</strong> Share drawings across charts and terminals</li>
+	<h2 id="requirements">Requirements</h2>
+	<p>To use PrismChart, you'll need:</p>
+	<ul>
+		<li>Windows with MetaTrader 5 terminal installed</li>
+		<li>.NET Framework (for the installer)</li>
 	</ul>
 
-	<div class="btn-row">
-		<a href="/docs/prismchart/installation" class="btn btn-primary">Installation</a>
-		<a href="https://github.com/ether-strannik/PrismChart" class="btn btn-secondary" target="_blank">GitHub</a>
-	</div>
+	<h2 id="install">Install</h2>
+	<p>The easiest way to install PrismChart is through the installer.</p>
+	<p>Download <a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip">installer.zip</a> from the repository and extract it. Run <code>installer/installer.exe</code> to start.</p>
+	<p>The installer walks you through the setup:</p>
+	<ol>
+		<li>Select your Windows user and MT5 terminal</li>
+		<li>Choose the version to install (latest recommended)</li>
+		<li>Optionally configure SMTP email settings for alerts</li>
+		<li>Click <strong>Install</strong></li>
+	</ol>
+	<p class="note"><strong>Tip:</strong> You can re-run the installer anytime to update SMTP settings or install a different version. Access it via the <strong>Installer</strong> button in the Quick Tools (QT) dialog.</p>
+	<p>The installer automatically handles file placement - copying <code>PrismChart.ex5</code> to your MT5 Indicators folder, configuring ThinkPad with correct paths, and creating <code>versions.json</code> to track the installed version.</p>
+	<p>You can also install manually if you prefer more control over the process.</p>
+
+	<h3 id="manual-installation">Manual Installation</h3>
+	<p>Download the release package from <a href="https://github.com/ether-strannik/PrismChart/releases">GitHub Releases</a> and extract it into your MT5 data folder:</p>
+	<pre><code>C:\Users\YourUsername\AppData\Roaming\MetaQuotes\Terminal\TerminalID\</code></pre>
+	<p>The package is already organized with the correct folder structure. All files will be placed in their proper locations.</p>
+	<p class="note"><strong>Tip:</strong> To find your TerminalID, open MT5 and go to <strong>File → Open Data Folder</strong>. The path will be shown in the address bar.</p>
+
+	<h4>Add Indicator to Chart</h4>
+	<ol>
+		<li>Open MT5</li>
+		<li>In the Navigator panel, find <strong>Indicators</strong></li>
+		<li>Locate <code>PrismChart</code></li>
+		<li>Drag and drop onto any chart</li>
+	</ol>
+
+	<h2 id="updates">Updates</h2>
+	<p>When a new version is available, PrismChart notifies you via a dialog in MT5.</p>
+	<ol>
+		<li>Click <strong>Yes</strong> to launch the installer in update mode</li>
+		<li>Select the version to install</li>
+		<li>Click <strong>Update</strong></li>
+	</ol>
+	<p>You can also click the <strong>Installer</strong> button in the Quick Tools (QT) dialog anytime to manually check for updates or change versions.</p>
+
+	<h2 id="package-contents">Package Contents</h2>
+	<p>After installation, files are organized as:</p>
+	<pre><code>MQL5/
+  Indicators/
+    PrismChart.ex5           # Main indicator
+  Files/
+    PrismChart/
+      smtp_sender.exe        # Email alert sender
+      versions.json          # Installed version info
+      Addons/
+        installer/           # Installer app
+        update_checker/      # Version checker
+        thinkpad/            # Trade analysis app
+          thinkpad.exe
+          settings.ini       # Auto-configured paths</code></pre>
+
+	<h2 id="imagemagick">ImageMagick for Screenshot Split</h2>
+	<p>The <strong>Split</strong> button converts panorama screenshots to printable pages. This feature requires ImageMagick.</p>
+	<ol>
+		<li>Download from: <a href="https://imagemagick.org/script/download.php#windows">imagemagick.org</a></li>
+		<li>Install with default settings</li>
+		<li>Verify installation: run <code>magick -version</code> in Command Prompt</li>
+	</ol>
+	<p class="note"><strong>Note:</strong> This is optional. Without ImageMagick, all other features work normally.</p>
 </DocsLayout>

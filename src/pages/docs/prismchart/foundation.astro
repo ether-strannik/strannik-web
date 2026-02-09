@@ -13,8 +13,7 @@ const sidebar = [
 		collapsible: true,
 		expanded: true,
 		links: [
-			{ href: '/docs/prismchart', label: 'Overview' },
-			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart', label: 'Intro' },
 			{ href: '/docs/prismchart/foundation', label: 'Foundation', active: true },
 			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
@@ -54,6 +53,12 @@ const toc = [
 			margin: 2rem 0 1rem;
 			padding-bottom: 0.5rem;
 			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 1rem;
 		}
 
 		h3 {
@@ -123,37 +128,29 @@ const toc = [
 		};
 	</script>
 
-	<p>MetaTrader 5's default chart display has limitations - it only shows broker time, which can be confusing when broker time 00:00 equals NY time 17:00. PrismChart replaces the coordinate system with fully customizable price and time scales.</p>
+	<p>MetaTrader 5's default chart display has limitations. It only shows broker time, which can be confusing when broker time 00:00 equals NY time 17:00. PrismChart replaces both the price and time scales with fully customizable, canvas-rendered alternatives.</p>
 
 	<h2 id="price-scale">Price Scale</h2>
-	<p>Canvas-based rendering replaces the default MT5 price axis with full customization:</p>
-	<ul>
-		<li>Font family and size selection</li>
-		<li>Text color and background color</li>
-		<li>Rounded price levels at user-defined intervals</li>
-		<li>Current price indicator displayed on scale</li>
-	</ul>
+	<p class="section-intro">Display price levels your way.</p>
+	<p>The default MT5 price axis is replaced with a canvas-rendered scale that you control. Set your preferred font, size, and colors. Price levels snap to rounded intervals you define - no more awkward decimal placements.</p>
+	<p>The current price is always visible on the scale, updating in real-time as the market moves.</p>
+	<p class="note"><strong>Tip:</strong> Match your price scale font to your trading style. Larger fonts work well on multi-monitor setups where you view charts from a distance.</p>
 
 	<h2 id="time-scale">Time Scale</h2>
-	<p>TradingView-style timeline with timezone support:</p>
-	<ul>
-		<li>Font family and size selection</li>
-		<li>Text color and background color</li>
-		<li>Separate colors for day, month, and year labels</li>
-		<li>Adaptive format per timeframe (M1 through MN1)</li>
-	</ul>
+	<p class="section-intro">See time in your timezone, not your broker's.</p>
+	<p>The timeline displays time the way TradingView does - clean, readable, and in your local timezone. Day, month, and year labels each have their own color settings, making it easy to scan across sessions.</p>
+	<p>The format adapts automatically based on your timeframe. M1 charts show hours and minutes. Daily charts emphasize dates. Monthly charts highlight years.</p>
 
 	<h3>Timezone Modes</h3>
+	<p>Two options for timezone handling:</p>
 	<ul>
-		<li><strong>New York (Auto DST)</strong> - automatically adjusts for daylight saving time</li>
-		<li><strong>Manual UTC offset</strong> - set a fixed offset from UTC</li>
+		<li><strong>New York (Auto DST)</strong> - Follows US Eastern time with automatic daylight saving adjustments. Most forex traders prefer this since major sessions align with NY time.</li>
+		<li><strong>Manual UTC Offset</strong> - Set a fixed offset from UTC. Use this if you trade a specific regional session or prefer your local time.</li>
 	</ul>
+	<p class="note"><strong>Note:</strong> Timezone affects the time scale display and OHLC info panel. It does not change how MT5 stores or processes bar data internally.</p>
 
 	<h2 id="zoom">Zoom</h2>
-	<p>Fine-tuned zoom control with reasonable time segment display:</p>
-	<ul>
-		<li>Custom zoom increments per timeframe</li>
-		<li>Adaptive time segments at each zoom level</li>
-		<li>Consistent experience across all timeframes</li>
-	</ul>
+	<p class="section-intro">Adaptive zoom for the custom time scale.</p>
+	<p>Since PrismChart replaces the default timeline, zoom behavior had to be calibrated from scratch. Each timeframe has its own zoom increments, ensuring time segments remain readable whether you're zoomed in on 5-minute price action or zoomed out to see monthly structure.</p>
+	<p>The result is a consistent experience across all timeframes - labels stay readable at every zoom level.</p>
 </DocsLayout>

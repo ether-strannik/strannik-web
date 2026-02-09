@@ -135,7 +135,7 @@ import Base from '../layouts/Base.astro';
 		}
 
 		.feature-list li::before {
-			content: '[*]';
+			content: '[ * ]';
 			color: #999;
 			margin-right: 0.75rem;
 			font-size: 0.85rem;
@@ -183,18 +183,19 @@ import Base from '../layouts/Base.astro';
 		<div class="app-header">
 			<img src="/icons/prismchart.png" alt="PrismChart" class="app-icon" />
 			<div>
-				<h3 class="app-title">What is PrismChart?</h3>
-				<p class="app-desc">PrismChart is a drawing and analysis platform for MetaTrader 5.</p>
+				<h3 class="app-title">PrismChart</h3>
+				<p class="app-desc">An open source charting toolkit that extends MetaTrader 5 with drawing and analysis tools. Draw, organize, document, review.</p>
 			</div>
 		</div>
 
 		<ul class="feature-list">
-			<li><strong>Custom Price Scale</strong> Canvas-based rendering with rounded price levels</li>
-			<li><strong>Custom Timeline</strong> TradingView-style with timezone support</li>
-			<li><strong>Drawing Tools</strong> Lines, shapes, text, paths, position tool, Fibonacci</li>
-			<li><strong>Layer System</strong> Organize objects by groups with visibility/lock controls</li>
-			<li><strong>Alerts</strong> Price cross, zone entry, candle close alerts with notifications</li>
-			<li><strong>Templates</strong> Save and apply drawing styles</li>
+			<li><strong>Custom Scales</strong> Canvas-rendered price and time axes with timezone support</li>
+			<li><strong>Rich Drawings</strong> Rectangles with text, lines with labels - objects that stay connected</li>
+			<li><strong>Layer System</strong> Organize by groups with visibility/lock controls and switchable visibility templates</li>
+			<li><strong>Alerts</strong> Price cross, zone entry, candle close alerts with enhanced SMTP email notifications</li>
+			<li><strong>Portability</strong> Copy/paste, import/export drawings between charts - all or selected</li>
+			<li><strong>Trade Journal</strong> ThinkPad app with notes, screenshots, calendar, and statistics</li>
+			<li><strong>Time Context</strong> Sessions, news events, period separators, and other technical analysis overlays</li>
 		</ul>
 
 		<a href="/docs/prismchart" class="btn-docs">Read docs →</a>

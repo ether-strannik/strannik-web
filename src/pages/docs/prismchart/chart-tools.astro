@@ -13,8 +13,7 @@ const sidebar = [
 		collapsible: true,
 		expanded: true,
 		links: [
-			{ href: '/docs/prismchart', label: 'Overview' },
-			{ href: '/docs/prismchart/installation', label: 'Installation' },
+			{ href: '/docs/prismchart', label: 'Intro' },
 			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
 			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools', active: true },
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
@@ -56,6 +55,21 @@ const toc = [
 			margin: 2rem 0 1rem;
 			padding-bottom: 0.5rem;
 			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 1rem;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
 		}
 
 		p {
@@ -111,61 +125,31 @@ const toc = [
 	</script>
 
 	<h2 id="crosshair">Crosshair</h2>
-	<p>Custom crosshair when custom scales are enabled:</p>
-	<ul>
-		<li>Line style, color, width (1-5)</li>
-		<li>Price label on price scale (canvas-rendered)</li>
-		<li>Time label on timeline (canvas-rendered, uses selected timezone)</li>
-		<li>Label color setting (affects both scales)</li>
-		<li>Labels can be toggled independently from crosshair lines</li>
-		<li>Show Lines toggle (info/labels work without crosshair lines for better object selection)</li>
-		<li><strong>T key</strong> toggles tracking on/off</li>
-	</ul>
+	<p class="section-intro">Track price and time with precision.</p>
+	<p>When custom scales are enabled, PrismChart provides its own crosshair that integrates with the canvas-rendered price and time axes. The crosshair displays labels directly on both scales, showing price and time in your selected timezone.</p>
+	<p>You can customize line style, color, and width. Labels can be toggled independently from the crosshair lines - useful when you want bar info without visual clutter interfering with object selection.</p>
+	<p class="note"><strong>Tip:</strong> Press <strong>T</strong> to toggle tracking on and off. When tracking is off, the crosshair stays at its last position.</p>
 
 	<h2 id="ohlc-info">OHLC Info Display</h2>
-	<p>Replaces MT5 built-in display with customizable info panel:</p>
-	<ul>
-		<li>Symbol name</li>
-		<li>Bar number, pips from close</li>
-		<li>O/H/L/C values</li>
-		<li>Range (pips), Body%, Upper Wick%, Lower Wick%</li>
-		<li>Volume</li>
-		<li>Time (in user's selected timezone)</li>
-		<li>Each section toggleable</li>
-		<li>Custom font and font size</li>
-	</ul>
+	<p class="section-intro">See what matters about each bar.</p>
+	<p>The OHLC panel replaces MT5's built-in display with a configurable info strip. It shows symbol name, bar number, OHLC values, range in pips, body and wick percentages, volume, and time in your timezone.</p>
+	<p>Each section can be toggled on or off. Font and font size are customizable, so you can make it as minimal or detailed as you prefer.</p>
 
 	<h2 id="price-line">Price Line</h2>
-	<p>Visual indicator following current price:</p>
-	<ul>
-		<li>Follows current price in real-time</li>
-		<li>Up/down color (green/red vs previous close)</li>
-		<li>Optional label above line</li>
-		<li>Optional label on price scale</li>
-	</ul>
+	<p class="section-intro">Always know where price is.</p>
+	<p>A horizontal line follows the current price in real-time. It changes color based on direction - green when above the previous close, red when below. Optional labels appear above the line and on the price scale.</p>
 
 	<h2 id="spread-meter">Spread Meter</h2>
-	<p>Current spread monitoring:</p>
-	<ul>
-		<li>Current spread display</li>
-		<li>Max value threshold with color alert</li>
-		<li>Configurable colors</li>
-	</ul>
+	<p class="section-intro">Monitor trading costs at a glance.</p>
+	<p>The spread meter displays the current spread and alerts you when it exceeds a threshold you define. Colors are configurable, making it easy to spot when spreads widen during news or low-liquidity periods.</p>
 
-	<h2 id="candle-countdown">Candle Close Countdown</h2>
-	<p>Time remaining until current candle closes:</p>
-	<ul>
-		<li>Integrated into price scale (bottom)</li>
-		<li>Updates in real-time</li>
-	</ul>
+	<h2 id="candle-countdown">Candle Countdown</h2>
+	<p class="section-intro">Know when the bar closes.</p>
+	<p>A countdown timer shows time remaining until the current candle closes. It's integrated into the bottom of the price scale and updates in real-time. Useful for timing entries on candle close confirmation.</p>
 
 	<h2 id="symbol-switcher">Symbol Switcher</h2>
-	<p>Quick symbol and timeframe switching:</p>
-	<ul>
-		<li>Toggle button displays current symbol + timeframe</li>
-		<li>Favorites list with [O] button to open new chart</li>
-		<li>Timeframe selector buttons ([1] [5] [15] [30] [1H] [4H] [D1])</li>
-		<li>Add/remove symbols from favorites</li>
-		<li>Position validation prevents dialogs from getting stuck behind OHLC strip</li>
-	</ul>
+	<p class="section-intro">Switch pairs and timeframes without leaving your chart.</p>
+	<p>The symbol switcher displays your current symbol and timeframe in a toggle button. Click it to access your favorites list and timeframe selector. One-click switching between pairs, or open a symbol in a new chart window.</p>
+	<p>Add and remove symbols from favorites directly in the dialog. Timeframe buttons provide quick access to common intervals: M1, M5, M15, M30, H1, H4, D1.</p>
+	<p class="note"><strong>Note:</strong> Symbols must be added to MT5 Market Watch before adding them to favorites. Otherwise, switching will fail and new chart windows won't open.</p>
 </DocsLayout>
