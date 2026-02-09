@@ -248,7 +248,16 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			.sidebar-section {
-				margin-bottom: 2rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.sidebar-section:first-child {
+				margin-bottom: 1.5rem;
+			}
+
+			.sidebar-section:last-child {
+				margin-top: 1rem;
+				margin-bottom: 0;
 			}
 
 			.sidebar-title {
@@ -257,7 +266,7 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 				text-transform: uppercase;
 				letter-spacing: 0.05em;
 				color: #999;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0.5rem;
 			}
 
 			.sidebar-nav {
@@ -329,12 +338,17 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			/* Collapsible sections */
+			.sidebar-section[data-collapsible] {
+				margin-bottom: 0.25rem;
+			}
+
 			.sidebar-header {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				cursor: pointer;
 				user-select: none;
+				padding: 0.25rem 0;
 			}
 
 			.sidebar-header:hover .sidebar-title {
@@ -353,6 +367,10 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 
 			.sidebar-section.collapsed .sidebar-nav {
 				display: none;
+			}
+
+			.sidebar-section.collapsed {
+				margin-bottom: 0.25rem;
 			}
 
 			/* Content */
