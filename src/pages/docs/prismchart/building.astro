@@ -37,11 +37,17 @@ const sidebar = [
 		]
 	},
 	{
+		title: 'Development',
+		collapsible: true,
 		links: [
-			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
+			{ href: '/docs/prismchart/building', label: 'Building', active: true },
 			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
-			{ href: '/docs/prismchart/development', label: 'Development', active: true },
 			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	},
+	{
+		links: [
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
 		]
 	}
 ];
@@ -52,7 +58,7 @@ const toc = [
 ];
 ---
 
-<DocsLayout title="Development - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Building - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -109,7 +115,7 @@ const toc = [
 		}
 	</style>
 
-	<h1>Development</h1>
+	<h1>Building</h1>
 	<p class="tagline">For contributors building from source</p>
 
 	<h2 id="prerequisites">Prerequisites</h2>
