@@ -451,31 +451,19 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			<aside class="sidebar" transition:persist>
 				{sidebar.map(section => (
 					<div class={`sidebar-section ${section.collapsible ? 'collapsed' : ''}`} data-collapsible={section.collapsible ? 'true' : undefined}>
-						{section.collapsible ? (
-							<div class="sidebar-header">
+						{section.title && (
+							section.collapsible ? (
+								<div class="sidebar-header">
+									<div class="sidebar-title">{section.title}</div>
+									<span class="sidebar-toggle">▼</span>
+								</div>
+							) : (
 								<div class="sidebar-title">{section.title}</div>
-								<span class="sidebar-toggle">▼</span>
-							</div>
-						) : (
-							<div class="sidebar-title">{section.title}</div>
+							)
 						)}
 						<ul class="sidebar-nav">
 							{section.links.map(link => (
-								link.children ? (
-									<li class="subsection collapsed" data-subsection>
-										<div class="subsection-header">
-											<span class="subsection-label">{link.label}</span>
-											<span class="subsection-toggle">▼</span>
-										</div>
-										<ul class="subsection-children">
-											{link.children.map(child => (
-												<li><a href={child.href} class={child.active ? 'active' : ''}>{child.label}</a></li>
-											))}
-										</ul>
-									</li>
-								) : (
-									<li><a href={link.href} class={link.active ? 'active' : ''}>{link.label}</a></li>
-								)
+								<li><a href={link.href} class={link.active ? 'active' : ''}>{link.label}</a></li>
 							))}
 						</ul>
 					</div>
