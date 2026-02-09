@@ -192,26 +192,6 @@ import Base from '../layouts/Base.astro';
 			border-color: #ccc;
 		}
 
-		.btn-secondary-outline {
-			display: inline-flex;
-			align-items: center;
-			padding: 0.5rem 1rem;
-			border: 1px solid #e5e5e5;
-			border-radius: 4px;
-			color: #666;
-			text-decoration: none;
-			font-size: 0.9rem;
-		}
-
-		.btn-secondary-outline:hover {
-			color: #000;
-			border-color: #ccc;
-		}
-
-		.coming-soon {
-			color: #999;
-			font-style: italic;
-		}
 	</style>
 
 	<div class="hero">
@@ -221,7 +201,7 @@ import Base from '../layouts/Base.astro';
 	<div class="tabs">
 		<ul class="tab-list">
 			<li><button class="tab-btn active" data-tab="prismchart">PrismChart</button></li>
-			<li><button class="tab-btn" data-tab="more">More</button></li>
+			<li><button class="tab-btn" data-tab="tab">Tab</button></li>
 		</ul>
 	</div>
 
@@ -251,13 +231,12 @@ import Base from '../layouts/Base.astro';
 				</svg>
 				Download
 			</a>
-			<a href="/docs/prismchart" class="btn-secondary-outline">Docs</a>
+			<a href="/docs/prismchart" class="btn-docs">Docs</a>
 			<a href="https://github.com/ether-strannik/PrismChart" class="btn-github" target="_blank">GitHub</a>
 		</div>
 	</div>
 
-	<div class="tab-content" id="more">
-		<p class="coming-soon">More apps coming soon — time management, backup utilities, watch apps</p>
+	<div class="tab-content" id="tab">
 	</div>
 
 	<script>
