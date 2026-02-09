@@ -1,0 +1,153 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{
+				label: 'Analysis Tools',
+				children: [
+					{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools', active: true }
+				]
+			},
+			{
+				label: 'Drawing Tools',
+				children: [
+					{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+					{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+				]
+			},
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{
+				label: 'Portability',
+				children: [
+					{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+					{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+				]
+			},
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#period-separators', label: 'Period Separators' },
+	{ href: '#opening-price', label: 'Opening Price' },
+	{ href: '#period-high-low', label: 'Period High/Low' },
+	{ href: '#fvg-detection', label: 'FVG Detection' }
+];
+---
+
+<DocsLayout title="Quick Tools - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
+		}
+
+		code {
+			background: #f5f5f5;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 0.9em;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+	</style>
+
+	<h1>Quick Tools</h1>
+	<p class="tagline">Quick access tools for period analysis and gap detection</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		const tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+		document.head.appendChild(tag);
+
+		window.onYouTubeIframeAPIReady = function() {
+			new YT.Player('yt-player', {
+				videoId: 'VIDEO_ID_HERE',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		};
+	</script>
+
+	<h2 id="period-separators">Period Separators</h2>
+	<p class="section-intro">Vertical lines marking trading period boundaries.</p>
+	<p>Daily separators show where each trading day begins. Weekly separators mark the start of each week. Monthly separators divide the chart by month. Each type can be enabled or disabled independently with configurable colors, line styles, and widths.</p>
+	<p>Text labels appear at separation points showing the date or period identifier. These labels reposition automatically when you zoom or scroll the chart. Weekly labels display ISO week numbers.</p>
+	<p>For forex traders, the day start time defaults to 17:00 New York time to align with the forex trading day. You can choose which day starts the week, from Sunday through Saturday. Label font size is adjustable in settings. Daily separators automatically skip weekends since markets are closed.</p>
+
+	<h2 id="opening-price">Opening Price</h2>
+	<p class="section-intro">Draw the session open with one click.</p>
+	<p>Click any period separator to draw a horizontal line at the opening price of that period. The line extends from the first candle's open until the next separator, giving you a visual reference for where price started the session.</p>
+
+	<h2 id="period-high-low">Period High/Low</h2>
+	<p class="section-intro">Auto-draw session range lines.</p>
+	<p>Click a separator to automatically draw high and low lines for that period. The indicator scans the candles within the period and places horizontal lines at the highest high and lowest low. Lines extend to the next separator, making it easy to see the range of each session at a glance.</p>
+	<p>Access these functions through the Quick Tools dialog.</p>
+
+	<h2 id="fvg-detection">FVG Detection</h2>
+	<p class="section-intro">Automatic Fair Value Gap detection.</p>
+	<p>Fair Value Gaps are detected automatically based on your configuration. Set the maximum bars to scan, box length for visualization, colors for bullish and bearish gaps, and whether boxes should be filled or just bordered.</p>
+	<p>When price mitigates a gap by closing through it, the FVG box is automatically deleted. If you want to keep a gap for reference, click it to convert it into a user rectangle that persists. The visibility toggle button lets you show or hide all FVG boxes without disabling detection.</p>
+</DocsLayout>
