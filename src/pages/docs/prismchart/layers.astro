@@ -20,6 +20,8 @@ const sidebar = [
 			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
 			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
 			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
 			{ href: '/docs/prismchart/development', label: 'Development' },
 			{ href: '/docs/prismchart/credits', label: 'Credits' }
 		]
@@ -53,6 +55,19 @@ const toc = [
 			margin: 2rem 0 1rem;
 			padding-bottom: 0.5rem;
 			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 1rem;
+		}
+
+		code {
+			background: #f0f0f0;
+			padding: 0.2rem 0.4rem;
+			border-radius: 3px;
+			font-size: 0.9rem;
 		}
 
 		p {
@@ -109,46 +124,23 @@ const toc = [
 	</script>
 
 	<h2 id="layers">Layers</h2>
-	<p>Group objects by naming prefix:</p>
-	<ul>
-		<li>Naming convention: <code>FVG_001</code>, <code>OB_entry</code></li>
-		<li>Configurable delimiter (underscore, dash, or both)</li>
-		<li>Manage Groups dialog (add/remove layers)</li>
-		<li>Layer dropdown for target selection when drawing</li>
-		<li>Optional "Ungrouped" layer for objects without prefix</li>
-	</ul>
+	<p class="section-intro">Group your drawings by purpose.</p>
+	<p>Every object in PrismChart belongs to a layer, determined by its naming prefix. An object named <code>FVG_001</code> belongs to the FVG layer. <code>OB_entry</code> belongs to OB. This simple convention keeps your chart organized as analysis accumulates.</p>
+	<p>Create and manage layers through the Manage Groups dialog. When drawing, select your target layer from the dropdown - the object will be named automatically with the layer prefix and a sequential number.</p>
+	<p>Objects without a recognized prefix appear in an optional "Ungrouped" layer.</p>
 
 	<h2 id="drawing-manager">Drawing Manager</h2>
-	<p>Central panel for managing all chart objects:</p>
-	<ul>
-		<li>List all objects organized by layer</li>
-		<li>Expand/collapse layers</li>
-		<li>Toggle visibility per layer or object</li>
-		<li>Toggle lock per layer or object</li>
-		<li>Delete layers or individual objects</li>
-		<li>Confirmation dialogs before deletion</li>
-		<li>Scrollable panel with Up/Down buttons</li>
-		<li>Drag-reorder layers</li>
-		<li>Auto-refresh on chart changes</li>
-	</ul>
+	<p class="section-intro">Control visibility and access from one panel.</p>
+	<p>The Drawing Manager lists all objects organized by layer. Expand or collapse layers to focus on what matters. Toggle visibility or lock state per layer or per individual object. Delete objects with confirmation dialogs to prevent accidents.</p>
+	<p>Layers can be reordered by dragging. The panel auto-refreshes when chart objects change, keeping the list current without manual intervention.</p>
 
 	<h2 id="sublayer-system">Sublayer System</h2>
-	<p>Auto-detect complex objects by naming convention:</p>
-	<ul>
-		<li>Pattern: <code>LAYER_OBJECTNAME_subpart</code></li>
-		<li>Example: <code>POS_001_entry</code>, <code>POS_001_sl</code></li>
-		<li>Collapsible sublayers with expand/collapse toggle</li>
-		<li>Lock/hide/delete propagates to all sub-objects</li>
-		<li>Mixed state indicator when sub-objects differ</li>
-	</ul>
+	<p class="section-intro">Keep complex objects together.</p>
+	<p>Some drawings consist of multiple parts - a position tool has entry, stop loss, and take profit lines. PrismChart auto-detects these relationships through naming convention: <code>POS_001_entry</code>, <code>POS_001_sl</code>, <code>POS_001_tp1</code> are recognized as parts of the same object.</p>
+	<p>Sublayers collapse under their parent in the Drawing Manager. Lock, hide, or delete the parent and all sub-objects follow. A mixed-state indicator shows when sub-objects have different visibility or lock states.</p>
 
 	<h2 id="naming">Naming</h2>
-	<p>Flexible object naming system:</p>
-	<ul>
-		<li>Auto-naming: <code>[LAYER]_001</code>, <code>[LAYER]_002</code>, etc.</li>
-		<li>Naming dialog after drawing for custom names</li>
-		<li>Rename button [R] in layer panel</li>
-		<li>Group dropdown in rename dialog (move between groups)</li>
-		<li>Whitespace handling (treated as blank)</li>
-	</ul>
+	<p class="section-intro">Name objects your way.</p>
+	<p>After drawing, a naming dialog appears where you can enter a custom name or accept the auto-generated one. Names follow the pattern <code>[LAYER]_001</code>, <code>[LAYER]_002</code>, incrementing automatically.</p>
+	<p>To rename an existing object, click the rename button in the layer panel. The rename dialog includes a group dropdown, letting you move objects between layers by changing their prefix.</p>
 </DocsLayout>

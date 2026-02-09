@@ -1,0 +1,256 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog', active: true },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [];
+
+// Parse changelog into structured format
+interface ChangelogItem {
+	text: string;
+	indent: number;  // 0 = normal, 1 = sub-item, -1 = subcategory header
+}
+
+interface ChangelogEntry {
+	version: string;
+	date?: string;
+	categories: { name: string; items: ChangelogItem[] }[];
+}
+
+let entries: ChangelogEntry[] = [];
+let error = false;
+
+try {
+	const res = await fetch('https://raw.githubusercontent.com/ether-strannik/PrismChart/main/CHANGELOG.md');
+	const markdown = await res.text();
+
+	// Split by version headers (## [X.Y.Z] or ## [Unreleased])
+	const versionBlocks = markdown.split(/^## /m).slice(1);
+
+	for (const block of versionBlocks) {
+		const lines = block.split('\n');
+		const headerLine = lines[0];
+
+		// Parse version and optional date: [1.0.0] - 2024-01-15 or [Unreleased]
+		const versionMatch = headerLine.match(/\[([^\]]+)\](?:\s*-\s*(.+))?/);
+		if (!versionMatch) continue;
+
+		const version = versionMatch[1];
+		const date = versionMatch[2]?.trim();
+
+		const entry: ChangelogEntry = { version, date, categories: [] };
+
+		let currentCategory: { name: string; items: ChangelogItem[] } | null = null;
+
+		for (let i = 1; i < lines.length; i++) {
+			const line = lines[i];
+
+			// Category header (### Added, ### Fixed, etc.)
+			if (line.startsWith('### ')) {
+				if (currentCategory) entry.categories.push(currentCategory);
+				currentCategory = { name: line.slice(4).trim(), items: [] };
+			}
+			// Subcategory header (#### Installation, etc.) - treat as bold item
+			else if (line.startsWith('#### ') && currentCategory) {
+				currentCategory.items.push({ text: line.slice(5).trim(), indent: -1 });
+			}
+			// Bullet item
+			else if (line.startsWith('- ') && currentCategory) {
+				let item = line.slice(2);
+				// Convert inline markdown
+				item = item.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+				item = item.replace(/`([^`]+)`/g, '<code>$1</code>');
+				item = item.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+				currentCategory.items.push({ text: item, indent: 0 });
+			}
+			// Indented bullet (sub-item)
+			else if (line.match(/^\s{2,}-\s/) && currentCategory) {
+				let item = line.replace(/^\s+-\s/, '');
+				item = item.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+				item = item.replace(/`([^`]+)`/g, '<code>$1</code>');
+				item = item.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+				currentCategory.items.push({ text: item, indent: 1 });
+			}
+		}
+
+		if (currentCategory) entry.categories.push(currentCategory);
+		entries.push(entry);
+	}
+} catch (e) {
+	error = true;
+}
+---
+
+<DocsLayout title="Changelog - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 1.5rem;
+		}
+
+		.divider {
+			border: none;
+			border-top: 1px solid #e5e5e5;
+			margin: 1.5rem 0 2rem;
+		}
+
+		.version-entry {
+			display: grid;
+			grid-template-columns: 140px 1fr;
+			gap: 2rem;
+			margin-bottom: 3rem;
+		}
+
+		.version-meta {
+			text-align: left;
+		}
+
+		.version-number {
+			font-size: 1.1rem;
+			font-weight: 600;
+			color: #000;
+		}
+
+		.version-date {
+			font-size: 0.9rem;
+			color: #999;
+			margin-top: 0.25rem;
+		}
+
+		.version-content {
+			color: #333;
+		}
+
+		.category-name {
+			font-weight: 600;
+			color: #000;
+			margin-bottom: 0.5rem;
+		}
+
+		.category-name:not(:first-child) {
+			margin-top: 1.5rem;
+		}
+
+		.category-items {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.category-items li {
+			position: relative;
+			padding-left: 1rem;
+			padding-top: 0.2rem;
+			padding-bottom: 0.2rem;
+			color: #555;
+			line-height: 1.5;
+		}
+
+		.category-items li::before {
+			content: "-";
+			position: absolute;
+			left: 0;
+			color: #999;
+		}
+
+		.category-items li.indent-1 {
+			padding-left: 2.5rem;
+		}
+
+		.category-items li.indent-1::before {
+			left: 1.5rem;
+		}
+
+		.category-items li.subcategory {
+			padding-left: 0;
+			margin-top: 1rem;
+			font-weight: 600;
+			color: #000;
+		}
+
+		.category-items li.subcategory::before {
+			content: none;
+		}
+
+		code {
+			background: #f0f0f0;
+			padding: 0.15rem 0.35rem;
+			border-radius: 3px;
+			font-size: 0.85rem;
+		}
+
+		a {
+			color: #000;
+		}
+
+		.error-msg {
+			color: #666;
+		}
+
+		@media (max-width: 600px) {
+			.version-entry {
+				grid-template-columns: 1fr;
+				gap: 0.5rem;
+			}
+		}
+	</style>
+
+	<h1>Changelog</h1>
+	<hr class="divider" />
+
+	{error ? (
+		<p class="error-msg">Unable to load changelog. <a href="https://github.com/ether-strannik/PrismChart/blob/main/CHANGELOG.md" target="_blank">View on GitHub</a></p>
+	) : (
+		entries.map(entry => (
+			<div class="version-entry">
+				<div class="version-meta">
+					<div class="version-number">{entry.version === 'Unreleased' ? 'Unreleased' : `v${entry.version}`}</div>
+					{entry.date && <div class="version-date">{entry.date}</div>}
+				</div>
+				<div class="version-content">
+					{entry.categories.map(cat => (
+						<>
+							<div class="category-name">{cat.name}</div>
+							<ul class="category-items">
+								{cat.items.map(item => (
+									<li class={item.indent === -1 ? 'subcategory' : item.indent === 1 ? 'indent-1' : ''} set:html={item.text} />
+								))}
+							</ul>
+						</>
+					))}
+				</div>
+			</div>
+		))
+	)}
+</DocsLayout>

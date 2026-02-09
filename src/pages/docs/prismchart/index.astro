@@ -20,6 +20,8 @@ const sidebar = [
 			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
 			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
 			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
 			{ href: '/docs/prismchart/development', label: 'Development' },
 			{ href: '/docs/prismchart/credits', label: 'Credits' }
 		]
@@ -27,7 +29,6 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#video', label: 'Video' },
 	{ href: '#requirements', label: 'Requirements' },
 	{ href: '#install', label: 'Install' },
 	{ href: '#manual-installation', label: 'Manual Installation' },
@@ -139,6 +140,15 @@ const toc = [
 
 	<p>PrismChart is an open source charting toolkit that extends MetaTrader 5 with drawing and analysis tools. Draw, organize, document, review.</p>
 
+	<h2 id="requirements">Requirements</h2>
+	<p>To use PrismChart, you'll need:</p>
+	<ul>
+		<li>Windows with MetaTrader 5 terminal installed</li>
+		<li>.NET Framework (for the installer)</li>
+	</ul>
+
+	<h2 id="install">Install</h2>
+
 	<div class="video-container" id="video">
 		<div id="yt-player"></div>
 	</div>
@@ -159,14 +169,6 @@ const toc = [
 		};
 	</script>
 
-	<h2 id="requirements">Requirements</h2>
-	<p>To use PrismChart, you'll need:</p>
-	<ul>
-		<li>Windows with MetaTrader 5 terminal installed</li>
-		<li>.NET Framework (for the installer)</li>
-	</ul>
-
-	<h2 id="install">Install</h2>
 	<p>The easiest way to install PrismChart is through the installer.</p>
 	<p>Download <a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip">installer.zip</a> from the repository and extract it. Run <code>installer/installer.exe</code> to start.</p>
 	<p>The installer walks you through the setup:</p>

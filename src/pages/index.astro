@@ -162,6 +162,28 @@ import Base from '../layouts/Base.astro';
 			color: #fff;
 		}
 
+		.btn-row {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+		}
+
+		.btn-github {
+			display: inline-flex;
+			align-items: center;
+			padding: 0.5rem 1rem;
+			border: 1px solid #e5e5e5;
+			border-radius: 4px;
+			color: #666;
+			text-decoration: none;
+			font-size: 0.9rem;
+		}
+
+		.btn-github:hover {
+			color: #000;
+			border-color: #ccc;
+		}
+
 		.coming-soon {
 			color: #999;
 			font-style: italic;
@@ -198,7 +220,10 @@ import Base from '../layouts/Base.astro';
 			<li><strong>Time Context</strong> Sessions, news events, period separators, and other technical analysis overlays</li>
 		</ul>
 
-		<a href="/docs/prismchart" class="btn-docs">Read docs →</a>
+		<div class="btn-row">
+			<a href="/docs/prismchart" class="btn-docs">Read docs →</a>
+			<a href="https://github.com/ether-strannik/PrismChart" class="btn-github" target="_blank">GitHub</a>
+		</div>
 	</div>
 
 	<div class="tab-content" id="more">

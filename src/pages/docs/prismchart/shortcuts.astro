@@ -1,0 +1,117 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		title: 'Docs',
+		links: [
+			{ href: '/docs', label: 'Intro' }
+		]
+	},
+	{
+		title: 'PrismChart',
+		collapsible: true,
+		expanded: true,
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts', active: true },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/development', label: 'Development' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [];
+---
+
+<DocsLayout title="Shortcuts - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1rem 0 1.5rem;
+			font-size: 0.95rem;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 0.75rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		th {
+			font-weight: 600;
+			background: #f9f9f9;
+		}
+
+		td:first-child {
+			font-weight: 500;
+			color: #000;
+		}
+	</style>
+
+	<h1>Shortcuts</h1>
+	<p class="tagline">Keyboard shortcuts for common actions.</p>
+
+	<table>
+		<tr>
+			<th>Shortcut</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<td>T</td>
+			<td>Toggle crosshair tracking</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Backspace</td>
+			<td>Undo last path segment (while drawing)</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+C</td>
+			<td>Copy selected objects</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+V</td>
+			<td>Paste in place</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+B</td>
+			<td>Paste at click position</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+Q</td>
+			<td>Delete with sublayers</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+O</td>
+			<td>Screenshot (current view)</td>
+		</tr>
+		<tr>
+			<td>Ctrl+Shift+P</td>
+			<td>Panorama screenshot (extended width)</td>
+		</tr>
+	</table>
+</DocsLayout>
