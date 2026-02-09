@@ -248,16 +248,7 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			.sidebar-section {
-				margin-bottom: 0.5rem;
-			}
-
-			.sidebar-section:first-child {
-				margin-bottom: 1.5rem;
-			}
-
-			.sidebar-section:last-child {
-				margin-top: 1rem;
-				margin-bottom: 0;
+				margin-bottom: 0.25rem;
 			}
 
 			.sidebar-title {
@@ -338,10 +329,6 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 			}
 
 			/* Collapsible sections */
-			.sidebar-section[data-collapsible] {
-				margin-bottom: 0.25rem;
-			}
-
 			.sidebar-header {
 				display: flex;
 				justify-content: space-between;
@@ -361,16 +348,12 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 				transition: transform 0.2s;
 			}
 
-			.sidebar-section.collapsed .sidebar-toggle {
-				transform: rotate(-90deg);
+			.sidebar-section:not(.collapsed) .sidebar-toggle {
+				transform: rotate(90deg);
 			}
 
 			.sidebar-section.collapsed .sidebar-nav {
 				display: none;
-			}
-
-			.sidebar-section.collapsed {
-				margin-bottom: 0.25rem;
 			}
 
 			/* Content */
@@ -473,7 +456,7 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 							section.collapsible ? (
 								<div class="sidebar-header">
 									<div class="sidebar-title">{section.title}</div>
-									<span class="sidebar-toggle">▼</span>
+									<span class="sidebar-toggle">&gt;</span>
 								</div>
 							) : (
 								<div class="sidebar-title">{section.title}</div>
