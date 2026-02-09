@@ -17,9 +17,14 @@ const sidebar = [
 			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
 			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
 			{ href: '/docs/prismchart/layers', label: 'Layers' },
-			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
-			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2', active: true },
-			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' },
+			{
+				label: 'Drawing Tools',
+				children: [
+					{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+					{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2', active: true },
+					{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+				]
+			},
 			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' },
 			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
 			{ href: '/docs/prismchart/development', label: 'Development' },

@@ -1,7 +1,14 @@
 ---
+interface SidebarLink {
+	href?: string;
+	label: string;
+	active?: boolean;
+	children?: { href: string; label: string; active?: boolean }[];
+}
+
 interface Props {
 	title: string;
-	sidebar?: { title: string; collapsible?: boolean; expanded?: boolean; links: { href: string; label: string; active?: boolean }[] }[];
+	sidebar?: { title: string; collapsible?: boolean; expanded?: boolean; links: SidebarLink[] }[];
 	toc?: { href: string; label: string; indent?: boolean }[];
 	issuesUrl?: string;
 }
@@ -273,6 +280,51 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 				font-weight: 500;
 			}
 
+			.sidebar-nav .subsection {
+				margin: 0.25rem 0;
+			}
+
+			.sidebar-nav .subsection-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				cursor: pointer;
+				user-select: none;
+				padding: 0.3rem 0;
+			}
+
+			.sidebar-nav .subsection-label {
+				color: #666;
+				font-size: 0.95rem;
+			}
+
+			.sidebar-nav .subsection-header:hover .subsection-label {
+				color: #000;
+			}
+
+			.sidebar-nav .subsection-toggle {
+				color: #999;
+				font-size: 0.7rem;
+				transition: transform 0.2s;
+			}
+
+			.sidebar-nav .subsection.collapsed .subsection-toggle {
+				transform: rotate(-90deg);
+			}
+
+			.sidebar-nav .subsection.collapsed .subsection-children {
+				display: none;
+			}
+
+			.sidebar-nav .subsection-children {
+				list-style: none;
+				padding-left: 0.75rem;
+			}
+
+			.sidebar-nav .subsection-children li {
+				padding: 0.25rem 0;
+			}
+
 			/* Collapsible sections */
 			.sidebar-header {
 				display: flex;
@@ -406,7 +458,21 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 						)}
 						<ul class="sidebar-nav">
 							{section.links.map(link => (
-								<li><a href={link.href} class={link.active ? 'active' : ''}>{link.label}</a></li>
+								link.children ? (
+									<li class="subsection" data-subsection>
+										<div class="subsection-header">
+											<span class="subsection-label">{link.label}</span>
+											<span class="subsection-toggle">▼</span>
+										</div>
+										<ul class="subsection-children">
+											{link.children.map(child => (
+												<li><a href={child.href} class={child.active ? 'active' : ''}>{child.label}</a></li>
+											))}
+										</ul>
+									</li>
+								) : (
+									<li><a href={link.href} class={link.active ? 'active' : ''}>{link.label}</a></li>
+								)
 							))}
 						</ul>
 					</div>
@@ -443,6 +509,16 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 				if (header) {
 					header.addEventListener('click', () => {
 						section.classList.toggle('collapsed');
+					});
+				}
+			});
+
+			// Collapsible subsections
+			document.querySelectorAll('.subsection[data-subsection]').forEach(subsection => {
+				const header = subsection.querySelector('.subsection-header');
+				if (header) {
+					header.addEventListener('click', () => {
+						subsection.classList.toggle('collapsed');
 					});
 				}
 			});
