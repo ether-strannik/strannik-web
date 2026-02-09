@@ -1,0 +1,106 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation', active: true },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#chart-scaling', label: 'Chart Scaling' },
+	{ href: '#screenshots', label: 'Screenshots' }
+];
+---
+
+<DocsLayout title="Presentation - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		p strong {
+			color: #000;
+		}
+	</style>
+
+	<h1>Presentation</h1>
+	<p class="tagline">Chart scaling and screenshot tools for documentation and review.</p>
+
+	<h2 id="chart-scaling">Chart Scaling</h2>
+	<p><strong>Keep your chart readable at any zoom level.</strong></p>
+	<p>Smart Auto-Scroll detects when you scroll back through history and disables autoscroll automatically. Scroll back to the present and it re-enables. No more fighting the chart to review past price action.</p>
+	<p>Fixed Scale locks your current zoom level using CHART_SCALEFIX. The chart won't rescale when new bars form or price moves - useful when you need consistent visual proportions across screenshots.</p>
+	<p>Head and Tail Margins add asymmetric padding based on where price sits in the visible range. Default is 20% on each side, preventing price from hugging the edges. When price is near the top, more margin appears above; near the bottom, more below.</p>
+	<p>ATR Range uses the Daily ATR as a minimum range floor. This prevents over-zooming on quiet periods where the visible high-low range is tiny. The chart always shows at least the D1 ATR worth of price range, keeping context visible.</p>
+	<p>ATR Period is configurable from 1 to 100 bars, defaulting to 14. The adaptive scaling algorithm takes the maximum of visible high-low range and D1 ATR, then adds margins.</p>
+
+	<h2 id="screenshots">Screenshots</h2>
+	<p><strong>Capture your analysis for review or sharing.</strong></p>
+	<p>The Screenshot button captures the current chart view exactly as displayed. The Panorama button captures an extended width - configurable from 2x to 6x your normal view - for documenting longer price sequences.</p>
+	<p>The Split button converts panorama images to printable pages using ImageMagick. Wide screenshots become a series of standard-sized pages suitable for printing or PDF assembly.</p>
+	<p>All screenshots save to MQL5/Files/ with timestamps. The default directory is PrismChart/Screenshots, configurable via MT5 input parameter.</p>
+	<p>The presentation dialog automatically hides before capture, so your screenshots show clean charts without UI overlay.</p>
+</DocsLayout>

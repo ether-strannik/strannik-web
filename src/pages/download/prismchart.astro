@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Download PrismChart - Strannik">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.0.4/index.css" />
+	<style>
+		:global(body) {
+			font-family: 'Iosevka', monospace;
+		}
+		:global(.logo) {
+			font-family: 'Iosevka', monospace;
+		}
+
+		.download-hero {
+			display: flex;
+			gap: 2rem;
+			align-items: center;
+			padding: 2rem 0 3rem;
+			border-bottom: 1px solid #e5e5e5;
+			margin-bottom: 3rem;
+		}
+
+		.app-icon {
+			width: 100px;
+			height: 100px;
+		}
+
+		.hero-content h1 {
+			font-size: 1.5rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.download-section {
+			margin-bottom: 2.5rem;
+		}
+
+		.section-title {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+		}
+
+		.download-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 1rem 0;
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.download-row:last-child {
+			border-bottom: none;
+		}
+
+		.download-info {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.platform-icon {
+			width: 20px;
+			height: 20px;
+			color: #666;
+		}
+
+		.download-label {
+			color: #333;
+		}
+
+		.download-desc {
+			color: #999;
+			font-size: 0.9rem;
+			margin-left: 0.5rem;
+		}
+
+		.btn-download {
+			display: inline-block;
+			padding: 0.5rem 1.2rem;
+			border: 1px solid #e5e5e5;
+			border-radius: 4px;
+			color: #333;
+			text-decoration: none;
+			font-size: 0.9rem;
+		}
+
+		.btn-download:hover {
+			border-color: #ccc;
+			background: #fafafa;
+		}
+
+		.note {
+			color: #999;
+			font-size: 0.9rem;
+			margin-top: 1rem;
+		}
+
+		.note a {
+			color: #666;
+		}
+	</style>
+
+	<div class="download-hero">
+		<img src="/icons/prismchart.png" alt="PrismChart" class="app-icon" />
+		<div class="hero-content">
+			<h1>Download PrismChart</h1>
+		</div>
+	</div>
+
+	<div class="download-section">
+		<h2 class="section-title">Installer</h2>
+		<div class="download-row">
+			<div class="download-info">
+				<svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+				</svg>
+				<span class="download-label">Windows</span>
+				<span class="download-desc">installer.zip</span>
+			</div>
+			<a href="https://github.com/ether-strannik/PrismChart/raw/main/installer.zip" class="btn-download">Download</a>
+		</div>
+		<p class="note">Extract and run <code>installer.exe</code>. Handles file placement, SMTP setup, and updates.</p>
+	</div>
+
+	<div class="download-section">
+		<h2 class="section-title">Latest Release</h2>
+		<div class="download-row">
+			<div class="download-info">
+				<svg class="platform-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/>
+				</svg>
+				<span class="download-label">Full Package</span>
+				<span class="download-desc">PrismChart-vX.X.X.zip</span>
+			</div>
+			<a href="https://github.com/ether-strannik/PrismChart/releases/latest" class="btn-download" target="_blank">Download</a>
+		</div>
+		<p class="note">Manual installation. Extract to MT5 data folder. See <a href="/docs/prismchart#manual-installation">docs</a> for details.</p>
+	</div>
+</Base>
