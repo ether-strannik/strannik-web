@@ -185,6 +185,18 @@ import Base from '../layouts/Base.astro';
 			border-color: #ccc;
 		}
 
+		.video-container {
+			margin: 2rem 0;
+			border-radius: 8px;
+			overflow: hidden;
+			background: #000;
+		}
+
+		.video-container video {
+			display: block;
+			width: 100%;
+		}
+
 	</style>
 
 	<div class="hero">
@@ -205,6 +217,12 @@ import Base from '../layouts/Base.astro';
 				<h3 class="app-title">PrismChart</h3>
 				<p class="app-desc">An open source charting toolkit that extends MetaTrader 5 with drawing and analysis tools. Draw, organize, document, review.</p>
 			</div>
+		</div>
+
+		<div class="video-container">
+			<video autoplay loop muted playsinline>
+				<source src="/main_video.mp4" type="video/mp4" />
+			</video>
 		</div>
 
 		<ul class="feature-list">
