@@ -43,9 +43,9 @@ const sidebar = [
 		title: 'ThinkPad',
 		collapsible: true,
 		links: [
-			{ href: '/docs/prismchart/thinkpad', label: 'Intro', active: true },
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
 			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
-			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' }
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace', active: true }
 		]
 	},
 	{
@@ -60,13 +60,12 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#initial-configuration', label: 'Initial Configuration' },
-	{ href: '#timezone-setup', label: 'Timezone Setup' },
-	{ href: '#week-start', label: 'Week Start' }
+	{ href: '#symbols', label: 'Symbols' },
+	{ href: '#tags', label: 'Tags' }
 ];
 ---
 
-<DocsLayout title="Intro - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Workspace - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -102,47 +101,50 @@ const toc = [
 			margin-bottom: 0.75rem;
 		}
 
-		ul {
-			padding-left: 1.5rem;
-			margin-bottom: 1.5rem;
-		}
-
-		li {
-			padding: 0.3rem 0;
-			color: #333;
-		}
-
 		img {
 			max-width: 100%;
 			border-radius: 6px;
 			margin: 1rem 0 1.5rem;
 		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
+		}
 	</style>
 
-	<h1>Intro</h1>
-	<p class="tagline">Trade journal companion for documenting, organizing, and analyzing your trading performance with markdown notes, screenshot galleries, and detailed statistics.</p>
+	<h1>Workspace</h1>
+	<p class="tagline">Symbols and tags for filtering your notes.</p>
 
-	<h2 id="initial-configuration">Initial Configuration</h2>
-	<p class="section-intro">Three paths connect ThinkPad to your data.</p>
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-1.jpg" alt="ThinkPad Workspace" />
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126.jpg" alt="ThinkPad Settings - Files tab" />
+	<h2 id="symbols">Symbols</h2>
+	<p class="section-intro">Everything in ThinkPad is organized by trading instrument.</p>
 
-	<p>If you used the installer, these paths are configured automatically. For manual installations, open Settings with the gear button and navigate to the Files tab to set them:</p>
-	<ul>
-		<li><strong>Notes Root Folder</strong> - Where your .md trade notes are stored</li>
-		<li><strong>Screenshots Root Folder</strong> - Where your chart screenshots are saved</li>
-		<li><strong>Trade Database File</strong> - Path to your MT5 export (trades.json)</li>
-	</ul>
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-2.jpg" alt="ThinkPad Symbol Manager" />
 
-	<h2 id="timezone-setup">Timezone Setup</h2>
-	<p class="section-intro">Convert broker timestamps to your local time.</p>
+	<p>Two types of symbols exist. Database symbols are automatically detected from your trades.json file. User symbols, marked with a star, are manually added for instruments you plan to trade but haven't yet.</p>
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-13.jpg" alt="ThinkPad Settings - Trade tab" />
+	<p>To add a symbol, click the All button to open Symbol Manager, then click New Symbol. Enter the symbol name and click Apply.</p>
 
-	<p>Switch to the Trade tab in Settings. Set the UTC offset to match your timezone - Pacific Time uses -8, Eastern uses -5. This ensures all trade times display correctly when reviewing your history.</p>
+	<p>Filter your notes by checking or unchecking symbols in Symbol Manager. Only notes for selected symbols appear in the tree.</p>
 
-	<h2 id="week-start">Week Start</h2>
-	<p class="section-intro">Choose when your trading week begins.</p>
+	<p class="note">When you open ThinkPad, it auto-selects the current chart symbol if available.</p>
 
-	<p>Select Monday or Sunday in the Trade tab. This affects how the calendar view groups and calculates weekly statistics.</p>
+	<h2 id="tags">Tags</h2>
+	<p class="section-intro">Categorize notes by strategy, outcome, or any system you prefer.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-3.jpg" alt="ThinkPad Tag Manager" />
+
+	<p>Click the All Tags button to open Tag Manager, then click New Tag. Enter a name like "breakout", "reversal", or "mistake" and click Apply.</p>
+
+	<p>Tags in use display a count showing how many notes reference them. Empty tags show no count.</p>
+
+	<p>Filter by selecting one or more tags in Tag Manager and clicking Apply. Only notes with those tags appear.</p>
+
+	<p class="note">Tag strategy examples: setup types (breakout, reversal, trend), quality grades (A-setup, B-setup, mistake), or phases (planning, active, review).</p>
 </DocsLayout>
