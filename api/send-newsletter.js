@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			from: 'Strannik <hello@strannik.ink>',
+			from: 'Strannik <notify@strannik.ink>',
 			to: subscribers.map(s => s.email),
 			subject,
 			html
