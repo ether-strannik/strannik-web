@@ -1,0 +1,158 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'ThinkPad',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
+			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
+			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' },
+			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades' },
+			{ href: '/docs/prismchart/thinkpad-performance', label: 'Performance', active: true },
+			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting' }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#trade-calendar', label: 'Trade Calendar' },
+	{ href: '#statistics', label: 'Statistics' },
+	{ href: '#filtering-for-strategy-analysis', label: 'Filtering for Strategy Analysis' }
+];
+---
+
+<DocsLayout title="Performance - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h2:first-of-type {
+			margin-top: 0;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
+		}
+
+		img {
+			max-width: 100%;
+			border-radius: 6px;
+			margin: 1rem 0 1.5rem;
+		}
+	</style>
+
+	<h1>Performance</h1>
+	<p class="tagline">Calendar views and statistics for tracking your results.</p>
+
+	<h2 id="trade-calendar">Trade Calendar</h2>
+	<p class="section-intro">See your activity at a glance.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-14.jpg" alt="ThinkPad Trade Calendar" />
+
+	<p>Click the Trade Calendar button to view your trades by date. Blue cells mark entries, red cells mark exits. The weekly totals column on the right shows dollar P/L, percentage gain, and pip P/L.</p>
+
+	<p>Click any day's cell to open Trades Manager filtered to that date for a detailed review.</p>
+
+	<p>Green numbers indicate profitable weeks, red indicates losing weeks. Compare across weeks to identify your best trading days, overtrading periods, and consistency patterns.</p>
+
+	<h2 id="statistics">Statistics</h2>
+	<p class="section-intro">Comprehensive performance metrics.</p>
+
+	<p>Click the Statistics button to open the full analysis panel.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-8.jpg" alt="ThinkPad Trade Stats" />
+
+	<p><strong>Trade Stats</strong> shows win rate, profit factor, average win versus average loss, and streak data for consecutive wins and losses.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-9.jpg" alt="ThinkPad Equity Curve" />
+
+	<p><strong>Equity Curve</strong> displays your balance progression over time with drawdown periods and recovery patterns clearly visible.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-10.jpg" alt="ThinkPad Drawdown Stats" />
+
+	<p><strong>DD Stats</strong> breaks down maximum drawdown, current drawdown, and recovery factor.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-11.jpg" alt="ThinkPad Time Stats" />
+
+	<p><strong>Time Stats</strong> reveals average trade duration and your best and worst trading hours and days.</p>
+
+	<h2 id="filtering-for-strategy-analysis">Filtering for Strategy Analysis</h2>
+	<p class="section-intro">Isolate specific setups to measure what works.</p>
+
+	<p>In Trades Manager, click the Tags tab in the left panel. Select a tag like "breakout" and toggle Show Filtered Stats on. The stats header now shows performance for only those trades.</p>
+
+	<p>Compare strategies by filtering each tag separately and noting the win rates. Combine filters for deeper analysis - symbol plus tag for "EURUSD breakouts only", or time plus tag for "reversals this month".</p>
+</DocsLayout>

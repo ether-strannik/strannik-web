@@ -50,14 +50,14 @@ const sidebar = [
 			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' },
 			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades' },
 			{ href: '/docs/prismchart/thinkpad-performance', label: 'Performance' },
-			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting' }
+			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting', active: true }
 		]
 	},
 	{
 		title: 'Development',
 		collapsible: true,
 		links: [
-			{ href: '/docs/prismchart/building', label: 'Building', active: true },
+			{ href: '/docs/prismchart/building', label: 'Building' },
 			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
 			{ href: '/docs/prismchart/credits', label: 'Credits' }
 		]
@@ -65,12 +65,13 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#prerequisites', label: 'Prerequisites' },
-	{ href: '#builder-tool', label: 'Builder Tool' }
+	{ href: '#notes-not-showing', label: 'Notes Not Showing' },
+	{ href: '#trade-data-not-loading', label: 'Trade Data Not Loading' },
+	{ href: '#incorrect-trade-times', label: 'Incorrect Trade Times' }
 ];
 ---
 
-<DocsLayout title="Building - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Troubleshooting - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -91,10 +92,8 @@ const toc = [
 			border-bottom: 1px solid #e5e5e5;
 		}
 
-		h3 {
-			font-size: 1rem;
-			font-weight: 600;
-			margin: 1.5rem 0 0.75rem;
+		h2:first-of-type {
+			margin-top: 0;
 		}
 
 		p {
@@ -102,61 +101,30 @@ const toc = [
 			margin-bottom: 1rem;
 		}
 
-		ul {
-			padding-left: 1.5rem;
-			margin-bottom: 1rem;
-		}
-
-		li {
-			padding: 0.3rem 0;
-			color: #333;
-		}
-
-		pre {
-			background: #1a1a1a;
-			color: #e5e5e5;
-			padding: 1rem;
-			border-radius: 6px;
-			overflow-x: auto;
-			margin-bottom: 1rem;
-		}
-
-		pre code {
-			background: none;
-			padding: 0;
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
 		}
 	</style>
 
-	<h1>Building</h1>
-	<p class="tagline">For contributors building from source</p>
+	<h1>Troubleshooting</h1>
+	<p class="tagline">Common issues and how to fix them.</p>
 
-	<h2 id="prerequisites">Prerequisites</h2>
-	<ul>
-		<li>MetaEditor (comes with MT5)</li>
-		<li>Python 3.10+ with PyQt5</li>
-		<li>7-Zip (in PATH)</li>
-		<li>PyInstaller (<code>pip install pyinstaller</code>)</li>
-	</ul>
+	<h2 id="notes-not-showing">Notes Not Showing</h2>
+	<p class="section-intro">Check your filters and paths.</p>
 
-	<h2 id="builder-tool">Builder Tool</h2>
-	<p>The <a href="https://github.com/ether-strannik/PrismChart/tree/main/Addons/builder" target="_blank">builder</a> (<code>Addons/builder/builder.py</code>) provides a GUI for compiling all components:</p>
-	<pre><code>cd Addons/builder
-python builder.py</code></pre>
+	<p>Verify the correct symbol is selected in Symbol Manager. Check that "All Tags" is selected if you're not filtering by tag. Confirm the note status matches where you're looking - an Active note won't appear in Archives.</p>
 
-	<h3>Build Targets</h3>
-	<ul>
-		<li><strong>PrismChart</strong> - Compile MQL5 indicator via MetaEditor</li>
-		<li><strong>Installer</strong> - PyInstaller onedir build</li>
-		<li><strong>Update Checker</strong> - PyInstaller onedir build</li>
-		<li><strong>ThinkPad</strong> - PyInstaller onedir build</li>
-		<li><strong>SMTP Sender</strong> - PyInstaller onefile build</li>
-	</ul>
+	<p>If notes still don't appear, open Settings and verify the Notes Root Folder path points to the correct directory.</p>
 
-	<h3>Features</h3>
-	<ul>
-		<li>Batch build: Check targets and click "Build Selected"</li>
-		<li>Auto-package: Check "Package" to create release archive after builds</li>
-		<li>Sequential execution: Builds run one after another</li>
-		<li>Post-build: Copies <code>settings.ini.template</code> to ThinkPad output</li>
-	</ul>
+	<h2 id="trade-data-not-loading">Trade Data Not Loading</h2>
+	<p class="section-intro">Verify database configuration.</p>
+
+	<p>Open Settings and check that the Trade Database path points to your trades.json file. Ensure the file is a valid MT5 export format and that ThinkPad has read permissions for the file location.</p>
+
+	<h2 id="incorrect-trade-times">Incorrect Trade Times</h2>
+	<p class="section-intro">Adjust your timezone offset.</p>
+
+	<p>Open Settings and go to the Trade tab. Set the UTC offset to match your local timezone, then save. All trade times now display in your local time.</p>
 </DocsLayout>

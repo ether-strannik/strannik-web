@@ -46,9 +46,9 @@ const sidebar = [
 			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
 			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
 			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
-			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes', active: true },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
 			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' },
-			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades' },
+			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades', active: true },
 			{ href: '/docs/prismchart/thinkpad-performance', label: 'Performance' },
 			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting' }
 		]
@@ -65,13 +65,14 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#quick-note-creation', label: 'Quick Note Creation' },
-	{ href: '#assigning-notes-to-trades', label: 'Assigning Notes to Trades' },
-	{ href: '#archiving-notes', label: 'Archiving Notes' }
+	{ href: '#trade-analysis-view', label: 'Trade Analysis View' },
+	{ href: '#trade-statistics', label: 'Trade Statistics' },
+	{ href: '#editing-notes-post-trade', label: 'Editing Notes Post-Trade' },
+	{ href: '#adding-screenshots-later', label: 'Adding Screenshots Later' }
 ];
 ---
 
-<DocsLayout title="Trade Notes - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Review Trades - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -123,35 +124,36 @@ const toc = [
 		}
 	</style>
 
-	<h1>Trade Notes</h1>
-	<p class="tagline">Document your analysis and track trades.</p>
+	<h1>Review Trades</h1>
+	<p class="tagline">Analyze closed positions with screenshots and statistics.</p>
 
-	<h2 id="quick-note-creation">Quick Note Creation</h2>
-	<p class="section-intro">Start documenting a setup as it forms.</p>
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-6.jpg" alt="ThinkPad Trade Analysis View" />
 
-	<p>Click the plus button in the toolbar. A new untitled note opens in the editor where you can write your analysis - market context, entry plan, stops and targets.</p>
+	<h2 id="trade-analysis-view">Trade Analysis View</h2>
+	<p class="section-intro">Review everything about a completed trade in one place.</p>
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-4.jpg" alt="ThinkPad Create Note Dialog" />
+	<p>Click the Trades Manager button and find your closed trade. Click on the main trade row (not the partial exits underneath) and click View in the bottom right.</p>
 
-	<p>Press Save and the Create New Note dialog appears. Fill in the symbol, title, and set status to Active. Optionally select tags and leave Position ID empty for now - you can assign it after the trade opens.</p>
+	<p>The Trade Analysis window opens with your screenshot viewer on the left, a thumbnail strip below for navigation, and complete trade statistics on the right. Your note named "main" appears here. If you edit via Trade Analysis View, a "main" note is automatically created.</p>
 
-	<p>Click Create and the note appears in your file tree, ready to track this trade.</p>
+	<h2 id="trade-statistics">Trade Statistics</h2>
+	<p class="section-intro">Understand your execution and results.</p>
 
-	<h2 id="assigning-notes-to-trades">Assigning Notes to Trades</h2>
-	<p class="section-intro">Link notes to actual positions.</p>
+	<p>The right panel shows position details including direction, volume, entry/exit times, and exact duration. The P/L breakdown lists gross profit, commission, swap fees, net profit, and final balance.</p>
 
-	<p>Once you enter a trade and MT5 assigns a position ID, right-click your note in the tree and select Assign to Position. The Trades Manager opens showing all positions. Select the matching position and your note moves under that position ID in the tree.</p>
+	<p>Green indicates profit, red indicates losses and costs. Use this to verify execution quality, calculate actual risk/reward, review holding time versus your plan, and document costs for tax records.</p>
 
-	<p>You can also enter the position ID directly when creating the note if you already know it.</p>
+	<h2 id="editing-notes-post-trade">Editing Notes Post-Trade</h2>
+	<p class="section-intro">Add your review while statistics are fresh.</p>
 
-	<p class="note">Create multiple notes for one position - entry reflection, exit notes, lessons learned. All notes with the same position ID nest together. Name your primary analysis note "main" - this is the note that appears in Trade Analysis view when reviewing closed trades.</p>
+	<p>Scroll down in the right panel to see your main note. Click in the note area to edit and add your post-trade review - what worked, what didn't, lessons learned.</p>
 
-	<h2 id="archiving-notes">Archiving Notes</h2>
-	<p class="section-intro">Move completed trades out of your active workspace.</p>
+	<p>Click Save Note when done, or click Edit in ThinkPad for extensive changes in the full editor.</p>
 
-	<p>Change the status in the note's frontmatter from <code>active</code> to <code>completed</code> and save. The note automatically moves to the Archives folder.</p>
+	<h2 id="adding-screenshots-later">Adding Screenshots Later</h2>
+	<p class="section-intro">Attach images you captured after the fact.</p>
 
-	<p>Alternatively, right-click the note, select Rename, change the Status dropdown to Completed, and click OK.</p>
+	<p>In Trade Analysis view, click Add Image and browse to your screenshot. It's added as the last in sequence - use Reorder if you need it elsewhere.</p>
 
-	<p>Archived trades remain searchable and viewable but stay separate from your active analysis.</p>
+	<p class="note">Add screenshots of final results, equity curve snapshots, or key levels hit for future reference.</p>
 </DocsLayout>
