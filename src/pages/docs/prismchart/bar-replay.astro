@@ -1,0 +1,189 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
+			{ href: '/docs/prismchart/bar-replay', label: 'Bar Replay', active: true },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'ThinkPad',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
+			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
+			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' },
+			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades' },
+			{ href: '/docs/prismchart/thinkpad-performance', label: 'Performance' },
+			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting' }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#getting-started', label: 'Getting Started' },
+	{ href: '#playback-controls', label: 'Playback Controls' },
+	{ href: '#saving-positions', label: 'Saving Positions' },
+	{ href: '#visual-customization', label: 'Visual Customization' },
+	{ href: '#use-cases', label: 'Use Cases' }
+];
+---
+
+<DocsLayout title="Bar Replay - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		p strong {
+			color: #000;
+		}
+
+		code {
+			background: #f0f0f0;
+			padding: 0.2rem 0.4rem;
+			border-radius: 3px;
+			font-size: 0.9rem;
+		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
+	</style>
+
+	<h1>Bar Replay</h1>
+	<p class="tagline">Step through historical candles at your own pace.</p>
+
+	<div class="video-container" id="video">
+		<div id="yt-player"></div>
+	</div>
+
+	<script>
+		function initYouTubePlayer() {
+			const container = document.getElementById('yt-player');
+			if (!container || container.hasChildNodes()) return;
+
+			new YT.Player('yt-player', {
+				videoId: 'VIDEO_ID_HERE',
+				playerVars: { rel: 0, modestbranding: 1 },
+				events: {
+					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
+				}
+			});
+		}
+
+		document.addEventListener('astro:page-load', () => {
+			if (typeof YT !== 'undefined' && YT.Player) {
+				initYouTubePlayer();
+			} else {
+				const tag = document.createElement('script');
+				tag.src = 'https://www.youtube.com/iframe_api';
+				document.head.appendChild(tag);
+				window.onYouTubeIframeAPIReady = initYouTubePlayer;
+			}
+		});
+	</script>
+
+	<p>Replay goes as far back as your MT5 data allows. No artificial limits, no paywalls. The only constraint is how much historical data MT5 has loaded, controlled entirely through History Center.</p>
+
+	<h2 id="getting-started">Getting Started</h2>
+	<p><strong>Open Bar Replay from the Quick Tools dialog.</strong></p>
+	<p>The Bar Replay dialog appears with two ways to set your starting position. Click Select Bar, then click anywhere on the chart to place a vertical line marking where replay begins. Or click D/T to open a date/time dialog where you enter the exact moment to start.</p>
+	<p>A vertical line marks the replay position. Everything to the right gets hidden — the "future" disappears. The chart auto-scrolls to keep the replay position visible. Drag the line to reposition it at any time.</p>
+
+	<h2 id="playback-controls">Playback Controls</h2>
+	<p><strong>Step through bars manually or let them advance automatically.</strong></p>
+	<p>The forward and back buttons move one candle at a time. Play starts automatic advancement at configurable speed — 1x through 10x, measured in bars per timer tick. Pause freezes playback at the current position.</p>
+	<p>Keyboard shortcuts provide quick access: <code>Shift + .</code> steps forward, <code>Shift + ,</code> steps back, <code>Shift + /</code> toggles play/pause.</p>
+
+	<h2 id="saving-positions">Saving Positions</h2>
+	<p><strong>Bookmark moments you want to revisit.</strong></p>
+	<p>The Save button stores the current replay position to <code>bar_replay.ini</code> with a custom name. Positions are organized by symbol — each instrument maintains its own list of saved locations.</p>
+	<p>Load retrieves a saved position, jumping directly to that bar. Delete removes positions no longer needed. This persistence enables building a library of interesting market moments for future study.</p>
+
+	<h2 id="visual-customization">Visual Customization</h2>
+	<p><strong>Configure how replay appears on your chart.</strong></p>
+	<p>Replay candles use separate bull/bear colors, distinguishing them from regular chart candles. The vertical line marking the replay position has configurable color, style, and width.</p>
+	<p>Hidden candles match the chart background color, making the "future" disappear cleanly rather than showing empty space.</p>
+
+	<h2 id="use-cases">Use Cases</h2>
+	<p><strong>Practice strategies on historical data.</strong> Test entries and exits without risking capital. Walk through past setups to see how they developed.</p>
+	<p><strong>Track trades in progress.</strong> Save a position when a setup starts forming. Return later to replay how it resolved. Compare your read against what actually happened.</p>
+	<p><strong>Review completed trades.</strong> Save the position before entry. After the trade closes, reload and step through your decision-making in real-time context. Combine with visibility templates to restore the exact chart setup you had at the time.</p>
+	<p><strong>Study patterns.</strong> Save formations that catch your eye — head and shoulders, flags, consolidations. Build a library of examples. Replay them to understand how they developed and resolved.</p>
+	<p><strong>Document and share.</strong> Export drawings, save replay positions. Months later, recreate the exact moment with full context. Share position names with others — "Load EURUSD_NFP_Jan2025 and step through."</p>
+</DocsLayout>
