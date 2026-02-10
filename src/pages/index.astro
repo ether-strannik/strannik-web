@@ -314,6 +314,20 @@ import Base from '../layouts/Base.astro';
 			background: #333;
 		}
 
+		.subscribe-status {
+			margin-top: 0.75rem;
+			font-size: 0.9rem;
+			color: #666;
+		}
+
+		.subscribe-status.success {
+			color: #2e7d32;
+		}
+
+		.subscribe-status.error {
+			color: #c62828;
+		}
+
 	</style>
 
 	<div class="hero">
@@ -414,10 +428,11 @@ import Base from '../layouts/Base.astro';
 
 		<div class="subscribe-section">
 			<h3 class="subscribe-title">Join the waitlist to stay in the loop.</h3>
-			<form class="subscribe-form" action="#" method="POST">
+			<form class="subscribe-form" id="subscribe-form">
 				<input type="email" name="email" class="subscribe-input" placeholder="Email address" required />
 				<button type="submit" class="subscribe-btn">Subscribe</button>
 			</form>
+			<p class="subscribe-status" id="subscribe-status"></p>
 		</div>
 	</div>
 
@@ -439,6 +454,43 @@ import Base from '../layouts/Base.astro';
 			btn.addEventListener('click', () => {
 				btn.closest('.faq-item').classList.toggle('open');
 			});
+		});
+
+		document.getElementById('subscribe-form')?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const form = e.target;
+			const email = form.email.value;
+			const status = document.getElementById('subscribe-status');
+			const btn = form.querySelector('button');
+
+			btn.disabled = true;
+			btn.textContent = 'Subscribing...';
+			status.textContent = '';
+			status.className = 'subscribe-status';
+
+			try {
+				const res = await fetch('/api/subscribe', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email })
+				});
+				const data = await res.json();
+
+				if (res.ok) {
+					status.textContent = data.message;
+					status.classList.add('success');
+					form.reset();
+				} else {
+					status.textContent = data.error || 'Something went wrong';
+					status.classList.add('error');
+				}
+			} catch {
+				status.textContent = 'Network error. Please try again.';
+				status.classList.add('error');
+			}
+
+			btn.disabled = false;
+			btn.textContent = 'Subscribe';
 		});
 	</script>
 </Base>
