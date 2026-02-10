@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Credits - Strannik">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		.credits-list {
+			list-style: none;
+			padding: 0;
+		}
+
+		.credits-list li {
+			padding: 0.75rem 0;
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.credits-list li:last-child {
+			border-bottom: none;
+		}
+
+		.credits-list a {
+			font-weight: 500;
+			color: #000;
+		}
+
+		.credits-list span {
+			color: #666;
+		}
+	</style>
+
+	<h1>Credits</h1>
+	<p class="tagline">Open source projects that made this possible.</p>
+
+	<ul class="credits-list">
+		<li><a href="https://astro.build/" target="_blank">Astro</a> <span>- Open-source web framework for content-driven websites.</span></li>
+		<li><a href="https://github.com" target="_blank">GitHub</a> <span>- Open-source community and collaboration platform.</span></li>
+		<li><a href="https://typeof.net/Iosevka/" target="_blank">Iosevka</a> <span>- Open-source monospace typeface for code and terminals.</span></li>
+		<li><a href="https://makertube.net/" target="_blank">MakerTube</a> <span>- PeerTube-powered video platform for makers and creators.</span></li>
+		<li><a href="https://www.mql5.com/en/code" target="_blank">MQL5 Codebase</a> <span>- Community code library for MetaTrader indicators and tools.</span></li>
+		<li><a href="https://getsharex.com/" target="_blank">ShareX</a> <span>- Open-source screen capture and sharing tool.</span></li>
+		<li><a href="https://shotcut.org/" target="_blank">Shotcut</a> <span>- Open-source, cross-platform video editor.</span></li>
+	</ul>
+</Base>
