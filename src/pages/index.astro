@@ -199,6 +199,121 @@ import Base from '../layouts/Base.astro';
 			width: 100%;
 		}
 
+		/* FAQ */
+		.faq-section {
+			margin-top: 3rem;
+			padding-top: 3rem;
+			border-top: 1px solid #e5e5e5;
+		}
+
+		.faq-title {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 1.5rem;
+		}
+
+		.faq-item {
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.faq-question {
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
+			padding: 1rem 0;
+			cursor: pointer;
+			background: none;
+			border: none;
+			width: 100%;
+			text-align: left;
+			font-family: inherit;
+			font-size: 1rem;
+			font-weight: 500;
+			color: #000;
+		}
+
+		.faq-question:hover {
+			color: #333;
+		}
+
+		.faq-icon {
+			color: #999;
+			font-size: 1rem;
+			line-height: 1.5;
+			flex-shrink: 0;
+		}
+
+		.faq-answer {
+			display: none;
+			padding: 0 0 1rem 2rem;
+			color: #666;
+			line-height: 1.6;
+		}
+
+		.faq-item.open .faq-answer {
+			display: block;
+		}
+
+		.faq-item.open .faq-icon::before {
+			content: '−';
+		}
+
+		.faq-icon::before {
+			content: '+';
+		}
+
+		/* Subscribe */
+		.subscribe-section {
+			margin-top: 3rem;
+			padding-top: 3rem;
+			border-top: 1px solid #e5e5e5;
+		}
+
+		.subscribe-title {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.subscribe-desc {
+			color: #666;
+			margin-bottom: 1.5rem;
+		}
+
+		.subscribe-form {
+			display: flex;
+			gap: 0.75rem;
+		}
+
+		.subscribe-input {
+			flex: 1;
+			padding: 0.75rem 1rem;
+			border: 1px solid #e5e5e5;
+			border-radius: 4px;
+			font-family: inherit;
+			font-size: 0.95rem;
+		}
+
+		.subscribe-input:focus {
+			outline: none;
+			border-color: #999;
+		}
+
+		.subscribe-btn {
+			padding: 0.75rem 1.5rem;
+			background: #000;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			font-family: inherit;
+			font-size: 0.95rem;
+			cursor: pointer;
+		}
+
+		.subscribe-btn:hover {
+			background: #333;
+		}
+
 	</style>
 
 	<div class="hero">
@@ -247,6 +362,72 @@ import Base from '../layouts/Base.astro';
 			</a>
 			<a href="https://github.com/ether-strannik/PrismChart" class="btn-github" target="_blank">GitHub</a>
 		</div>
+
+		<div class="faq-section">
+			<h3 class="faq-title">FAQ</h3>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					What is PrismChart?
+				</button>
+				<div class="faq-answer">
+					PrismChart is an open source charting toolkit that extends MetaTrader 5 with drawing and analysis tools. It consolidates charting, alerts, trade journaling, documentation, and statistical review into a single integrated workstation — eliminating the need to juggle multiple apps.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					What are the system requirements?
+				</button>
+				<div class="faq-answer">
+					Windows + MetaTrader 5. ImageMagick is optional for screenshot splitting. That's it.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					Does it work with MT4?
+				</button>
+				<div class="faq-answer">
+					No, PrismChart is built exclusively for MetaTrader 5.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					How do I use PrismChart?
+				</button>
+				<div class="faq-answer">
+					The best starting point is the <a href="/docs/prismchart">documentation</a> — it walks you through setup and basics.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					Is PrismChart free?
+				</button>
+				<div class="faq-answer">
+					PrismChart is free — no subscriptions, no paywalls. It's open source under MIT.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					Is PrismChart open source?
+				</button>
+				<div class="faq-answer">
+					Yes. PrismChart is open source and licensed under MIT. The source code is available on <a href="https://github.com/ether-strannik/PrismChart" target="_blank">GitHub</a>. You're free to use, modify, and distribute it.
+				</div>
+			</div>
+		</div>
+
+		<div class="subscribe-section">
+			<h3 class="subscribe-title">Join the waitlist to stay in the loop.</h3>
+			<form class="subscribe-form" action="#" method="POST">
+				<input type="email" name="email" class="subscribe-input" placeholder="Email address" required />
+				<button type="submit" class="subscribe-btn">Subscribe</button>
+			</form>
+		</div>
 	</div>
 
 	<div class="tab-content" id="tab">
@@ -260,6 +441,12 @@ import Base from '../layouts/Base.astro';
 
 				btn.classList.add('active');
 				document.getElementById(btn.dataset.tab)?.classList.add('active');
+			});
+		});
+
+		document.querySelectorAll('.faq-question').forEach(btn => {
+			btn.addEventListener('click', () => {
+				btn.closest('.faq-item').classList.toggle('open');
 			});
 		});
 	</script>
