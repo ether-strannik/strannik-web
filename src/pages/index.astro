@@ -109,8 +109,8 @@ import Base from '../layouts/Base.astro';
 		}
 
 		.app-icon {
-			width: 95px;
-			height: 95px;
+			width: 105px;
+			height: 105px;
 		}
 
 		.app-title {
@@ -124,6 +124,13 @@ import Base from '../layouts/Base.astro';
 			font-size: 1.1rem;
 			font-weight: 500;
 			margin-bottom: 0;
+		}
+
+		.feature-intro {
+			font-size: 1.2rem;
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 1rem;
 		}
 
 		.feature-list {
@@ -346,7 +353,7 @@ import Base from '../layouts/Base.astro';
 			<img src="/icons/prismchart.png" alt="PrismChart" class="app-icon" />
 			<div>
 				<h2 class="app-title">PrismChart</h2>
-				<p class="app-desc">An open source charting toolkit for MetaTrader 5. Draw, organize, document, review.</p>
+				<p class="app-desc">Privacy-focused, open source charting toolkit for MetaTrader 5. <strong>Your charts, your data, your machine.</strong> No accounts, no KYC, no cloud — everything runs locally on your MT5 terminal.</p>
 			</div>
 		</div>
 
@@ -355,6 +362,8 @@ import Base from '../layouts/Base.astro';
 				<source src="/main_video.mp4" type="video/mp4" />
 			</video>
 		</div>
+
+		<p class="feature-intro">Everything you need for charting, journaling, and review — in one place.</p>
 
 		<ul class="feature-list">
 			<li><strong>Custom Scales</strong> Canvas-rendered price and time axes with timezone support</li>
@@ -418,10 +427,19 @@ import Base from '../layouts/Base.astro';
 			<div class="faq-item">
 				<button class="faq-question">
 					<span class="faq-icon"></span>
-					Is PrismChart free?
+					Is PrismChart free / open source?
 				</button>
 				<div class="faq-answer">
 					PrismChart is free — no subscriptions, no paywalls, and no Black Friday specials. It's open source and licensed under MIT. You're free to use, modify, and distribute it.
+				</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-question">
+					<span class="faq-icon"></span>
+					What about my data and privacy?
+				</button>
+				<div class="faq-answer">
+					PrismChart doesn't know who you are — and it's designed that way. It runs entirely on your machine. No accounts, no KYC, no cloud — your data never leaves your desktop. It's open source, so you can verify that yourself.
 				</div>
 			</div>
 		</div>
