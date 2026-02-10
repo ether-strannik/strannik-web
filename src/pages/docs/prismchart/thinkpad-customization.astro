@@ -1,0 +1,140 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'ThinkPad',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
+			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization', active: true }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#color-scheme', label: 'Color Scheme' },
+	{ href: '#stats-dashboard', label: 'Stats Dashboard' },
+	{ href: '#calendar-mode', label: 'Calendar Mode' }
+];
+---
+
+<DocsLayout title="Customization - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h2:first-of-type {
+			margin-top: 0;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
+		}
+
+		img {
+			max-width: 100%;
+			border-radius: 6px;
+			margin: 1rem 0 1.5rem;
+		}
+	</style>
+
+	<h1>Customization</h1>
+	<p class="tagline">Adjust colors, stats display, and calendar modes.</p>
+
+	<h2 id="color-scheme">Color Scheme</h2>
+	<p class="section-intro">Make the interface easier on your eyes.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-12.jpg" alt="ThinkPad Settings - Display tab" />
+
+	<p>Open Settings and go to the Display tab. Adjust background color, font color, and markdown highlights for your preferred contrast. Under Trade Colors, customize profit and loss indicators - change from the default olive and orange to bright green and red if you prefer.</p>
+
+	<p>Click Save and the entire app reflects your color preferences.</p>
+
+	<h2 id="stats-dashboard">Stats Dashboard</h2>
+	<p class="section-intro">Show only the metrics you care about.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-15.jpg" alt="ThinkPad Stat Manager" />
+
+	<p>Open Settings and go to the Trade tab. Click Manage Stats to open the Stat Manager dialog. Uncheck stats you don't need like swap costs, check ones you want like max drawdown. Drag to reorder with the most important metrics on the left.</p>
+
+	<p>Click OK, then Save. The Trades Manager header now shows your customized stats in your preferred order.</p>
+
+	<h2 id="calendar-mode">Calendar Mode</h2>
+	<p class="section-intro">Choose how trades display across days.</p>
+
+	<p>Open Settings, go to the Trade tab, and change Calendar display mode.</p>
+
+	<p><strong>Transaction mode</strong> shows only the final exit day with total P/L - simpler for day traders.</p>
+
+	<p><strong>Evolution mode</strong> shows trade progression across days. Entry day displays as "E EURUSD B 2.5" (Entry, Buy, 2.5 lots). Partial exits show as "X1 +500" and "X2 +300" on their respective days - better for swing and position traders who want to see the holding pattern.</p>
+</DocsLayout>
