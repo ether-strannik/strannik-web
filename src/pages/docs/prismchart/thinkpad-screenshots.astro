@@ -1,0 +1,160 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'ThinkPad',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
+			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
+			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots', active: true }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#taking-screenshots', label: 'Taking Screenshots' },
+	{ href: '#assigning-to-trades', label: 'Assigning to Trades' },
+	{ href: '#viewing-screenshots', label: 'Viewing Screenshots' },
+	{ href: '#reordering', label: 'Reordering' },
+	{ href: '#renaming', label: 'Renaming' }
+];
+---
+
+<DocsLayout title="Screenshots - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h2:first-of-type {
+			margin-top: 0;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		.section-intro {
+			font-weight: 500;
+			color: #000;
+			margin-bottom: 0.75rem;
+		}
+
+		img {
+			max-width: 100%;
+			border-radius: 6px;
+			margin: 1rem 0 1.5rem;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1.5rem 0;
+		}
+	</style>
+
+	<h1>Screenshots</h1>
+	<p class="tagline">Capture, organize, and review your chart images.</p>
+
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-5.jpg" alt="ThinkPad Screenshots" />
+
+	<h2 id="taking-screenshots">Taking Screenshots</h2>
+	<p class="section-intro">Capture key moments during trading.</p>
+
+	<p>Use the Presentation Dialog in PrismChart to take screenshots at important points - entries, exits, key levels hit. Screenshots save to the PrismChart/Screenshots folder where ThinkPad automatically detects them.</p>
+
+	<h2 id="assigning-to-trades">Assigning to Trades</h2>
+	<p class="section-intro">Link screenshots to specific positions.</p>
+
+	<p>Switch the mode dropdown from Notes to Screenshots. The file tree shows an Unassigned folder with your screenshots listed by date and time.</p>
+
+	<p>Right-click a screenshot and select Assign to Position. The Trades Manager opens - select the matching position. Enter a sequence number when prompted (1 for first screenshot, 2 for second, and so on).</p>
+
+	<p>All assigned screenshots appear under their position in the tree, numbered in sequence.</p>
+
+	<h2 id="viewing-screenshots">Viewing Screenshots</h2>
+	<p class="section-intro">Browse your trade documentation.</p>
+
+	<p>Click any screenshot under a position to open the large viewer on the right. Use the zoom controls and navigation buttons to move between images. Click and drag to pan around zoomed images.</p>
+
+	<h2 id="reordering">Reordering</h2>
+	<p class="section-intro">Fix the sequence after assignment.</p>
+
+	<p>Right-click any screenshot under a position and select Reorder. The dialog shows all screenshots for that position - drag them into the correct order and click Apply. Files are automatically renamed to reflect the new sequence.</p>
+
+	<h2 id="renaming">Renaming</h2>
+	<p class="section-intro">Add descriptive names instead of timestamps.</p>
+
+	<p>Right-click a screenshot and select Rename. Enter a descriptive name like "Breakout entry" - the symbol is preserved while the date/time is replaced with your custom name.</p>
+
+	<p class="note">Rename key screenshots you reference often or when creating presentation-ready sequences.</p>
+</DocsLayout>

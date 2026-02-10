@@ -45,8 +45,8 @@ const sidebar = [
 		links: [
 			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
 			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
-			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace', active: true },
-			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes', active: true },
 			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' }
 		]
 	},
@@ -62,12 +62,13 @@ const sidebar = [
 ];
 
 const toc = [
-	{ href: '#symbols', label: 'Symbols' },
-	{ href: '#tags', label: 'Tags' }
+	{ href: '#quick-note-creation', label: 'Quick Note Creation' },
+	{ href: '#assigning-notes-to-trades', label: 'Assigning Notes to Trades' },
+	{ href: '#archiving-notes', label: 'Archiving Notes' }
 ];
 ---
 
-<DocsLayout title="Workspace - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+<DocsLayout title="Trade Notes - ThinkPad - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
 	<style>
 		h1 {
 			font-size: 1.8rem;
@@ -119,34 +120,35 @@ const toc = [
 		}
 	</style>
 
-	<h1>Workspace</h1>
-	<p class="tagline">Symbols and tags for filtering your notes.</p>
+	<h1>Trade Notes</h1>
+	<p class="tagline">Document your analysis and track trades.</p>
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-1.jpg" alt="ThinkPad Workspace" />
+	<h2 id="quick-note-creation">Quick Note Creation</h2>
+	<p class="section-intro">Start documenting a setup as it forms.</p>
 
-	<h2 id="symbols">Symbols</h2>
-	<p class="section-intro">Everything in ThinkPad is organized by trading instrument.</p>
+	<p>Click the plus button in the toolbar. A new untitled note opens in the editor where you can write your analysis - market context, entry plan, stops and targets.</p>
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-2.jpg" alt="ThinkPad Symbol Manager" />
+	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-4.jpg" alt="ThinkPad Create Note Dialog" />
 
-	<p>Two types of symbols exist. Database symbols are automatically detected from your trades.json file. User symbols, marked with a star, are manually added for instruments you plan to trade but haven't yet.</p>
+	<p>Press Save and the Create New Note dialog appears. Fill in the symbol, title, and set status to Active. Optionally select tags and leave Position ID empty for now - you can assign it after the trade opens.</p>
 
-	<p>To add a symbol, click the All button to open Symbol Manager, then click New Symbol. Enter the symbol name and click Apply.</p>
+	<p>Click Create and the note appears in your file tree, ready to track this trade.</p>
 
-	<p>Filter your notes by checking or unchecking symbols in Symbol Manager. Only notes for selected symbols appear in the tree.</p>
+	<h2 id="assigning-notes-to-trades">Assigning Notes to Trades</h2>
+	<p class="section-intro">Link notes to actual positions.</p>
 
-	<p class="note">When you open ThinkPad, it auto-selects the current chart symbol if available.</p>
+	<p>Once you enter a trade and MT5 assigns a position ID, right-click your note in the tree and select Assign to Position. The Trades Manager opens showing all positions. Select the matching position and your note moves under that position ID in the tree.</p>
 
-	<h2 id="tags">Tags</h2>
-	<p class="section-intro">Categorize notes by strategy, outcome, or any system you prefer.</p>
+	<p>You can also enter the position ID directly when creating the note if you already know it.</p>
 
-	<img src="/docs/prismchart/thinkpad/ThinkPad-20260126-3.jpg" alt="ThinkPad Tag Manager" />
+	<p class="note">Create multiple notes for one position - entry reflection, exit notes, lessons learned. All notes with the same position ID nest together. Name your primary analysis note "main" - this is the note that appears in Trade Analysis view when reviewing closed trades.</p>
 
-	<p>Click the All Tags button to open Tag Manager, then click New Tag. Enter a name like "breakout", "reversal", or "mistake" and click Apply.</p>
+	<h2 id="archiving-notes">Archiving Notes</h2>
+	<p class="section-intro">Move completed trades out of your active workspace.</p>
 
-	<p>Tags in use display a count showing how many notes reference them. Empty tags show no count.</p>
+	<p>Change the status in the note's frontmatter from <code>active</code> to <code>completed</code> and save. The note automatically moves to the Archives folder.</p>
 
-	<p>Filter by selecting one or more tags in Tag Manager and clicking Apply. Only notes with those tags appear.</p>
+	<p>Alternatively, right-click the note, select Rename, change the Status dropdown to Completed, and click OK.</p>
 
-	<p class="note">Tag strategy examples: setup types (breakout, reversal, trend), quality grades (A-setup, B-setup, mistake), or phases (planning, active, review).</p>
+	<p>Archived trades remain searchable and viewable but stay separate from your active analysis.</p>
 </DocsLayout>
