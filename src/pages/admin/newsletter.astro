@@ -146,7 +146,7 @@ import Base from '../../layouts/Base.astro';
 				const data = await res.json();
 
 				if (res.ok) {
-					status.textContent = `${data.message}! Sent to ${data.count} subscriber(s).`;
+					status.textContent = data.count ? `${data.message}! Sent to ${data.count} subscriber(s).` : data.message;
 					status.className = 'status success';
 					form.subject.value = '';
 					form.html.value = '';
