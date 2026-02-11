@@ -106,10 +106,55 @@ const toc = [
 		p strong {
 			color: #000;
 		}
+
+		.video-container {
+			margin-bottom: 2rem;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-container iframe {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16/9;
+			border: none;
+		}
 	</style>
 
 	<h1>Alerts</h1>
 	<p class="tagline">Notification system for price levels, zones, and time events.</p>
+
+	<div class="video-container" id="video">
+		<iframe
+			id="pt-player"
+			src="https://makertube.net/videos/embed/wWSXiDPtTFKPggLnwrrqir"
+			allowfullscreen
+			sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+		</iframe>
+	</div>
+
+	<script src="https://unpkg.com/@peertube/embed-api/build/player.min.js"></script>
+	<script>
+		async function initPeerTubePlayer() {
+			const iframe = document.getElementById('pt-player');
+			if (!iframe) return;
+
+			const PeerTubePlayer = window['PeerTubePlayer'];
+			if (!PeerTubePlayer) return;
+
+			const player = new PeerTubePlayer(iframe);
+			await player.ready;
+
+			const resolutions = await player.getResolutions();
+			const r720 = resolutions.find(r => r.height === 720);
+			if (r720) {
+				await player.setResolution(r720.id);
+			}
+		}
+
+		document.addEventListener('astro:page-load', initPeerTubePlayer);
+		if (document.readyState === 'complete') initPeerTubePlayer();
+	</script>
 
 	<h2 id="line-alerts">Line Alerts</h2>
 	<p><strong>Set alerts on any drawn object.</strong></p>
