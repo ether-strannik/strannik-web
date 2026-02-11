@@ -69,7 +69,8 @@ const toc = [
 	{ href: '#layers', label: 'Layers' },
 	{ href: '#drawing-manager', label: 'Drawing Manager' },
 	{ href: '#sublayer-system', label: 'Sublayer System' },
-	{ href: '#naming', label: 'Naming' }
+	{ href: '#naming', label: 'Naming' },
+	{ href: '#visibility-templates', label: 'Visibility Templates' }
 ];
 ---
 
@@ -141,33 +142,35 @@ const toc = [
 	<p class="tagline">Object management and organization</p>
 
 	<div class="video-container" id="video">
-		<div id="yt-player"></div>
+		<iframe
+			id="pt-player"
+			src="https://makertube.net/videos/embed/gAxbFwQg6158ZGgPX2s4Tz"
+			allowfullscreen
+			sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+		</iframe>
 	</div>
 
+	<script src="https://unpkg.com/@peertube/embed-api/build/player.min.js"></script>
 	<script>
-		function initYouTubePlayer() {
-			const container = document.getElementById('yt-player');
-			if (!container || container.hasChildNodes()) return;
+		async function initPeerTubePlayer() {
+			const iframe = document.getElementById('pt-player');
+			if (!iframe) return;
 
-			new YT.Player('yt-player', {
-				videoId: 'thaZxw8F15o',
-				playerVars: { rel: 0, modestbranding: 1 },
-				events: {
-					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
-				}
-			});
+			const PeerTubePlayer = window['PeerTubePlayer'];
+			if (!PeerTubePlayer) return;
+
+			const player = new PeerTubePlayer(iframe);
+			await player.ready;
+
+			const resolutions = await player.getResolutions();
+			const r720 = resolutions.find(r => r.height === 720);
+			if (r720) {
+				await player.setResolution(r720.id);
+			}
 		}
 
-		document.addEventListener('astro:page-load', () => {
-			if (typeof YT !== 'undefined' && YT.Player) {
-				initYouTubePlayer();
-			} else {
-				const tag = document.createElement('script');
-				tag.src = 'https://www.youtube.com/iframe_api';
-				document.head.appendChild(tag);
-				window.onYouTubeIframeAPIReady = initYouTubePlayer;
-			}
-		});
+		document.addEventListener('astro:page-load', initPeerTubePlayer);
+		if (document.readyState === 'complete') initPeerTubePlayer();
 	</script>
 
 	<h2 id="layers">Layers</h2>
@@ -190,4 +193,11 @@ const toc = [
 	<p class="section-intro">Name objects your way.</p>
 	<p>After drawing, a naming dialog appears where you can enter a custom name or accept the auto-generated one. Names follow the pattern <code>[LAYER]_001</code>, <code>[LAYER]_002</code>, incrementing automatically.</p>
 	<p>To rename an existing object, click the rename button in the layer panel. The rename dialog includes a group dropdown, letting you move objects between layers by changing their prefix.</p>
+
+	<h2 id="visibility-templates">Visibility Templates</h2>
+	<p class="section-intro">Save and restore chart views.</p>
+	<p>Visibility Templates capture the show/hide and lock state of every object on your chart. Save your current configuration as a named template, then restore it later with one click. This lets you switch between different views of your analysis without manually toggling dozens of objects.</p>
+	<p>Access templates through the Drawing Manager - click the Visibility Templates button to open the template manager. The Add button saves your current state as a new template. Each saved template appears in the list with Load and Delete options.</p>
+	<p>When you apply a template, PrismChart first hides and unlocks all objects, then restores the saved states for objects that still exist. Templates persist to an INI file, so they survive restarts.</p>
+	<p>Common setups: "Clean Chart" hides all drawings for screenshots, "Analysis Mode" shows only specific layers like FVGs, "Review Mode" locks everything to prevent accidental edits.</p>
 </DocsLayout>

@@ -133,33 +133,35 @@ const toc = [
 	<p class="tagline">Position tool and layer controls</p>
 
 	<div class="video-container" id="video">
-		<div id="yt-player"></div>
+		<iframe
+			id="pt-player"
+			src="https://makertube.net/videos/embed/48Gzfte7xw7BhwmeRsnst5"
+			allowfullscreen
+			sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+		</iframe>
 	</div>
 
+	<script src="https://unpkg.com/@peertube/embed-api/build/player.min.js"></script>
 	<script>
-		function initYouTubePlayer() {
-			const container = document.getElementById('yt-player');
-			if (!container || container.hasChildNodes()) return;
+		async function initPeerTubePlayer() {
+			const iframe = document.getElementById('pt-player');
+			if (!iframe) return;
 
-			new YT.Player('yt-player', {
-				videoId: 'njdhsMTjHj8',
-				playerVars: { rel: 0, modestbranding: 1 },
-				events: {
-					onReady: function(e) { e.target.setPlaybackQuality('hd720'); }
-				}
-			});
+			const PeerTubePlayer = window['PeerTubePlayer'];
+			if (!PeerTubePlayer) return;
+
+			const player = new PeerTubePlayer(iframe);
+			await player.ready;
+
+			const resolutions = await player.getResolutions();
+			const r720 = resolutions.find(r => r.height === 720);
+			if (r720) {
+				await player.setResolution(r720.id);
+			}
 		}
 
-		document.addEventListener('astro:page-load', () => {
-			if (typeof YT !== 'undefined' && YT.Player) {
-				initYouTubePlayer();
-			} else {
-				const tag = document.createElement('script');
-				tag.src = 'https://www.youtube.com/iframe_api';
-				document.head.appendChild(tag);
-				window.onYouTubeIframeAPIReady = initYouTubePlayer;
-			}
-		});
+		document.addEventListener('astro:page-load', initPeerTubePlayer);
+		if (document.readyState === 'complete') initPeerTubePlayer();
 	</script>
 
 	<h2 id="position-tool">Position Tool</h2>
