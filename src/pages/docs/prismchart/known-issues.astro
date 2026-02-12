@@ -1,0 +1,223 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+const sidebar = [
+	{
+		links: [
+			{ href: '/docs/prismchart', label: 'Intro' },
+			{ href: '/docs/prismchart/foundation', label: 'Foundation' },
+			{ href: '/docs/prismchart/chart-tools', label: 'Chart Tools' },
+			{ href: '/docs/prismchart/layers', label: 'Layers' },
+			{ href: '/docs/prismchart/customization', label: 'Customization' },
+			{ href: '/docs/prismchart/presentation', label: 'Presentation' },
+			{ href: '/docs/prismchart/alerts', label: 'Alerts' },
+			{ href: '/docs/prismchart/bar-replay', label: 'Bar Replay' },
+			{ href: '/docs/prismchart/shortcuts', label: 'Shortcuts' }
+		]
+	},
+	{
+		title: 'Drawing Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/drawing-tools-1', label: 'Drawing Tools 1' },
+			{ href: '/docs/prismchart/drawing-tools-2', label: 'Drawing Tools 2' },
+			{ href: '/docs/prismchart/drawing-tools-3', label: 'Drawing Tools 3' }
+		]
+	},
+	{
+		title: 'Analysis Tools',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/quick-tools', label: 'Quick Tools' },
+			{ href: '/docs/prismchart/time-context', label: 'Time Context' }
+		]
+	},
+	{
+		title: 'Portability',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/save-export', label: 'Save & Export' },
+			{ href: '/docs/prismchart/copy-paste', label: 'Copy/Paste' }
+		]
+	},
+	{
+		title: 'ThinkPad',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/thinkpad', label: 'Intro' },
+			{ href: '/docs/prismchart/thinkpad-customization', label: 'Customization' },
+			{ href: '/docs/prismchart/thinkpad-workspace', label: 'Workspace' },
+			{ href: '/docs/prismchart/thinkpad-trade-notes', label: 'Trade Notes' },
+			{ href: '/docs/prismchart/thinkpad-screenshots', label: 'Screenshots' },
+			{ href: '/docs/prismchart/thinkpad-review-trades', label: 'Review Trades' },
+			{ href: '/docs/prismchart/thinkpad-performance', label: 'Performance' },
+			{ href: '/docs/prismchart/thinkpad-troubleshooting', label: 'Troubleshooting' }
+		]
+	},
+	{
+		title: 'Development',
+		collapsible: true,
+		links: [
+			{ href: '/docs/prismchart/building', label: 'Building' },
+			{ href: '/docs/prismchart/changelog', label: 'Changelog' },
+			{ href: '/docs/prismchart/known-issues', label: 'Known Issues', active: true },
+			{ href: '/docs/prismchart/credits', label: 'Credits' }
+		]
+	}
+];
+
+const toc = [
+	{ href: '#ui-framework', label: 'UI Framework' },
+	{ href: '#easyandfastgui', label: 'EasyAndFastGUI' },
+	{ href: '#platform-fundamentals', label: 'Platform Fundamentals' }
+];
+---
+
+<DocsLayout title="Known Issues - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
+	<style>
+		h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.tagline {
+			color: #666;
+			margin-bottom: 2rem;
+		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h3 {
+			font-size: 1rem;
+			font-weight: 600;
+			margin: 1.5rem 0 0.75rem;
+		}
+
+		p {
+			color: #333;
+			margin-bottom: 1rem;
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		li {
+			padding: 0.3rem 0;
+			color: #333;
+		}
+
+		code {
+			background: #f5f5f5;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 0.9em;
+		}
+
+		.note {
+			color: #666;
+			font-size: 0.95rem;
+			padding: 1rem;
+			background: #f5f5f5;
+			border-radius: 4px;
+			margin: 1rem 0;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1rem 0 1.5rem;
+			font-size: 0.9rem;
+		}
+
+		th, td {
+			padding: 0.5rem 0.75rem;
+			text-align: left;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		th {
+			font-weight: 600;
+			background: #f9f9f9;
+		}
+	</style>
+
+	<h1>Known Issues</h1>
+	<p class="tagline">MT5 platform limitations and workarounds</p>
+
+	<h2 id="ui-framework">UI Framework Limitations</h2>
+
+	<h3>CAppDialog Scaling</h3>
+	<p>Native MT5 UI uses fixed pixel positions with no layout manager. Dialogs look correct on desktop monitors but distort on laptop screens. Font rendering varies by resolution - text overflows at lower resolutions. There's no text measurement or responsive layout system.</p>
+
+	<h3>Click Event Interception</h3>
+	<p>MT5 processes <code>CHARTEVENT_OBJECT_CLICK</code> before dialog clicks. Selectable chart objects underneath dialogs "steal" mouse events.</p>
+	<p><strong>Mitigation:</strong> Position dialogs away from crowded areas.</p>
+
+	<h3>Multiple Dialog Chaos</h3>
+	<p>CAppDialog is built on chart objects, not real OS windows. No window manager, z-order, focus management, or event routing between dialogs.</p>
+	<p><strong>Symptoms:</strong></p>
+	<ul>
+		<li>Clicks go to wrong dialog</li>
+		<li>Background dialog receives foreground events</li>
+		<li>Buttons unresponsive when dialogs overlap</li>
+	</ul>
+	<p><strong>Mitigations:</strong></p>
+	<ul>
+		<li>Never overlap dialogs (mutual exclusivity)</li>
+		<li>Use native MessageBox for simple alerts</li>
+		<li>External UI via Python addon (ThinkPad approach)</li>
+	</ul>
+
+	<h2 id="easyandfastgui">EasyAndFastGUI - Migration Attempted</h2>
+	<p>Library by Anatoli Kazharski: <a href="https://www.mql5.com/en/code/19703" target="_blank">EasyAndFastGUI</a></p>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Feature</th>
+				<th>CAppDialog</th>
+				<th>EasyAndFastGUI</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td>Auto-resize</td><td>No</td><td>Yes</td></tr>
+			<tr><td>Anchoring</td><td>No</td><td>Yes (edges)</td></tr>
+			<tr><td>Z-order management</td><td>None</td><td>Per element</td></tr>
+			<tr><td>Active window tracking</td><td>None</td><td>Yes</td></tr>
+			<tr><td>Minimum size</td><td>No</td><td>Yes</td></tr>
+			<tr><td>Rendering</td><td>Chart objects</td><td>CRectCanvas</td></tr>
+			<tr><td>Event routing</td><td>Basic</td><td>Centralized with timer</td></tr>
+		</tbody>
+	</table>
+
+	<h3>Migration Attempt</h3>
+	<p>Attempted transition to address CAppDialog limitations. The library does solve scaling and event handling issues - tested dialogs render correctly across resolutions and click events route properly.</p>
+
+	<p><strong>Blocker: Single Window Architecture</strong></p>
+	<p>EasyAndFastGUI is designed around a single CWindow instance per indicator. The library's event system, element management, and rendering pipeline assume one active window context. PrismChart requires multiple simultaneous dialogs (Tools, Properties, Alerts, Layers, etc.).</p>
+
+	<p><strong>Attempted:</strong> Hybrid approach - some dialogs in EasyAndFastGUI, others in CAppDialog. Result: event routing conflicts between the two systems.</p>
+
+	<p><strong>Verdict:</strong> Library solves the problems but architectural mismatch. Would require fundamental redesign of PrismChart's multi-dialog workflow, or forking/extending the library to support multiple independent windows.</p>
+
+	<div class="note"><strong>Current decision:</strong> Stay with CAppDialog, apply mitigations, accept limitations.</div>
+
+	<h2 id="platform-fundamentals">Platform Fundamentals</h2>
+	<p>These are MT5 limitations, not bugs:</p>
+	<ul>
+		<li>No true windowing system</li>
+		<li>All UI competes in flat chart object space</li>
+		<li>Resolution independence not built-in</li>
+		<li>Event routing is primitive</li>
+	</ul>
+	<p>Design for smallest expected resolution. Test across displays.</p>
+</DocsLayout>
