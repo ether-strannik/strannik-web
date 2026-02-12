@@ -1,7 +1,3 @@
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req, res) {
 	if (req.method !== 'POST') {
 		return res.status(405).json({ error: 'Method not allowed' });
@@ -22,13 +18,26 @@ export default async function handler(req, res) {
 	}
 
 	try {
-		await resend.emails.send({
-			from: 'Contact Form <onboarding@resend.dev>',
-			to: 'ether-strannik@proton.me',
-			replyTo: email,
-			subject: `Contact: ${name}`,
-			text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+		const response = await fetch('https://api.resend.com/emails', {
+			method: 'POST',
+			headers: {
+				'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				from: 'Contact Form <notify@strannik.ink>',
+				to: 'ether-strannik@proton.me',
+				reply_to: email,
+				subject: `Contact: ${name}`,
+				text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+			})
 		});
+
+		if (!response.ok) {
+			const result = await response.json();
+			console.error('Resend error:', result);
+			return res.status(500).json({ error: 'Failed to send message' });
+		}
 
 		return res.status(200).json({ message: 'Message sent' });
 	} catch (error) {
