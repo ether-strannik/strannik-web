@@ -85,7 +85,9 @@ let error = false;
 
 try {
 	const res = await fetch('https://raw.githubusercontent.com/ether-strannik/PrismChart/main/CHANGELOG.md');
+	if (!res.ok) throw new Error('Failed to fetch');
 	const markdown = await res.text();
+	if (!markdown.includes('## ')) throw new Error('Invalid changelog format');
 
 	// Split by version headers (## [X.Y.Z] or ## [Unreleased])
 	const versionBlocks = markdown.split(/^## /m).slice(1);
@@ -267,7 +269,7 @@ try {
 	<h1>Changelog</h1>
 	<hr class="divider" />
 
-	{error ? (
+	{error || entries.length === 0 ? (
 		<p class="error-msg">Unable to load changelog. <a href="https://github.com/ether-strannik/PrismChart/blob/main/CHANGELOG.md" target="_blank">View on GitHub</a></p>
 	) : (
 		entries.map(entry => (
