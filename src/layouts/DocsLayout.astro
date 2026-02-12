@@ -13,9 +13,10 @@ interface Props {
 	sidebar?: { title: string; collapsible?: boolean; expanded?: boolean; links: SidebarLink[] }[];
 	toc?: { href: string; label: string; indent?: boolean }[];
 	issuesUrl?: string;
+	githubUrl?: string;
 }
 
-const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
+const { title, sidebar = [], toc = [], issuesUrl, githubUrl = 'https://github.com/ether-strannik/PrismChart' } = Astro.props;
 ---
 
 <!doctype html>
@@ -454,9 +455,9 @@ const { title, sidebar = [], toc = [], issuesUrl } = Astro.props;
 		<header class="docs-header">
 			<a href="/" class="logo">Strannik</a>
 			<nav class="header-nav">
-				<a href="https://github.com/ether-strannik" target="_blank">GitHub</a>
-				<a href="/docs">Docs</a>
-				<a href="/credits">Credits</a>
+				<a href={githubUrl} target="_blank">GitHub</a>
+				<a href="/docs/prismchart/changelog">Changelog</a>
+				<a href="/docs/prismchart/credits">Credits</a>
 				<button class="search-btn" id="searchBtn">
 					Search <kbd>Ctrl K</kbd>
 				</button>
