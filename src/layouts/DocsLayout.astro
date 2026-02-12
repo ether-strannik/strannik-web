@@ -83,11 +83,12 @@ const { title, sidebar = [], toc = [], issuesUrl, githubUrl = 'https://github.co
 				font-weight: 400;
 				font-size: 1.75rem;
 				text-decoration: none;
+				flex-shrink: 0;
 			}
 
 			.header-nav {
 				display: flex;
-				gap: 2rem;
+				gap: 1.25rem;
 				align-items: center;
 			}
 
@@ -232,7 +233,7 @@ const { title, sidebar = [], toc = [], issuesUrl, githubUrl = 'https://github.co
 			/* Layout */
 			.docs-layout {
 				display: grid;
-				grid-template-columns: 240px 1fr 200px;
+				grid-template-columns: 300px 1fr 200px;
 				min-height: calc(100vh - 60px);
 			}
 
@@ -402,7 +403,7 @@ const { title, sidebar = [], toc = [], issuesUrl, githubUrl = 'https://github.co
 
 			@media (max-width: 1024px) {
 				.docs-layout {
-					grid-template-columns: 240px 1fr;
+					grid-template-columns: 260px 1fr;
 				}
 
 				.toc {
