@@ -65,7 +65,10 @@ const sidebar = [
 	}
 ];
 
-const toc = [];
+const toc = [
+	{ href: '#libraries', label: 'Libraries' },
+	{ href: '#projects', label: 'Projects' }
+];
 ---
 
 <DocsLayout title="Credits - PrismChart - Docs" sidebar={sidebar} toc={toc} issuesUrl="https://github.com/ether-strannik/PrismChart/issues">
@@ -73,7 +76,7 @@ const toc = [];
 		h1 {
 			font-size: 1.8rem;
 			font-weight: 600;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1.5rem;
 		}
 
 		.tagline {
@@ -84,6 +87,7 @@ const toc = [];
 		.credits-list {
 			list-style: none;
 			padding-left: 0;
+			margin-bottom: 1rem;
 		}
 
 		.credits-list li {
@@ -100,10 +104,35 @@ const toc = [];
 			color: #000;
 			font-weight: 500;
 		}
+
+		h2 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin: 2rem 0 1rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		h2:first-of-type {
+			margin-top: 0;
+		}
+
+		.section-intro {
+			color: #666;
+			margin-bottom: 1.5rem;
+		}
 	</style>
 
 	<h1>Credits</h1>
-	<p class="tagline">Inspired by open-source projects from the <a href="https://www.mql5.com/en/code" target="_blank">MQL5 community</a></p>
+
+	<h2 id="libraries">Libraries</h2>
+	<ul class="credits-list">
+		<li><a href="https://www.mql5.com/en/code/889" target="_blank">IncGUI ColorInput</a> by Dmitry Fedoseev - Color picker dialog</li>
+		<li><a href="https://www.mql5.com/en/code/19129" target="_blank">Notify Icon</a> by Andriy Voitenko - Windows tray notifications</li>
+	</ul>
+
+	<h2 id="projects">Projects</h2>
+	<p class="section-intro">Inspired by open-source projects from the <a href="https://www.mql5.com/en/code" target="_blank">MQL5 community</a></p>
 
 	<ul class="credits-list">
 		<li><a href="https://www.tradingview.com/script/jWY4Uiez-Fair-Value-Gap-LuxAlgo/" target="_blank">Fair Value Gap</a> by LuxAlgo - FVG detection</li>
